@@ -1,0 +1,1587 @@
+﻿@charset "UTF-8";
+@font-face {
+  font-family: BebasNeueBold;
+  src: url(../fonts/BebasNeueBold.otf);
+}
+
+@font-face {
+  font-family: BebasNeueBook;
+  src: url(../fonts/BebasNeueBook.otf);
+}
+
+@font-face {
+  font-family: BebasNeueRegular;
+  src: url(../fonts/BebasNeueRegular.otf);
+}
+
+@font-face {
+  font-family: BebasNeueThin;
+  src: url(../fonts/BebasNeueThin.otf);
+}
+
+@font-face {
+  font-family: BebasNeue-Light;
+  src: url(../fonts/BebasNeue-Light.otf);
+}
+
+@font-face {
+  font-family: PTSerifPro;
+  src: url(../fonts/PTSerifPro.otf);
+}
+
+@font-face {
+  font-family: PTSerifProBlack;
+  src: url(../fonts/PTSerifProBlack.otf);
+}
+
+@font-face {
+  font-family: PTSerifProBlackItalic;
+  src: url(../fonts/PTSerifProBlackItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProBold;
+  src: url(../fonts/PTSerifProBold.otf);
+}
+
+@font-face {
+  font-family: PTSerifProBoldItalic;
+  src: url(../fonts/PTSerifProBoldItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProBook;
+  src: url(../fonts/PTSerifProBook.otf);
+}
+
+@font-face {
+  font-family: PTSerifProBookItalic;
+  src: url(../fonts/PTSerifProBookItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProCaption;
+  src: url(../fonts/PTSerifProCaption.otf);
+}
+
+@font-face {
+  font-family: PTSerifProCaptionItalic;
+  src: url(../fonts/PTSerifProCaptionItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProDemi;
+  src: url(../fonts/PTSerifProDemi.otf);
+}
+
+@font-face {
+  font-family: PTSerifProDemiItalic;
+  src: url(../fonts/PTSerifProDemiItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtended;
+  src: url(../fonts/PTSerifProExtended.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedBlack;
+  src: url(../fonts/PTSerifProExtendedBlack.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedBlackItalic;
+  src: url(../fonts/PTSerifProExtendedBlackItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtraBold;
+  src: url(../fonts/PTSerifProExtraBold.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtraBoldItalic;
+  src: url(../fonts/PTSerifProExtraBoldItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedBook;
+  src: url(../fonts/PTSerifProExtendedBook.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedBookItalic;
+  src: url(../fonts/PTSerifProExtendedBookItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedBold;
+  src: url(../fonts/PTSerifProExtendedBold.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedBoldItalic;
+  src: url(../fonts/PTSerifProExtendedBoldItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedDemi;
+  src: url(../fonts/PTSerifProExtendedDemi.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedDemiItalic;
+  src: url(../fonts/PTSerifProExtendedDemiItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedExtraBold;
+  src: url(../fonts/PTSerifProExtendedExtraBold.otf);
+}
+
+@font-face {
+  font-family: PTSerifProExtendedExtraBoldItalic;
+  src: url(../fonts/PTSerifProExtendedExtraBoldItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProItalic;
+  src: url(../fonts/PTSerifProItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrow;
+  src: url(../fonts/PTSerifProNarrow.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowBlack;
+  src: url(../fonts/PTSerifProNarrowBlack.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowBlackItalic;
+  src: url(../fonts/PTSerifProNarrowBlackItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowBold;
+  src: url(../fonts/PTSerifProNarrowBold.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowBoldItalic;
+  src: url(../fonts/PTSerifProNarrowBoldItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowBook;
+  src: url(../fonts/PTSerifProNarrowBook.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowBookItalic;
+  src: url(../fonts/PTSerifProNarrowBookItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowDemi;
+  src: url(../fonts/PTSerifProNarrowDemi.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowDemiItalic;
+  src: url(../fonts/PTSerifProNarrowDemiItalic.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowExtraBold;
+  src: url(../fonts/PTSerifProNarrowExtraBold.otf);
+}
+
+@font-face {
+  font-family: PTSerifProNarrowItalic;
+  src: url(../fonts/PTSerifProNarrowItalic.otf);
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/**
+ * onoff.css
+ * Author: http://proto.io/freebies/onoff/
+ * Author: Timmy Willison
+ */
+.onoffswitch {
+  position: relative;
+  width: 338px;
+  height: 90px;
+  border: 3px solid #d82b41;
+  border-radius: 48px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.onoffswitch-checkbox {
+  display: none;
+}
+
+.onoffswitch-label {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.onoffswitch-inner {
+  width: 50%;
+  height: 100%;
+  display: block;
+  float: left;
+  line-height: 90px;
+  background: #d82b41;
+  text-align: center;
+  border-radius: 48px;
+  transition: all 0.3s ease-in 0s;
+  font-family: 'BebasNeueBold';
+  font-size: 30px;
+  color: #fff;
+}
+
+.onoffswitch-switch {
+  width: 50%;
+  height: 100%;
+  display: block;
+  float: left;
+  text-align: center;
+  border-radius: 48px;
+  background: rgba(255, 255, 255, 0);
+  line-height: 90px;
+  transition: all 0.3s ease-in 0s;
+  font-family: 'BebasNeueBold';
+  font-size: 30px;
+  color: #fff;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  background: rgba(255, 255, 255, 0);
+  transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  background: #d82b41;
+  transition: all 0.3s ease-in 0s;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  /* Для Firefox */
+  box-sizing: border-box;
+  /* Ширина блока с полями */
+}
+
+body {
+  background: #000;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  width: 208px;
+}
+
+.arrow {
+  width: 17px;
+  height: 29px;
+  position: relative;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.icon-star {
+  width: 57px;
+  height: 56px;
+  background: url(../images/icons/icon-star.png) no-repeat center;
+  position: relative;
+  top: 18px;
+}
+
+.icon_like {
+  width: 46px;
+  height: 40px;
+  background: url(../images/icons/icon_like.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_like-bill {
+  width: 78px;
+  height: 67px;
+  background: url(../images/icons/iconslike-bil.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_bell {
+  width: 38px;
+  height: 45px;
+  background: url(../images/icons/icon-bell.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_arrow-left {
+  width: 17px;
+  height: 29px;
+  background: url(../images/icons/icon-arrow-left.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_time {
+  width: 38px;
+  height: 45px;
+  background: url(../images/icons/icon-bell.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_time-disibe {
+  width: 56px;
+  height: 56px;
+  background: url(../images/icons/icon-star-disible.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  opacity: 0.3;
+}
+
+.icon_time-pictur {
+  width: 14px;
+  height: 14px;
+  background: url(../images/icons/icon-time.png) no-repeat center center;
+  position: relative;
+  margin-right: 12px;
+}
+
+.icon_star-grey {
+  width: 42px;
+  height: 46px;
+  background: url(../images/icons/icon-star-greyy.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon-closed {
+  width: 32px;
+  height: 33px;
+  background: url(../images/icons/icon-closed.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_search_btn {
+  width: 60px;
+  height: 60px;
+  background: url(../images/icons/icon-search-btn.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_like_info {
+  width: 46px;
+  height: 41px;
+  background: url(../images/icons/icon-like-search.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon_dz {
+  width: 38px;
+  height: 44px;
+  background: url(../images/icons/icon-dz.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon__sing-dz {
+  width: 59px;
+  height: 63px;
+  background: url(../images/icons/icon-sing-dz.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.icon-popup-closed {
+  width: 32px;
+  height: 33px;
+  background: url(../images/icons/icon-closed.png) no-repeat center center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn__like_bt {
+  position: relative;
+  width: 96px;
+  height: 97px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  transition: background 0.25s ease-out 0.125s;
+  cursor: pointer;
+}
+
+.btn__like_bt.active {
+  background: #465bfb;
+}
+
+.btn__bell_bt {
+  position: relative;
+  width: 96px;
+  height: 97px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.btn__left {
+  float: left;
+}
+
+.btn__right {
+  float: right;
+}
+
+.btn__center .onoffswitch {
+  margin: 0 auto;
+}
+
+.while {
+  color: #fff;
+}
+
+.grey {
+  color: #cdcdcd;
+}
+
+.red {
+  color: #d82b41;
+}
+
+.closed {
+  width: 32px;
+  height: 33px;
+  position: relative;
+}
+
+.closed a {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 33px;
+}
+
+.datte__item {
+  display: block;
+  text-align: center;
+  font-family: 'BebasNeueBold';
+  font-size: 30px;
+}
+
+.title_en {
+  font-family: 'BebasNeueBold';
+  font-size: 30px;
+  color: #989797;
+  text-align: center;
+  max-width: 320px;
+  padding-top: 55px;
+  margin: 0 auto;
+}
+
+.tittle_ru {
+  font-family: 'BebasNeueBold';
+  font-size: 68px;
+  color: #fff;
+  text-align: center;
+  max-width: 320px;
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+.sezon {
+  color: #d82b41;
+  font-size: 26px;
+  text-align: center;
+  font-family: 'BebasNeueBold';
+  padding-top: 15px;
+}
+
+.btn-bel_bt {
+  border: none;
+  width: 41px;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-bel_bt .cls-1 {
+  fill: #fff;
+  width: 100%;
+  transition: fill 0.25s ease-out 0.125s;
+}
+
+.btn-bel_bt.active .cls-1 {
+  fill: #d9243a;
+}
+
+.block_button_section {
+  min-width: 270px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  min-width: 270px;
+  max-width: 100%;
+  height: 81px;
+  background: #1b1b1c;
+  padding: 24px 35px 0;
+}
+
+.header__logo {
+  margin: 0 auto;
+}
+
+.header__btn-bel {
+  float: right;
+}
+
+.header__arrow {
+  float: left;
+}
+
+.header__closed {
+  float: right;
+}
+
+.cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.cover:after {
+  position: absolute;
+  bottom: 0px;
+  content: '';
+  width: 100%;
+  min-height: 141px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+1,0.3+36,0.3+36,0.3+37,1+100,1+100 */
+  background: -moz-linear-gradient(top, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.3) 36%, rgba(0, 0, 0, 0.3) 37%, black 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.3) 36%, rgba(0, 0, 0, 0.3) 37%, black 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.3) 36%, rgba(0, 0, 0, 0.3) 37%, black 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */
+}
+
+.cover:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: rgba(27, 23, 69, 0.7);
+}
+
+.cover-item {
+  float: left;
+  width: 25%;
+  overflow: hidden;
+}
+
+.cover-item img {
+  display: block;
+  width: 25vw;
+  object-fit: cover;
+}
+
+.cover-bor {
+  background: #000;
+}
+
+.cover .search-header {
+  position: absolute;
+  width: 81px;
+  height: 81px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.tabs {
+  min-width: 270px;
+  max-width: 100%;
+}
+
+.tabs__nav {
+  height: 90px;
+  background: #151518;
+}
+
+.tabs__nav_item {
+  float: left;
+  width: 33.33333%;
+  text-align: center;
+  font-family: 'BebasNeueBold';
+  font-size: 30px;
+  color: #cdcdcd;
+  cursor: pointer;
+  line-height: 90px;
+  height: 90px;
+  transition: border-bottom 0.25s ease-out 0.125s;
+}
+
+.tabs__nav_item.active {
+  color: #fff;
+  border-bottom: 3px solid #fff;
+}
+
+.tabs__content_item_block {
+  min-height: 761px;
+  width: 100%;
+  border-bottom: 4px solid #151518;
+}
+
+.tabs__content_item_bg {
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  min-height: 757px;
+}
+
+.tabs__content_item .block_button_section {
+  padding: 50px 0;
+}
+
+.tabs__content .datte__item {
+  padding-bottom: 10px;
+}
+
+.time {
+  width: 280px;
+  margin: 0 auto;
+  padding-top: 24px;
+}
+
+.time__top {
+  padding-bottom: 10px;
+}
+
+.time__top_center {
+  width: 82px;
+  margin: 0 auto;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  text-align: center;
+}
+
+.time__top_left {
+  width: 82px;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  float: left;
+  text-align: center;
+}
+
+.time__top_right {
+  width: 82px;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  float: right;
+  text-align: center;
+}
+
+.time__bottom_center {
+  width: 82px;
+  margin: 0 auto;
+  font-size: 95px;
+  font-family: 'BebasNeueBold';
+  text-align: center;
+}
+
+.time__bottom_left {
+  width: 82px;
+  font-size: 95px;
+  font-family: 'BebasNeueBold';
+  float: left;
+  text-align: center;
+}
+
+.time__bottom_right {
+  width: 82px;
+  font-size: 95px;
+  font-family: 'BebasNeueBold';
+  float: right;
+  text-align: center;
+}
+
+.info {
+  min-width: 270px;
+  max-width: 100%;
+  height: 127px;
+  padding: 48px 35px 0;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#191a2b+0,211113+100 */
+  background: #191a2b;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #191a2b 0%, #211113 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #191a2b 0%, #211113 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #191a2b 0%, #211113 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191a2b', endColorstr='#211113',GradientType=1 );
+  /* IE6-9 */
+}
+
+.info__im {
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  height: 65px;
+  position: relative;
+  float: left;
+}
+
+.info__im:after {
+  width: 35%;
+  bottom: 0px;
+  height: 4px;
+  background: #d82b41;
+  content: '';
+  position: absolute;
+}
+
+.info__number {
+  float: right;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  text-align: right;
+}
+
+.appisode {
+  min-width: 270px;
+  max-width: 100%;
+  height: 191px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#191a2b+0,211113+100 */
+  background: #191a2b;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #191a2b 0%, #211113 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #191a2b 0%, #211113 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #191a2b 0%, #211113 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191a2b', endColorstr='#211113',GradientType=1 );
+  /* IE6-9 */
+}
+
+.appisode_im {
+  min-width: 270px;
+  max-width: 100%;
+  height: 186px;
+  background: black;
+  padding: 40px 25px 0 35px;
+}
+
+.appisode_im_star {
+  width: 106px;
+  height: 106px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  overflow: hidden;
+  float: left;
+}
+
+.appisode_im_star.normal {
+  border-right: 2px solid #d82b41;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #d82b41;
+  border-left: 2px solid #000;
+}
+
+.appisode_im_star.mini {
+  border-right: 2px solid #d82b41;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  border-left: 2px solid #000;
+}
+
+.appisode_im_star.disibe {
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  border-left: 2px solid rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.appisode_im_title {
+  float: left;
+  margin-left: 33px;
+}
+
+.appisode_im_title h3 {
+  font-size: 33px;
+  font-family: 'BebasNeueBold';
+}
+
+.appisode_im_title h4 {
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+}
+
+.appisode_im_title .time {
+  font-size: 24px;
+  font-family: 'BebasNeueBold';
+  padding-top: 12px;
+  display: block;
+}
+
+.appisode_im_touch {
+  float: right;
+  height: 73px;
+  width: 10px;
+  position: relative;
+}
+
+.appisode_im_touch span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 7px 0;
+  display: inline-block;
+}
+
+.expanded {
+  min-width: 270px;
+  max-width: 100%;
+  min-height: 1000px;
+  padding-bottom: 50px;
+}
+
+.expanded__like {
+  padding: 55px 0 60px;
+}
+
+.expanded__like_sezon {
+  float: right;
+  margin-right: 55px;
+  width: 125px;
+}
+
+.expanded__like_sezon .star_grey {
+  width: 83px;
+  height: 83px;
+  border-radius: 50%;
+  border: 1px solid #989898;
+  position: relative;
+  margin: 0 auto;
+}
+
+.expanded__like_sezon .text {
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  padding-top: 25px;
+  text-align: center;
+}
+
+.expanded__like_like {
+  width: 186px;
+  height: 186px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  transition: background 0.25s ease-out 0.125s;
+  cursor: pointer;
+}
+
+.expanded__like_like.active {
+  background: #465bfb;
+}
+
+.expanded__slider_title {
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  width: 44px;
+  margin-left: 35px;
+  padding-bottom: 20px;
+  border-bottom: 4px solid #d82b41;
+}
+
+.expanded__slider_block {
+  padding: 25px 35px 60px;
+}
+
+.expanded__slider_block .touch {
+  width: 10px;
+  height: 60px;
+  padding-top: 24px;
+}
+
+.expanded__slider_block .touch span {
+  width: 10px;
+  height: 10px;
+  background: #484849;
+  margin: 5px 0;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.expanded__slider_block .left {
+  float: left;
+}
+
+.expanded__slider_block .right {
+  float: right;
+}
+
+.slik_slider {
+  width: 625px;
+  margin: 0 auto;
+}
+
+.slik_slider .block {
+  color: #fff;
+  width: 120px;
+  height: 120px;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  line-height: 120px;
+  text-align: center;
+}
+
+.slik_slider .slick-center .block-im {
+  width: 120px;
+  height: 120px;
+  background: #d82b41;
+  border-radius: 50%;
+  font-size: 50px;
+  margin: 0 auto;
+}
+
+.search {
+  padding: 0 35px;
+  height: 110px;
+  min-width: 270px;
+  max-width: 100%;
+  padding-top: 12px;
+}
+
+.search__button {
+  background: #d82b41;
+  width: 100%;
+  height: 98px;
+  position: relative;
+  transition: display 1.25s ease-out 0.125s;
+}
+
+.search__button.active {
+  display: none;
+}
+
+.search__text {
+  border-bottom: 3px solid #d82b41;
+  width: 100%;
+  height: 86px;
+  display: none;
+}
+
+.search__text input {
+  width: 100%;
+  height: 70px;
+  color: #fff;
+  font-size: 50px;
+  font-family: 'BebasNeueBold';
+  background: none;
+  border: none;
+}
+
+.search__button.active + .search__text {
+  display: block;
+}
+
+.search-rezylt {
+  padding: 0px 35px 0px;
+}
+
+.search-rezylt__bor {
+  border-bottom: 1px solid #373439;
+  padding: 35px 0 20px;
+}
+
+.search-rezylt h2 {
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  padding-top: 35px;
+}
+
+.search-rezylt__block {
+  padding-top: 25px;
+}
+
+.search-rezylt__block_img {
+  width: 300px;
+  height: 272px;
+  text-align: center;
+  float: left;
+  margin-right: 30px;
+}
+
+.search-rezylt__block_text {
+  overflow: hidden;
+}
+
+.search-rezylt_title_ru {
+  color: #fff;
+  font-size: 33px;
+  font-family: 'BebasNeueBold';
+}
+
+.search-rezylt_title_en {
+  color: #cdcdcd;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+}
+
+.search-rezylt__info {
+  padding-top: 50px;
+}
+
+.search-rezylt__like {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  position: relative;
+  display: inline-block;
+}
+
+.search-rezylt__like.active {
+  border: 1px solid #465bfb;
+  background: #465bfb;
+}
+
+.search-rezylt__dz {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.search-rezylt__text {
+  color: #fff;
+  font-size: 30px;
+  font-family: 'BebasNeueBold';
+  width: 100px;
+  display: inline-block;
+  position: relative;
+  top: -22px;
+}
+
+.wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sing-1 {
+  width: 100%;
+  height: 100%;
+  background: url(../img/bg_sing1.jpg) no-repeat center top;
+  background-size: cover;
+  position: relative;
+}
+
+.sing-1__dz {
+  position: absolute;
+  top: 25px;
+  width: 59px;
+  height: 63px;
+  left: 50%;
+  margin-left: -30px;
+}
+
+.sing-1__logo {
+  width: 494px;
+  height: 71px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.sing-1__text {
+  position: absolute;
+  color: #fff;
+  font-size: 22px;
+  font-family: 'BebasNeueBold';
+  text-align: center;
+  bottom: 35vh;
+  left: 50%;
+  margin-left: -138px;
+}
+
+.sing-1__button {
+  position: absolute;
+  bottom: 17vh;
+  left: 50%;
+  width: 229px;
+  height: 95px;
+  border-radius: 100px;
+  background: #d82b41;
+  margin-left: -115px;
+  line-height: 95px;
+  text-align: center;
+}
+
+.sing-1__button a {
+  color: #fff;
+  font-size: 30px;
+  text-decoration: none;
+  font-family: 'BebasNeueBold';
+  display: block;
+}
+
+.sing-1__nav-cricle {
+  width: 88px;
+  height: 16px;
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  margin-left: -44px;
+  text-align: center;
+}
+
+.sing-1__nav-cricle span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.sing-1__nav-cricle .active {
+  background: #1729fa;
+}
+
+.sing-2 {
+  width: 100%;
+  height: 100%;
+  background: url(../img/bg_sing2.jpg) no-repeat center top;
+  background-size: cover;
+  position: relative;
+}
+
+.sing-2__logo {
+  width: 208px;
+  height: 30px;
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  margin-left: -104px;
+}
+
+.sing-2__number {
+  width: 474px;
+  height: 98px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #d82b41;
+  margin: auto;
+  line-height: 98px;
+  text-align: center;
+  font-family: 'BebasNeueBold';
+  font-size: 35px;
+  position: absolute;
+  color: #fff;
+}
+
+.sing-2__text {
+  position: absolute;
+  color: #fff;
+  font-size: 22px;
+  font-family: 'BebasNeueBold';
+  text-align: center;
+  bottom: 35vh;
+  left: 50%;
+  margin-left: -99px;
+}
+
+.sing-2__button {
+  position: absolute;
+  bottom: 17vh;
+  left: 50%;
+  width: 229px;
+  height: 95px;
+  border-radius: 100px;
+  background: #d82b41;
+  margin-left: -115px;
+  line-height: 95px;
+  text-align: center;
+}
+
+.sing-2__button a {
+  color: #fff;
+  font-size: 30px;
+  text-decoration: none;
+  font-family: 'BebasNeueBold';
+  display: block;
+}
+
+.sing-2__nav-cricle {
+  width: 88px;
+  height: 16px;
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  margin-left: -44px;
+  text-align: center;
+}
+
+.sing-2__nav-cricle span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.sing-2__nav-cricle .active {
+  background: #1729fa;
+}
+
+.popup1 {
+  position: fixed;
+  width: 100vw;
+  min-height: 1%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: none;
+}
+
+.popup1 .closed {
+  width: 32px;
+  height: 33px;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+
+.popup1 h3 {
+  color: #fff;
+  font-size: 68px;
+  text-align: center;
+  font-family: 'BebasNeueBold';
+  padding-top: 90px;
+}
+
+.popup1 p {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'BebasNeueBold';
+  padding-top: 45px;
+  width: 304px;
+  margin: 0 auto;
+}
+
+.popup1 input {
+  width: 350px;
+  height: 97px;
+  border: none;
+  line-height: 97px;
+  text-align: center;
+  border-bottom: 3px solid #d82b41;
+  color: #fff;
+  font-family: 'BebasNeueBold';
+  font-size: 24px;
+  background: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.popup1 .btn_popup {
+  width: 227px;
+  height: 96px;
+  border-radius: 80px;
+  background: #d82b41;
+  text-align: center;
+  line-height: 96px;
+  color: #fff;
+  font-family: 'BebasNeueBold';
+  font-size: 30px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 75px;
+  text-decoration: none;
+}
+
+.open {
+  display: block;
+}
+
+.openone {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.popup {
+  display: block;
+}
+
+@media screen and (max-width: 760px) {
+  .search-rezylt__block_img {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+  .search-rezylt__block_text {
+    text-align: center;
+    padding-top: 35px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .slik_slider {
+    width: 430px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .onoffswitch {
+    width: 300px;
+  }
+  .tabs__nav_item {
+    font-size: 21px;
+  }
+  .tabs__nav_item .icon {
+    display: none;
+  }
+  .appisode_im {
+    padding: 40px 10px 0 10px;
+  }
+  .expanded__like_like {
+    margin-left: 35px;
+  }
+  .sing-1__logo {
+    width: 300px;
+  }
+  .sing-1__logo a {
+    display: block;
+  }
+  .sing-1__logo img {
+    width: 100%;
+  }
+  .sing-2__number {
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .appisode_im_title {
+    margin-left: 15px;
+    width: 150px;
+  }
+  .appisode_im_title h3 {
+    font-size: 22px;
+  }
+  .appisode_im_title h4 {
+    font-size: 20px;
+  }
+  .appisode_im_title .time {
+    font-size: 18px;
+  }
+  .appisode_im_star {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    top: 7px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .slik_slider {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    padding: 24px 0;
+  }
+  .info__number {
+    font-size: 22px;
+  }
+  .info__im {
+    font-size: 22px;
+  }
+  .expanded__like_like {
+    width: 100px;
+    height: 100px;
+    margin-left: 35px;
+  }
+  .search-rezylt {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .search-rezylt__text {
+    top: 0px;
+    display: block;
+    margin: 0 auto;
+    padding-top: 35px;
+  }
+}

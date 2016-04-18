@@ -23,6 +23,9 @@
                     .when("/shows", {
                         templateUrl: "app/views/shows.html"
                     })
+                    .when("/search", {
+                        templateUrl: "app/views/search.html"
+                    })
                     .otherwise({
                         redirectTo: '/login'
                     });
@@ -38,17 +41,7 @@
         };
     });
 
-
     app.constant('ngAuthSettings', {
         apiServiceBaseUri: 'http://appisode.ru/api/v1'
     });
-
-    //app.config(function ($httpProvider) {
-    //    $httpProvider.interceptors.push('authInterceptorService');
-    //});
-
-    //app.run(['authService', function (authService) {
-    //    authService.fillAuthData();
-    //}]);
-
 })();

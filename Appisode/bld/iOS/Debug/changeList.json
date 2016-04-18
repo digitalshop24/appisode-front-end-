@@ -1,12 +1,19 @@
 {
-  "changedFilesIos": [],
+  "changedFilesIos": [
+    "www\\app\\views\\search.html"
+  ],
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\services\\showsService.js",
-    "www\\app\\controllers\\showsController.js",
-    "www\\app\\views\\shows.html"
+    "www\\app\\js\\app.js",
+    "www\\layout.html",
+    "www\\app\\views\\search.html",
+    "www\\app\\controllers\\searchController.js",
+    "www\\scripts\\main.js",
+    "www\\scripts\\index.js",
+    "www\\app\\views\\shows.html",
+    "www\\css\\main.css"
   ],
   "deletedFiles": [],
   "addedPlugins": [],

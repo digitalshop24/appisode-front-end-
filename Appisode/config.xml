@@ -3,7 +3,7 @@
   <name>Appisode</name>
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
   <author email="dev@cordova.apache.org" href="http://cordova.io">Apache Cordova Team </author>
-  <content src="index.html" />
+  <content src="layout.html" />
   <access origin="*" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
@@ -93,10 +93,10 @@
     <splash height="800" src="res/screens/wp8/SplashScreenImage.jpg" width="480" />
   </platform>
   <preference name="Fullscreen" value="True" />
-  <preference name="KeepRunning" value="False" />
-  <preference name="ShowTitle" value="True" />
-  <preference name="InAppBrowserStorageEnabled" value="False" />
-  <preference name="SuppressesIncrementalRendering" value="True" />
+  <preference name="KeepRunning" value="True" />
+  <preference name="ShowTitle" value="False" />
+  <preference name="InAppBrowserStorageEnabled" value="True" />
+  <preference name="SuppressesIncrementalRendering" value="False" />
   <preference name="Orientation" value="portrait" />
   <vs:plugin name="cordova-plugin-whitelist" version="1.2.1" />
   <preference name="xwalkVersion" value="17+" />
