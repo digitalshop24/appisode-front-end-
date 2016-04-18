@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;">-->
+    <title>Appisode</title>
+
+    <link href="css/index.css" rel="stylesheet"/>
+</head>
+<body ng-app="app">
+    <p>Hello, your application is ready!</p>
+
+    <a ng-href="#/shows">Shows</a>
+
+    <div ng-view></div>
+
+<!-- Cordova reference, this is added to your app when it's built. -->
+    <!--<script type="text/javascript">
+        ApiEndpoint = "http://appisode.ru/api/v1";
+    </script>-->
+
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/index.js"></script>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/ww.jquery.js"></script>
+    <script src="scripts/ww.angular.js"></script>
+
+    <script src="scripts/angular/angular.min.js"></script>
+    <script src="scripts/angular/angular-route.min.js"></script>
+    <script src="scripts/angular/angular-animate.min.js"></script>
+    <script src="scripts/angular/angular-sanitize.min.js"></script>
+    <script src="scripts/angular/angular-touch.min.js"></script>
+    <script src="scripts/angular/angular-local-storage.min.js"></script>
+
+    <script src="app/js/app.js"></script>
+    <script src="app/js/utils.js"></script>
+
+<script src="services/showsService.js"></script>
+
+    <script src="app/controllers/showsController.js"></script>
+</body>
+</html>

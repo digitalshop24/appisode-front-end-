@@ -1,0 +1,8 @@
+﻿<div ng-controller="showsController as view">
+    <div ng-repeat="show in shows">
+        <div>{{show.name}} - {{show.russian_name}}</div>
+    </div>
+    <div>
+        <a ng-click="getShows()">Load more</a>
+    </div>
+</div>
