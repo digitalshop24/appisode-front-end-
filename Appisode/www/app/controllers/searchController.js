@@ -5,22 +5,35 @@
         .module('app')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', 'showsService'];
+    searchController.$inject = ['$scope', '$rootScope', 'showsService'];
 
-    function searchController($scope, showsService) {
+    function searchController($scope, $rootScope, showsService) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
-
+            
+        $rootScope.hide_main_layout = true;
+        
         $scope.shows = [];
+        $scope.query = null;
+        $scope.count = null;
+        $scope.loaded = false;
 
         $scope.search = function () {
-            showsService.getList(vm.page, vm.take).then(function (response) {
+            $scope.shows = [];
+            $scope.count = null;
+            $scope.loaded = false;
+
+            showsService.searchList(vm.page, vm.take, $scope.query).then(function (response) {
+                vm.page += 1;
+
                 $.each(response, function () {
-                    vm.page += 1;
-                    $scope.shows.push(vm.newShow(this));
+                    $scope.shows.push(this);
                 });
+
+                $scope.count = response.length;
+                $scope.loaded = true;
             });
         };
 
@@ -28,11 +41,9 @@
             $(element.currentTarget).toggleClass("active");
         };
 
-        vm.newShow = function (show) {
-            return {
-                name: show.name,
-                russian_name: show.russian_name
-            };
+        $scope.closeSearch = function() {
+            $rootScope.hide_main_layout = false;
+            history.go(-1);
         };
     };
 })();

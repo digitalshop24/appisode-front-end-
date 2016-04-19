@@ -6,9 +6,9 @@
         .controller('showsController', showsController);
 
     showsController.$inject = [
-        '$scope', 'showsService'];
+        '$scope', 'rootScope', 'showsService'];
 
-    function showsController($scope, showsService) {
+    function showsController($scope, $rootScope, showsService) {
         var vm = this;
 
         vm.page = 1;

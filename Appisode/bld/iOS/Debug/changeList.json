@@ -1,21 +1,23 @@
 {
   "changedFilesIos": [
-    "www\\app\\views\\search.html"
+    "config.xml"
   ],
   "deletedFilesIos": [],
-  "addedPluginsIos": [],
+  "addedPluginsIos": [
+    "cordova-plugin-whitelist@1.2.1"
+  ],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\app\\js\\app.js",
     "www\\layout.html",
-    "www\\app\\views\\search.html",
     "www\\app\\controllers\\searchController.js",
-    "www\\scripts\\main.js",
-    "www\\scripts\\index.js",
+    "www\\app\\views\\search.html",
+    "www\\app\\controllers\\showsController.js",
     "www\\app\\views\\shows.html",
-    "www\\css\\main.css"
+    "config.xml"
   ],
   "deletedFiles": [],
-  "addedPlugins": [],
+  "addedPlugins": [
+    "cordova-plugin-whitelist@1.2.1"
+  ],
   "deletedPlugins": []
 }

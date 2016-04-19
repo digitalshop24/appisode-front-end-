@@ -257,6 +257,12 @@ table {
   border-spacing: 0;
 }
 
+hr {
+    border: 1px solid #999;
+    color: #999;
+    height: 1px;
+}
+
 /**
  * onoff.css
  * Author: http://proto.io/freebies/onoff/

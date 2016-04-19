@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var app = angular.module('app', [
@@ -18,30 +18,35 @@
     app.config([
         '$routeProvider',
         '$compileProvider',
-            function ($routeProvider, $compileProvider) {
-                $routeProvider
-                    .when("/shows", {
-                        templateUrl: "app/views/shows.html"
-                    })
-                    .when("/search", {
-                        templateUrl: "app/views/search.html"
-                    })
-                    .otherwise({
-                        redirectTo: '/login'
-                    });
+        function($routeProvider, $compileProvider) {
+            $routeProvider
+                .when("/shows", {
+                    templateUrl: "app/views/shows.html"
+                })
+                .when("/search", {
+                    templateUrl: "app/views/search.html"
+                })
+                .otherwise({
+                    redirectTo: '/login'
+                });
 
-                // Fix bug for Windows Phone wanting to download files on urls with routed parameters
-                $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
-            }
-    ]).filter('linebreakFilter', function () {
-        return function (text) {
+            // Fix bug for Windows Phone wanting to download files on urls with routed parameters
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
+        }
+    ]).filter('linebreakFilter', function() {
+        return function(text) {
             if (text !== undefined)
                 return text.replace(/\n/g, '<br />');
             return text;
         };
     });
 
+    app.constant('ngApiSettings', {
+        apiUri: 'http://appisode.ru/api/v1'
+    });
+
     app.constant('ngAuthSettings', {
-        apiServiceBaseUri: 'http://appisode.ru/api/v1'
+        phone: null,
+        key: null
     });
 })();
