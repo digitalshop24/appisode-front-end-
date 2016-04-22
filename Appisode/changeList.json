@@ -1,23 +1,35 @@
 {
   "changedFilesIos": [
-    "config.xml"
+    "config.xml",
+    "www\\layout.html",
+    "www\\app\\views\\popular.html",
+    "www\\app\\controllers\\popularController.js",
+    "www\\app\\controllers\\searchcontroller.js",
+    "www\\services\\showsservice.js",
+    "www\\services\\authService.js",
+    "www\\app\\controllers\\headerController.js",
+    "www\\app\\controllers\\popupController.js",
+    "www\\app\\js\\app.js",
+    "www\\app\\views\\newest.html",
+    "www\\app\\views\\search.html",
+    "www\\scripts\\main.js",
+    "www\\services\\usersService.js",
+    "www\\app\\views\\subscriptions.html",
+    "www\\services\\subscriptionsservice.js",
+    "www\\services\\subscriptionsService.js",
+    "www\\app\\controllers\\subscriptionsController.js"
   ],
-  "deletedFilesIos": [],
+  "deletedFilesIos": [
+    "www\\app\\controllers\\selectedController.js",
+    "www\\app\\views\\selected.html"
+  ],
   "addedPluginsIos": [
-    "cordova-plugin-whitelist@1.2.1"
+    "cordova-plugin-whitelist@1.2.1",
+    "cordova-plugin-splashscreen@3.2.2"
   ],
   "deletedPluginsIos": [],
-  "changedFiles": [
-    "www\\layout.html",
-    "www\\app\\controllers\\searchController.js",
-    "www\\app\\views\\search.html",
-    "www\\app\\controllers\\showsController.js",
-    "www\\app\\views\\shows.html",
-    "config.xml"
-  ],
+  "changedFiles": [],
   "deletedFiles": [],
-  "addedPlugins": [
-    "cordova-plugin-whitelist@1.2.1"
-  ],
+  "addedPlugins": [],
   "deletedPlugins": []
 }

@@ -18,12 +18,20 @@
         $scope.shows = [];
         $scope.query = null;
         $scope.count = null;
-        $scope.loaded = false;
+        $scope.busy = true;
+        $scope.spinner = false;
 
-        $scope.search = function () {
+        $scope.init = function () {
+            vm.page = 1;
+
+            $scope.busy = true;
             $scope.shows = [];
             $scope.count = null;
-            $scope.loaded = false;
+            $scope.search();
+        };
+
+        $scope.search = function () {
+            $scope.spinner = true;
 
             showsService.searchList(vm.page, vm.take, $scope.query).then(function (response) {
                 vm.page += 1;
@@ -33,17 +41,13 @@
                 });
 
                 $scope.count = response.length;
-                $scope.loaded = true;
+                $scope.busy = false;
+                $scope.spinner = false;
             });
         };
 
         $scope.toggleSearch = function(element) {
             $(element.currentTarget).toggleClass("active");
-        };
-
-        $scope.closeSearch = function() {
-            $rootScope.hide_main_layout = false;
-            history.go(-1);
         };
     };
 })();

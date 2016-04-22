@@ -1,4 +1,4 @@
-﻿(function() {
+﻿(function () {
     'use strict';
 
     var app = angular.module('app', [
@@ -7,7 +7,9 @@
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'LocalStorageModule'
+        'LocalStorageModule',
+        'infinite-scroll',
+        'slick'
         //'ngCordova'
     ]);
 
@@ -23,11 +25,20 @@
                 .when("/shows", {
                     templateUrl: "app/views/shows.html"
                 })
+                .when("/popular", {
+                    templateUrl: "app/views/popular.html"
+                })
                 .when("/search", {
                     templateUrl: "app/views/search.html"
                 })
+                .when("/subscriptions", {
+                    templateUrl: "app/views/subscriptions.html"
+                })
+                .when("/show/:showId", {
+                    templateUrl: "app/views/show.html"
+                })
                 .otherwise({
-                    redirectTo: '/login'
+                    templateUrl: 'app/views/newest.html'
                 });
 
             // Fix bug for Windows Phone wanting to download files on urls with routed parameters

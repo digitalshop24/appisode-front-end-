@@ -5,7 +5,7 @@
     <AndroidEmulatorID>AndroidEmulator;Google Android Emulator</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|iOS'">
-    <DebuggerFlavor>iOSEmulatoriPhone5S</DebuggerFlavor>
+    <DebuggerFlavor>RippleiPhone5</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\User\AppData\Local\Temp\Appisode_refcache</ReferenceCachePath>

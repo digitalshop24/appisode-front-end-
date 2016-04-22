@@ -1,51 +1,42 @@
-﻿<div ng-controller="searchController as view">
-    <header class="header clearfix">
-        <div class="header__closed closed">
-            <a ng-click="closeSearch()">
-                <i class="icon icon-closed"></i>
-            </a>
-        </div>
-        <div class="header__logo logo">
-            <a href="#">
-                <img src="../../images/logo.png" height="30" width="208" alt="logo">
-            </a>
-        </div>
-    </header>
-
+﻿<div ng-controller="searchController as view" ng-app="app">
     <div class="search">
         <div class="search__button js_button" ng-click="toggleSearch($event)">
             <i class="icon icon_search_btn"></i>
         </div>
         <div class="search__text">
-            <input type="text" placeholder="искомый сериал" ng-model="query" ng-keyup="search()">
+            <input type="text" placeholder="искомый сериал" ng-model="query" ng-keyup="init()">
         </div>
     </div>
-    <div class="search-rezylt" ng-show="loaded">
+    <div class="search-rezylt" ng-show="!busy">
         <div class="search-rezylt__bor">
             <h2 class="grey">найден {{count}} сериал</h2>
-            <div class="search-rezylt__block clearfix" ng-repeat="show in shows">
-                <div class="search-rezylt__block_img">
-                    <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}" height="300">
-                </div>
-                <div class="search-rezylt__block_text">
-                    <h3 class="search-rezylt_title_ru">{{show.russian_name}}</h3>
-                    <h4 class="search-rezylt_title_en">{{show.name}}</h4>
-                    <div class="search-rezylt__info">
-                        <div class="search-rezylt__like js_active_info">
-                            <i class="icon icon_like_info"></i>
-                        </div>
-                        <div class="search-rezylt__dz">
-                            <i class="icon icon_dz"></i>
-                        </div>
-                        <div class="search-rezylt__text">
-                            <p>
-                                идет<br> <span class="red">{{show.season_number}}</span> сезон
-                            </p>
+            <div infinite-scroll="search()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+                <div class="search-rezylt__block clearfix" ng-repeat="show in shows">
+                    <div class="search-rezylt__block_img">
+                        <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}" height="300">
+                    </div>
+                    <div class="search-rezylt__block_text">
+                        <h3 class="search-rezylt_title_ru">{{show.russian_name}}</h3>
+                        <h4 class="search-rezylt_title_en">{{show.name}}</h4>
+                        <div class="search-rezylt__info">
+                            <div class="search-rezylt__like js_active_info">
+                                <i class="icon icon_like_info"></i>
+                            </div>
+                            <div class="search-rezylt__dz">
+                                <i class="icon icon_dz"></i>
+                            </div>
+                            <div class="search-rezylt__text">
+                                <p>
+                                    идет<br> <span class="red">{{show.season_number}}</span> сезон
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <hr/>
             </div>
         </div>
+    </div>
+    <div ng-show="spinner" class="spinner-wrapper">
+        <div ng-include src="'app/views/spinner.html'"></div>
     </div>
 </div>

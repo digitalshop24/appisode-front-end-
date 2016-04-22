@@ -1,0 +1,19 @@
+﻿<div ng-controller="subscriptionsController as view" ng-app="app">
+    <div class="appisode" ng-repeat="show in shows">
+        <div class="appisode_im clearfix" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+            <div class="appisode_im_star normal">
+                <i class="icon icon_time"></i>
+            </div>
+            <div class="appisode_im_title">
+                <h3 class="while">{{show.russian_name}}</h3>
+                <h4 class="grey">{{show.name}}</h4>
+                <span class="time while"><i class="icon icon_time-pictur"></i>через <span class="red">3 дня</span>  новая серия</span>
+            </div>
+            <div class="appisode_im_touch">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>

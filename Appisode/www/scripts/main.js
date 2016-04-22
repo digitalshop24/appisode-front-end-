@@ -14,7 +14,7 @@ $(document).ready(function(){
 	$(".tabs").lightTabs();
 });
 
-$( ".js_popup1" ).click(function() {
+$(".js_popup1").click(function () {
   $( ".popup1" ).toggleClass( "open" );
 });
 $(".js-closed").click(function () {
@@ -33,32 +33,29 @@ jQuery(function($) {
   $('input[type="checkbox"]').onoff();
 });
 
- 
-
-
-$('.center').slick({
-  centerMode: true,
-  centerPadding: '120px',
-  arrows:false,
-  slidesToShow: 3,
-  responsive: [
-    {
-      breakpoint: 690,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
-});
+//$('.center').slick({
+//  centerMode: true,
+//  centerPadding: '120px',
+//  arrows:false,
+//  slidesToShow: 3,
+//  responsive: [
+//    {
+//      breakpoint: 690,
+//      settings: {
+//        arrows: false,
+//        centerMode: true,
+//        centerPadding: '40px',
+//        slidesToShow: 3
+//      }
+//    },
+//    {
+//      breakpoint: 480,
+//      settings: {
+//        arrows: false,
+//        centerMode: true,
+//        centerPadding: '40px',
+//        slidesToShow: 1
+//      }
+//    }
+//  ]
+//});
