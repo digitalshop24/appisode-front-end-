@@ -1002,8 +1002,8 @@ body {
 .expanded {
   min-width: 270px;
   max-width: 100%;
-  min-height: 1000px;
-  padding-bottom: 50px;
+  
+
 }
 
 .expanded__like {
@@ -1099,7 +1099,7 @@ body {
   text-align: center;
 }
 
-.slick-slider .slick-center .block-im {
+.slick-slider .block-im {
   width: 120px;
   height: 120px;
   background: #d82b41;

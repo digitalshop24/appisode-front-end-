@@ -38,7 +38,7 @@
                     templateUrl: "app/views/show.html"
                 })
                 .otherwise({
-                    templateUrl: 'app/views/newest.html'
+                    templateUrl: 'app/views/popular.html'
                 });
 
             // Fix bug for Windows Phone wanting to download files on urls with routed parameters

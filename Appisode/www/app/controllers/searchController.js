@@ -5,9 +5,9 @@
         .module('app')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', '$rootScope', 'showsService'];
+    searchController.$inject = ['$scope', '$rootScope', '$location', 'showsService'];
 
-    function searchController($scope, $rootScope, showsService) {
+    function searchController($scope, $rootScope, $location, showsService) {
         var vm = this;
 
         vm.page = 1;
@@ -48,6 +48,10 @@
 
         $scope.toggleSearch = function(element) {
             $(element.currentTarget).toggleClass("active");
+        };
+
+        $scope.gotoShow = function (id) {
+            $location.path('/show/' + id);
         };
     };
 })();

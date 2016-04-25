@@ -1,77 +1,82 @@
 ﻿<div ng-controller="showController as view" ng-app="app">
-    <div>
-        <div class="expanded" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
-            <h3 class="title_en">{{show.name}}</h3>
-            <h2 class="tittle_ru">{{show.russian_name}}</h2>
-            <p class="sezon">сезон {{show.season_number}}</p>
+    <div ng-show="!busy">
+        <div class="expanded" ng-style="{'background': 'url(' + poster + ') no-repeat center center', 'background-size': 'cover'}">
+            <div style="background: rgba(0, 0, 0, 0.4);">
+                <h3 class="title_en">{{show.name}}</h3>
+                <h2 class="tittle_ru">{{show.russian_name}}</h2>
+                <p class="sezon">сезон {{show.season_number}}</p>
 
-            <div class="expanded__like clearfix">
-                <div class="expanded__like_sezon">
-                    <div class="star_grey">
-                        <i class="icon icon_star-grey"></i>
-                    </div>
-                    <div class="text while">
-                        сезон полностью
-                    </div>
-                </div>
-                <div class="expanded__like_like js_active_like">
-                    <i class="icon icon_like-bill"></i>
-                </div>
-            </div>
-
-            <div class="expanded__slider">
-                <div class="expanded__slider_title while">
-                    выберите эпизод
-                </div>
-                <div class="expanded__slider_block clearfix">
-                    <div class="touch left">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="touch right">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <slick settings="slickConfig" scope="episodes" responsive="breakpoints" ng-if="episodes.length" on-after-change="onAfterChange">
-                        <div class="block" ng-repeat="episode in episodes" current-index="episode.id">
-                            <div class="block-im">
-                                {{episode.number}}
-                            </div>
+                <div class="expanded__like clearfix">
+                    <div class="expanded__like_sezon">
+                        <div class="star_grey">
+                            <i class="icon icon_star-grey"></i>
                         </div>
-                    </slick>
-                </div>
-            </div>
-
-            <div class="datte">
-                <span class="datte__item grey">04 июля 2016 20:00 Мск</span>
-            </div>
-            <div class="time">
-                <div class="time__top clearfix">
-
-                    <div class="time__top_left grey">
-                        м
+                        <div class="text while">
+                            сезон полностью
+                        </div>
                     </div>
-                    <div class="time__top_right grey">
-                        ч
-                    </div>
-                    <div class="time__top_center grey">
-                        д
+                    <div class="expanded__like_like js_active_like">
+                        <i class="icon icon_like-bill"></i>
                     </div>
                 </div>
-                <div class="time__bottom clearfix">
-                    <div class="time__bottom_left while">
-                        00
+
+                <div class="expanded__slider">
+                    <div class="expanded__slider_title while">
+                        выберите эпизод
                     </div>
-                    <div class="time__bottom_right while">
-                        24
+                    <div class="expanded__slider_block clearfix">
+                        <div class="touch left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="touch right">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <slick settings="slickConfig" scope="episodes" responsive="breakpoints" ng-if="episodes.length" on-after-change="onAfterChange">
+                            <div class="block" ng-repeat="episode in episodes" current-index="episode.id">
+                                <div class="block-im">
+                                    {{episode.number}}
+                                </div>
+                            </div>
+                        </slick>
                     </div>
-                    <div class="time__bottom_center while">
-                        01
+                </div>
+
+                <div class="datte">
+                    <span class="datte__item grey">{{current.air_date}}</span>
+                </div>
+                <div class="time">
+                    <div class="time__top clearfix">
+
+                        <div class="time__top_left grey">
+                            м
+                        </div>
+                        <div class="time__top_right grey">
+                            ч
+                        </div>
+                        <div class="time__top_center grey">
+                            д
+                        </div>
+                    </div>
+                    <div class="time__bottom clearfix">
+                        <div class="time__bottom_left while">
+                            {{current.days_left.months}}
+                        </div>
+                        <div class="time__bottom_right while">
+                            {{current.days_left.hours}}
+                        </div>
+                        <div class="time__bottom_center while">
+                            {{current.days_left.days}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div ng-show="busy" class="spinner-wrapper">
+        <div ng-include src="'app/views/spinner.html'"></div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 {
      "android": {
          "release": {
-             "keystore": "",
-             "storePassword": "",
-             "alias": "",
-             "password" : "",
+          "keystore": "C:\\appisode-key.keystore",
+             "storePassword": "pwd123",
+             "alias": "APPISODE",
+             "password" : "pwd123",
              "keystoreType": ""
          }
      }

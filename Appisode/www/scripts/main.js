@@ -5,7 +5,7 @@ $( ".js_activ" ).click(function() {
 $( ".js_active_like" ).click(function() {
   $( this ).toggleClass( "active" );
 });
-
+    
 $( ".js_active_info" ).click(function() {
   $( this ).toggleClass( "active" );
 });
