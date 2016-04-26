@@ -93,10 +93,10 @@
     <splash height="800" src="res/screens/wp8/SplashScreenImage.jpg" width="480" />
   </platform>
   <preference name="Fullscreen" value="True" />
-  <preference name="KeepRunning" value="True" />
-  <preference name="ShowTitle" value="False" />
-  <preference name="InAppBrowserStorageEnabled" value="True" />
-  <preference name="SuppressesIncrementalRendering" value="False" />
+  <preference name="KeepRunning" value="False" />
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="False" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
   <preference name="Orientation" value="portrait" />
   <vs:plugin name="cordova-plugin-whitelist" version="1.2.1" />
   <preference name="xwalkVersion" value="17+" />
@@ -104,7 +104,7 @@
   <preference name="xwalkMode" value="embedded" />
   <preference name="xwalkMultipleApk" value="true" />
   <preference name="SplashScreenDelay" value="100" />
-  <preference name="FadeSplashScreenDuration" value="100"/>
+  <preference name="FadeSplashScreenDuration" value="100" />
   <access origin="http://appisode.ru/api/v1" />
   <vs:plugin name="cordova-plugin-splashscreen" version="3.2.2" />
 </widget>
