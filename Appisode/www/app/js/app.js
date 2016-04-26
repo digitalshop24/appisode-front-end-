@@ -57,7 +57,7 @@
             // Fix bug for Windows Phone wanting to download files on urls with routed parameters
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
 
-            localStorageServiceProvider.setPrefix('Appisode');
+            localStorageServiceProvider.setPrefix('appisode');
         }
     ]).filter('linebreakFilter', function() {
         return function(text) {
@@ -69,5 +69,11 @@
 
     app.constant('ngApiSettings', {
         apiUri: 'http://appisode.ru/api/v1'
+    });
+
+    app.constant('ngAuthSettings', {
+        phone: 'phone',
+        key: 'key',
+        authorized: 'authorized'
     });
 })();

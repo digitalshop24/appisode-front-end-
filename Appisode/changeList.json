@@ -484,7 +484,8 @@
     "www\\images\\bg_sing2.jpg",
     "www\\app\\views\\auth\\step1.html",
     "www\\app\\views\\auth\\step3.html",
-    "www\\app\\views\\auth\\step2.html"
+    "www\\app\\views\\auth\\step2.html",
+    "www\\app\\views\\auth\\step4.html"
   ],
   "deletedFilesIos": [
     "www\\app\\controllers\\pblbic0d.yam~",
@@ -494,7 +495,8 @@
     "www\\app\\views\\auth\\auth_step1.html",
     "www\\app\\views\\auth\\auth_step3.html",
     "www\\app\\views\\auth\\auth_step2.html",
-    "www\\app\\controllers\\xetifw4h.tqd~"
+    "www\\app\\controllers\\xetifw4h.tqd~",
+    "www\\app\\controllers\\cmlzuyuq.x4e~"
   ],
   "addedPluginsIos": [
     "cordova-plugin-whitelist@1.2.1",
@@ -502,14 +504,15 @@
   ],
   "deletedPluginsIos": [],
   "changedFiles": [
+    "www\\css\\main.css",
     "www\\services\\authService.js",
-    "www\\app\\js\\utils.js",
     "www\\app\\controllers\\authController.js",
-    "www\\app\\views\\auth\\step3.html",
-    "www\\app\\js\\app.js"
+    "www\\app\\js\\app.js",
+    "www\\app\\views\\auth\\step4.html",
+    "www\\app\\views\\auth\\step3.html"
   ],
   "deletedFiles": [
-    "www\\app\\controllers\\xetifw4h.tqd~"
+    "www\\app\\controllers\\cmlzuyuq.x4e~"
   ],
   "addedPlugins": [],
   "deletedPlugins": []

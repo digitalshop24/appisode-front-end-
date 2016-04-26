@@ -3,9 +3,9 @@
 
     angular.module('app').factory('authService', authService);
 
-    authService.$inject = ['$http', '$q', 'localStorageService', 'ngApiSettings'];
+    authService.$inject = ['$http', '$q', 'localStorageService', 'ngApiSettings', 'ngAuthSettings'];
 
-    function authService($http, $q, localStorageService, ngApiSettings) {
+    function authService($http, $q, localStorageService, ngApiSettings, ngAuthSettings) {
         function checkAuth(phone, key) {
             var deferred = $q.defer();
 
@@ -20,8 +20,8 @@
             return deferred.promise;
         };
 
-        function isAuthorized(phone) {
-            return localStorageService.get(phone);
+        function isAuthorized() {
+            return localStorageService.get(ngAuthSettings.authorized);
         };
 
         function register(phone) {
