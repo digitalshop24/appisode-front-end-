@@ -1,76 +1,74 @@
-﻿<div ng-controller="popularController as view" ng-app="app">
-    <div infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-        <div class="tabs__content">
-            <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows" ng-click="gotoShow(show.id)">
-                <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
-                    <div class="tabs__content_item_bg">
-                        <h3 class="title_en">{{show.name}}</h3>
-                        <h2 class="tittle_ru">{{show.russian_name}}</h2>
-                        <div class="block_button_section clearfix">
-                            <div class="btn btn__like btn__left">
-                                <button class="btn__like_bt js_active_like">
-                                    <i class="icon icon_like"></i>
-                                </button>
-                            </div>
-                            <div class="btn btn__bell btn__right">
-                                <button class="btn__bell_bt js_popup1">
-                                    <i class="icon icon_bell"></i>
-                                </button>
-                            </div>
-                            <div class="period btn__center">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" class="onoffswitch-checkbox" id="" ng-attr-id="{{'checkbox-' + show.id}}">
-                                    <label class="onoffswitch-label clearfix" ng-attr-for="{{'checkbox-' + show.id}}">
-                                        <span class="onoffswitch-inner">СЕРИЯ</span>
-                                        <span class="onoffswitch-switch">СЕЗОН</span>
-                                    </label>
-                                </div>
+﻿<div ng-controller="popularController" ng-app="app">
+    <div class="tabs__content" pull-to-refresh="getShows()">
+        <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
+            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+                <div class="tabs__content_item_bg">
+                    <h3 class="title_en">{{show.name}}</h3>
+                    <h2 class="tittle_ru">{{show.russian_name}}</h2>
+                    <div class="block_button_section clearfix">
+                        <div class="btn btn__like btn__left">
+                            <button class="btn__like_bt js_active_like" ng-click="like($event)">
+                                <i class="icon icon_like"></i>
+                            </button>
+                        </div>
+                        <div class="btn btn__bell btn__right">
+                            <button class="btn__bell_bt js_popup1" ng-click="subscribe($event)">
+                                <i class="icon icon_bell"></i>
+                            </button>
+                        </div>
+                        <div class="period btn__center" ng-click="changePeriod($event)">
+                            <div class="onoffswitch">
+                                <input type="checkbox" class="onoffswitch-checkbox" id="" ng-attr-id="{{'checkbox-' + show.id}}">
+                                <label class="onoffswitch-label clearfix" ng-attr-for="{{'checkbox-' + show.id}}">
+                                    <span class="onoffswitch-inner">СЕРИЯ</span>
+                                    <span class="onoffswitch-switch">СЕЗОН</span>
+                                </label>
                             </div>
                         </div>
-                        <div class="in_production" ng-if="show.in_production">
-                            <div class="datte">
-                                <span class="datte__item grey">дата выхода сезона </span>
-                                <span class="datte__item while">
-                                    04 июля 2016 / 20:00 МСК
-                                </span>
-                            </div>
-                            <div class="time">
-                                <div class="time__top clearfix">
+                    </div>
+                    <div class="in_production" ng-if="show.in_production">
+                        <div class="datte">
+                            <span class="datte__item grey">дата выхода сезона </span>
+                            <span class="datte__item while">
+                                04 июля 2016 / 20:00 МСК
+                            </span>
+                        </div>
+                        <div class="time">
+                            <div class="time__top clearfix">
 
-                                    <div class="time__top_left grey">
-                                        м
-                                    </div>
-                                    <div class="time__top_right grey">
-                                        ч
-                                    </div>
-                                    <div class="time__top_center grey">
-                                        д
-                                    </div>
+                                <div class="time__top_left grey">
+                                    м
                                 </div>
-                                <div class="time__bottom clearfix">
-                                    <div class="time__bottom_left while">
-                                        00
-                                    </div>
-                                    <div class="time__bottom_right while">
-                                        24
-                                    </div>
-                                    <div class="time__bottom_center while">
-                                        01
-                                    </div>
+                                <div class="time__top_right grey">
+                                    ч
+                                </div>
+                                <div class="time__top_center grey">
+                                    д
+                                </div>
+                            </div>
+                            <div class="time__bottom clearfix">
+                                <div class="time__bottom_left while">
+                                    00
+                                </div>
+                                <div class="time__bottom_right while">
+                                    24
+                                </div>
+                                <div class="time__bottom_center while">
+                                    01
                                 </div>
                             </div>
                         </div>
-                        <div ng-if="!show.in_production">
-                            <div class="datte">
-                                <span class="datte__item grey">сериал завершен </span>
-                            </div>
+                    </div>
+                    <div ng-if="!show.in_production">
+                        <div class="datte">
+                            <span class="datte__item grey">сериал завершен </span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div ng-show="busy" class="spinner-wrapper">
-                <div ng-include src="'app/views/spinner.html'"></div>
-            </div>
+        </div>
+        <div ng-show="busy" class="spinner-wrapper">
+            <div ng-include src="'app/views/spinner.html'"></div>
         </div>
     </div>
 </div>

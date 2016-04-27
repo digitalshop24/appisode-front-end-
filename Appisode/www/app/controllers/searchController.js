@@ -5,16 +5,14 @@
         .module('app')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', '$rootScope', '$location', 'showsService'];
+    searchController.$inject = ['$scope', '$rootScope', '$state', 'showsService'];
 
-    function searchController($scope, $rootScope, $location, showsService) {
+    function searchController($scope, $rootScope, $state, showsService) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
-            
-        $rootScope.hide_main_layout = true;
-        
+                   
         $scope.shows = [];
         $scope.query = null;
         $scope.count = null;
@@ -46,12 +44,12 @@
             });
         };
 
-        $scope.toggleSearch = function(element) {
-            $(element.currentTarget).toggleClass("active");
+        $scope.toggleSearch = function (event) {
+            $(event.currentTarget).toggleClass("active");
         };
 
         $scope.gotoShow = function (id) {
-            $location.path('/show/' + id);
+            $state.go('show', {showId: id});
         };
     };
 })();

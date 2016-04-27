@@ -6,9 +6,9 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$location', 'showsService'];
+        '$scope', '$rootScope', '$state', 'localStorageService', 'showsService', 'authService', 'ngLocalStorageKeys'];
 
-    function popularController($scope, $rootScope, $location, showsService) {
+    function popularController($scope, $rootScope, $state, localStorageService, showsService, authService, ngLocalStorageKeys) {
         var vm = this;
 
         vm.page = 1;
@@ -19,8 +19,6 @@
         $scope.busy = true;
 
         $scope.init = function() {
-            vm.page = 1;
-
             $scope.busy = true;
             $scope.shows = [];
             $scope.count = null;
@@ -28,6 +26,15 @@
         };
 
         $scope.getShows = function () {
+
+            var cached = localStorageService.get(ngLocalStorageKeys.popular_shows);
+
+            if (cached) {
+                $.each(cached, function() {
+                    $scope.shows.push(this);
+                });
+            }
+
             $scope.busy = true;
 
             showsService.popularList().then(function (response) {
@@ -35,12 +42,32 @@
                     $scope.shows.push(this);
                 });
 
+                localStorageService.remove(ngLocalStorageKeys.popular_shows);
+                localStorageService.set(ngLocalStorageKeys.popular_shows, response);
+
                 $scope.busy = false;
             });
         };
 
         $scope.gotoShow = function(id) {
-            $location.path('/show/' + id);
+            $state.go('show', {showId: id});
+        };
+
+        $scope.like = function (event) {
+            event.stopPropagation();
+            $(event.currentTarget).toggleClass("active");
+        };
+
+        $scope.subscribe = function(event) {
+            event.stopPropagation();
+            var authorized = authService.isAuthorized();
+            if (!authorized) {
+                $state.go('auth-step2-alt');
+            }
+        };
+
+        $scope.changePeriod = function (event) {
+            event.stopPropagation();
         };
 
         $scope.init();

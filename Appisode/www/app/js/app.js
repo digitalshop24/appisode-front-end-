@@ -9,7 +9,9 @@
         'ngTouch',
         'LocalStorageModule',
         'infinite-scroll',
-        'slick'
+        'slick',
+        'ui.router',
+        'mgcrea.pullToRefresh'
         //'ngCordova'
     ]);
 
@@ -19,40 +21,57 @@
 
     app.config([
         '$routeProvider',
+        '$stateProvider',
         '$compileProvider',
         'localStorageServiceProvider',
-        function ($routeProvider, $compileProvider, localStorageServiceProvider) {
-            $routeProvider
-                .when("/shows", {
-                    templateUrl: "app/views/shows.html"
-                })
-                .when("/popular", {
-                    templateUrl: "app/views/popular.html"
-                })
-                .when("/search", {
-                    templateUrl: "app/views/search.html"
-                })
-                .when("/subscriptions", {
-                    templateUrl: "app/views/subscriptions.html"
-                })
-                .when("/show/:showId", {
-                    templateUrl: "app/views/show.html"
-                })
-                .when("/auth/step1", {
-                    templateUrl: "app/views/auth/step1.html"
-                })
-                .when("/auth/step2", {
-                    templateUrl: "app/views/auth/step2.html"
-                })
-                .when("/auth/step3", {
-                    templateUrl: "app/views/auth/step3.html"
-                })
-                .when("/auth/step4", {
-                    templateUrl: "app/views/auth/step4.html"
-                })
-                .otherwise({
-                    templateUrl: 'app/views/auth/step1.html'
-                });
+        function ($routeProvider, $stateProvider, $compileProvider, localStorageServiceProvider) {
+            $routeProvider.otherwise("/");
+
+            $stateProvider.state('popular', {
+                url: '/',
+                views: {
+                    main: { templateUrl: "app/views/popular.html" },
+                    header: { templateUrl: "app/views/partials/header.html" }
+                }
+            }).state('search', {
+                url: '/search',
+                views: {
+                    main: { templateUrl: "app/views/search.html" },
+                    header: { templateUrl: "app/views/partials/search-header.html" }
+                }
+            }).state('show', {
+                url: '/show/:showId',
+                views: {
+                    main: { templateUrl: "app/views/show.html" },
+                    header: { templateUrl: "app/views/partials/header.html" }
+                }
+            }).state('auth-step1', {
+                url: '/auth/step1',
+                views: {
+                    main: { templateUrl: "app/views/auth/step1.html" }
+                }
+            }).state('auth-step2', {
+                url: '/auth/step2',
+                views: {
+                    main: { templateUrl: "app/views/auth/step2.html" }
+                }
+            }).state('auth-step2-alt', {
+                url: '/auth/step2-alt',
+                views: {
+                    main: {
+                        templateUrl: "app/views/auth/step2-alt.html" }
+                }
+            }).state('auth-step3', {
+                url: '/auth/step3',
+                views: {
+                    main: { templateUrl: "app/views/auth/step3.html" }
+                }
+            }).state('auth-step4', {
+                url: '/auth/step4',
+                views: {
+                    main: { templateUrl: "app/views/auth/step4.html" }
+                }
+            });
 
             // Fix bug for Windows Phone wanting to download files on urls with routed parameters
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
@@ -67,13 +86,40 @@
         };
     });
 
+    app.run([
+        '$state',
+        '$window',
+        function ($state, $window, localStorageService) {
+            var key = 'appisode.started';
+            var started = $window.localStorage.getItem(key);
+            if (started) {
+                $state.transitionTo('popular');
+            } else {
+                $state.transitionTo('auth-step1');
+                $window.localStorage.setItem(key, true);
+            }
+        }
+    ]);
+
+    app.run([
+        '$rootScope', '$state',
+        function($rootScope, $state) {
+            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+                $rootScope.activetab = toState.name;
+            });
+        }
+    ]);
+
     app.constant('ngApiSettings', {
         apiUri: 'http://appisode.ru/api/v1'
     });
 
-    app.constant('ngAuthSettings', {
+    app.constant('ngLocalStorageKeys', {
         phone: 'phone',
         key: 'key',
-        authorized: 'authorized'
+        authstep: 'authstep',
+        started: 'started',
+        authorized: 'authorized',
+        popular_shows: 'popular_shows'
     });
 })();

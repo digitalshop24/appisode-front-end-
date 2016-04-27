@@ -6,13 +6,13 @@
         .controller('showController', showController);
 
     showController.$inject = [
-        '$scope', '$rootScope', '$routeParams', '$timeout', 'showsService'
+        '$scope', '$rootScope', '$stateParams', '$timeout', 'showsService'
     ];
 
-    function showController($scope, $rootScope, $routeParams, $timeout, showsService) {
+    function showController($scope, $rootScope, $stateParams, $timeout, showsService) {
         var vm = this;
 
-        $scope.showId = $routeParams.showId;
+        $scope.showId = $stateParams.showId;
         $scope.show = {};
         $scope.episodes = [];
         $scope.episode = {};

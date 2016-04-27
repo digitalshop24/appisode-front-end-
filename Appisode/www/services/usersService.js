@@ -3,7 +3,7 @@
 
     angular.module('app').factory('usersService', usersService);
 
-    usersService.$inject = ['$http', '$q', 'ngApiSettings', 'ngAuthSettings'];
+    usersService.$inject = ['$http', '$q', 'ngApiSettings', 'ngLocalStorageKeys'];
 
     function usersService($http, $q, ngApiSettings) {
 

@@ -13,103 +13,13 @@
     <link href="scss/media.scss" rel="stylesheet" />
     <link href="scss/restart.scss" rel="stylesheet" />
     <link href="css/spinner.css" rel="stylesheet" />
+    <link href="css/angular-pull-to-refresh.css" rel="stylesheet" />
 </head>
 <body ng-app="app">
-    <div ng-swipe-left="alert()">
-        <div ng-controller="headerController">
-            <div ng-show="!hide_main_layout">
-                <header class="header clearfix">
-                    <div class="header__btn-bel btn-bel" ng-click="showAuthorizationPopup()">
-                        <button class="btn-bel_bt js_activ">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 44">
-                                <path id="ico_bell" class="cls-1" d="M610,1141a6,6,0,0,0,6-5H604A6,6,0,0,0,610,1141Zm11-33a11,11,0,0,0-22,0c0,12.06-3.32,20.96-8,22v4h38v-4C624.32,1128.96,621,1120.06,621,1108Z" transform="translate(-591 -1097)" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="header__logo logo">
-                        <a href="#">
-                            <img src="images/logo.png" height="30" width="208" alt="logo">
-                        </a>
-                    </div>
-                </header>
-                <a ng-click="goto('/search')">
-                    <div class="cover">
-                        <div class="cover-bor clearfix">
-                            <div class="cover-item box">
-                                <img src="images/film-1.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-2.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-3.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-5.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-4.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-3.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-1.jpg" alt="">
-                            </div>
-                            <div class="cover-item box">
-                                <img src="images/film-2.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="search-header">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="81" height="81" viewBox="0 0 81 81">
-                                <image id="ico_magnifier" width="81" height="81" xlink:href="data:img/png;base64,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" />
-                            </svg>
-                        </div>
-                    </div>
-                </a>
-                <div class="tabs">
-                    <ul class="tabs__nav clearfix">
-                        <li class="tabs__nav_item">
-                            новые
-                        </li>
-                        <li class="tabs__nav_item" ng-click="goto('/popular')">
-                            <i class="icon icon-star"></i> популярные
-                        </li>
-                        <li class="tabs__nav_item" ng-click="goto('/subscriptions')">избранные</li>
-                    </ul>
-                </div>
-            </div>
-            <div ng-show="hide_main_layout">
-                <header class="header clearfix">
-                    <div class="header__closed closed">
-                        <a ng-click="closeSearch()">
-                            <i class="icon icon-closed"></i>
-                        </a>
-                    </div>
-                    <div class="header__logo logo">
-                        <a href="#">
-                            <img src="images/logo.png" height="30" width="208" alt="logo">
-                        </a>
-                    </div>
-                </header>
-            </div>
-        </div>
 
-        <div ng-view></div>
-
-
-        <div ng-controller="popupController">
-            <div class="popup1">
-                <div class="closed js-closed">
-                    <i class="icon icon-popup-closed"></i>
-                </div>
-                <h3>Авторизация</h3>
-                <p>необходимо для смс-уведомлений. спамить не будем :)</p>
-                <input type="text" placeholder="номер телефона">
-                <a ng-href="#/popup" class="btn_popup">готово</a>
-            </div>
-        </div>
-    </div>
+    <div ui-view="header"></div>
+    <div ui-view="main"></div>
+    <!--<div ng-view></div>-->
 
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="scripts/jquery.js"></script>
@@ -123,11 +33,13 @@
 
     <script src="scripts/angular/angular.min.js"></script>
     <script src="scripts/angular-route/angular-route.min.js"></script>
+    <script src="scripts/angular-ui-router/angular-uri-router.js"></script>
     <script src="scripts/angular-animate/angular-animate.min.js"></script>
     <script src="scripts/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="scripts/angular-touch/angular-touch.min.js"></script>
     <script src="scripts/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="scripts/angular-slick/dist/slick.js"></script>
+    <script src="scripts/angular-pull-to-refresh/angular-pull-to-refresh.js"></script>
 
     <script src="scripts/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
@@ -151,6 +63,7 @@
     <script src="app/controllers/searchController.js"></script>
     <script src="app/controllers/popularController.js"></script>
     <script src="app/controllers/headerController.js"></script>
+    <script src="app/controllers/searchHeaderController.js"></script>
     <script src="app/controllers/popupController.js"></script>
     <script src="app/controllers/subscriptionsController.js"></script>
     <script src="app/controllers/showController.js"></script>

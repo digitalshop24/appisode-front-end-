@@ -6,21 +6,17 @@
         .controller('headerController', headerController);
 
     headerController.$inject = [
-        '$scope', '$rootScope', '$location'];
+        '$scope', '$rootScope', '$state'];
 
-    function headerController($scope, $rootScope, $location) {
+    function headerController($scope, $rootScope, $state) {
         $scope.closeSearch = function() {
-            $rootScope.hide_main_layout = false;
             history.go(-1);
         };
 
-        $scope.goto = function(url) {
-            $location.path(url);
+        $scope.authorize = function(element) {
+            $(element.currentTarget).toggleClass("active");
+            $state.go('auth-step1');
         };
-
-        //$scope.showAuthorizationPopup = function() {
-        //    $rootScope.authorization_popup_show = true;
-        //};
     };
 
 })();
