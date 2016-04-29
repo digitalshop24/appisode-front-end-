@@ -9,7 +9,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\ntkach\AppData\Local\Temp\Appisode_refcache</ReferenceCachePath>
-    <ShowAllFiles>false</ShowAllFiles>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows Phone 8'">
     <DebuggerFlavor>PhoneEmulator720P</DebuggerFlavor>
