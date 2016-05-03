@@ -62,7 +62,7 @@
             event.stopPropagation();
             var authorized = authService.isAuthorized();
             if (!authorized) {
-                $state.go('auth-step2-alt');
+                $state.go('popular.auth-step1');
             }
         };
 

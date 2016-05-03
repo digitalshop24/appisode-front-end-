@@ -17,10 +17,11 @@
 </head>
 <body ng-app="app">
 
-    <div ui-view="header"></div>
-    <div ui-view="main"></div>
-    <!--<div ng-view></div>-->
+    <div class="view-container">
+        <div ui-view="main" class="view"></div>
+    </div>
 
+    <!--<div ng-view></div>-->
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="scripts/jquery.js"></script>
 
@@ -39,7 +40,6 @@
     <script src="scripts/angular-touch/angular-touch.min.js"></script>
     <script src="scripts/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="scripts/angular-slick/dist/slick.js"></script>
-    <script src="scripts/angular-pull-to-refresh/angular-pull-to-refresh.js"></script>
 
     <script src="scripts/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
@@ -59,12 +59,12 @@
     <script src="services/usersService.js"></script>
 
     <script src="app/controllers/authController.js"></script>
+    <script src="app/controllers/popupAuthController.js"></script>
     <script src="app/controllers/showsController.js"></script>
     <script src="app/controllers/searchController.js"></script>
     <script src="app/controllers/popularController.js"></script>
     <script src="app/controllers/headerController.js"></script>
     <script src="app/controllers/searchHeaderController.js"></script>
-    <script src="app/controllers/popupController.js"></script>
     <script src="app/controllers/subscriptionsController.js"></script>
     <script src="app/controllers/showController.js"></script>
 </body>

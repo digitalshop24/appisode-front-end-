@@ -6,10 +6,10 @@
         .controller('showController', showController);
 
     showController.$inject = [
-        '$scope', '$rootScope', '$stateParams', '$timeout', 'showsService'
+        '$scope', '$rootScope', '$stateParams', '$state', '$timeout', 'showsService', 'authService'
     ];
 
-    function showController($scope, $rootScope, $stateParams, $timeout, showsService) {
+    function showController($scope, $rootScope, $stateParams, $state, $timeout, showsService, authService) {
         var vm = this;
 
         $scope.showId = $stateParams.showId;
@@ -33,6 +33,19 @@
 
                 $scope.busy = false;
             });
+        };
+
+        $scope.like = function (event) {
+            event.stopPropagation();
+            $(event.currentTarget).toggleClass("active");
+        };
+
+        $scope.subscribe = function (event) {
+            event.stopPropagation();
+            var authorized = authService.isAuthorized();
+            if (!authorized) {
+                $state.go('show.auth-step1');
+            }
         };
 
         $scope.slickConfig = {

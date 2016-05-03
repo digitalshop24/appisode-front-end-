@@ -1,0 +1,13 @@
+﻿<div ng-controller="popupAuthController as view" ng-app="app">
+    <div class="popup1 popup">
+        <div class="closed js-closed">
+            <a ui-sref="popular">
+                <i class="icon icon-popup-closed"></i>
+            </a>
+        </div>
+        <h3>проверочный код</h3>
+        <p>подтвердите указанный номер проверочным кодом из смс</p>
+        <input type="text" placeholder="Введите код из смс">
+        <a class="btn_popup" ng-click="goto3()">готово</a>
+    </div>
+</div>

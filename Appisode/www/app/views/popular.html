@@ -1,7 +1,9 @@
-﻿<div ng-controller="popularController" ng-app="app">
+﻿<div ui-view="header"></div>
+
+<div ng-controller="popularController" ng-app="app">
     <div class="tabs__content" pull-to-refresh="getShows()">
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
-            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}" ng-click="gotoShow(show.id)">
                 <div class="tabs__content_item_bg">
                     <h3 class="title_en">{{show.name}}</h3>
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
@@ -72,3 +74,5 @@
         </div>
     </div>
 </div>
+
+<div ui-view></div>

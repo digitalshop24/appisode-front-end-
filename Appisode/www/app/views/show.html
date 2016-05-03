@@ -1,4 +1,6 @@
-﻿<div ng-controller="showController as view" ng-app="app">
+﻿<div ui-view="header"></div>
+
+<div ng-controller="showController as view" ng-app="app">
     <div ng-show="!busy">
         <div class="expanded" ng-style="{'background': 'url(' + poster + ') no-repeat center center', 'background-size': 'cover'}">
             <div style="background: rgba(0, 0, 0, 0.4);">
@@ -8,14 +10,14 @@
 
                 <div class="expanded__like clearfix">
                     <div class="expanded__like_sezon">
-                        <div class="star_grey">
+                        <div class="star_grey" ng-click="subscribe($event)">
                             <i class="icon icon_star-grey"></i>
                         </div>
                         <div class="text while">
                             сезон полностью
                         </div>
                     </div>
-                    <div class="expanded__like_like js_active_like">
+                    <div class="expanded__like_like js_active_like" ng-click="like($event)">
                         <i class="icon icon_like-bill"></i>
                     </div>
                 </div>
@@ -80,3 +82,5 @@
         <div ng-include src="'app/views/spinner.html'"></div>
     </div>
 </div>
+
+<div ui-view></div>
