@@ -10,8 +10,7 @@
         'LocalStorageModule',
         'infinite-scroll',
         'slick',
-        'ui.router',
-        'mgcrea.pullToRefresh'
+        'ui.router'
         //'ngCordova'
     ]);
 
@@ -55,12 +54,6 @@
                 views: {
                     main: { templateUrl: "app/views/auth/step2.html" }
                 }
-            }).state('auth-step2-alt', {
-                url: '/auth/step2-alt',
-                views: {
-                    main: {
-                        templateUrl: "app/views/auth/step2-alt.html" }
-                }
             }).state('auth-step3', {
                 url: '/auth/step3',
                 views: {
@@ -71,6 +64,28 @@
                 views: {
                     main: { templateUrl: "app/views/auth/step4.html" }
                 }
+            })
+
+                .state('popular.auth-step1', {
+                url: '/auth/alt/step1',
+                templateUrl: "app/views/auth/alt/step1.html"
+            }).state('popular.auth-step2', {
+                url: '/auth/alt/step2',
+                templateUrl: "app/views/auth/alt/step2.html"
+            }).state('popular.auth-step3', {
+                url: '/auth/alt/step3',
+                templateUrl: "app/views/auth/alt/step3.html"
+            })
+
+                .state('show.auth-step1', {
+                url: '/auth/alt/step1',
+                templateUrl: "app/views/auth/alt/step1.html"
+                }).state('show.auth-step2', {
+                url: '/auth/alt/step2',
+                templateUrl: "app/views/auth/alt/step2.html"
+                }).state('show.auth-step3', {
+                url: '/auth/alt/step3',
+                templateUrl: "app/views/auth/alt/step3.html"
             });
 
             // Fix bug for Windows Phone wanting to download files on urls with routed parameters

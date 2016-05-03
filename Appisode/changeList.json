@@ -315,7 +315,6 @@
     "www\\scripts\\angular-sanitize\\index.js",
     "www\\scripts\\angular-local-storage\\.bower.json",
     "www\\fonts\\PTSerifProExtraBoldItalic.otf",
-    "www\\app\\controllers\\popupController.js",
     "www\\scripts\\jquery\\src\\css\\var\\cssExpand.js",
     "res\\screens\\android\\screen-ldpi-portrait.png",
     "www\\scripts\\jquery\\src\\css\\addGetHookIf.js",
@@ -481,7 +480,6 @@
     "www\\scripts\\slick\\.jshintrc",
     "plugins\\cordova-plugin-whitelist\\README.md",
     "plugins\\cordova-plugin-splashscreen\\tests\\ios\\doc\\ja\\README.md",
-    "www\\app\\views\\auth\\step2-alt.html",
     "www\\app\\views\\newest.html",
     "www\\scripts\\jquery\\src\\var\\rnotwhite.js",
     "www\\app\\views\\partials\\search-header.html",
@@ -494,16 +492,50 @@
     "res\\screens\\android\\screen-mdpi-portrait.png",
     "www\\scripts\\angular-route\\package.json",
     "www\\scripts\\slick-carousel\\slick\\slick-theme.css",
-    "plugins\\cordova-plugin-splashscreen\\plugin.xml"
+    "plugins\\cordova-plugin-splashscreen\\plugin.xml",
+    "www\\app\\controllers\\popularcontroller.js",
+    "www\\app\\controllers\\popupcontroller.js",
+    "www\\app\\controllers\\authcontroller.js",
+    "www\\app\\views\\auth\\alt\\step2.html",
+    "www\\app\\views\\auth\\alt\\step3.html",
+    "www\\app\\views\\auth\\alt\\step1.html",
+    "www\\app\\controllers\\searchcontroller.js",
+    "www\\app\\controllers\\popupAuthController.js"
   ],
-  "deletedFilesIos": [],
+  "deletedFilesIos": [
+    "www\\app\\views\\auth\\step2-alt.html",
+    "www\\app\\views\\auth\\alt\\step2-alt.html",
+    "www\\app\\controllers\\popupController.js"
+  ],
   "addedPluginsIos": [
     "cordova-plugin-whitelist@1.2.1",
     "cordova-plugin-splashscreen@3.2.2"
   ],
   "deletedPluginsIos": [],
-  "changedFiles": [],
-  "deletedFiles": [],
+  "changedFiles": [
+    "www\\css\\angular-pull-to-refresh.css",
+    "www\\css\\main.css",
+    "www\\layout.html",
+    "www\\app\\views\\search.html",
+    "www\\app\\views\\popular.html",
+    "www\\app\\controllers\\popularcontroller.js",
+    "www\\app\\js\\app.js",
+    "www\\app\\controllers\\popupcontroller.js",
+    "www\\app\\controllers\\authcontroller.js",
+    "www\\app\\views\\auth\\alt\\step2.html",
+    "www\\app\\views\\auth\\alt\\step3.html",
+    "www\\app\\views\\auth\\alt\\step1.html",
+    "www\\app\\views\\auth\\step3.html",
+    "www\\app\\controllers\\searchcontroller.js",
+    "www\\app\\controllers\\popupAuthController.js",
+    "www\\app\\views\\auth\\step1.html",
+    "www\\app\\views\\partials\\header.html"
+  ],
+  "deletedFiles": [
+    "www\\app\\views\\auth\\step2-alt.html",
+    "www\\app\\views\\auth\\alt\\step2-alt.html",
+    "www\\app\\controllers\\popupController.js"
+  ],
   "addedPlugins": [],
   "deletedPlugins": []
 }
