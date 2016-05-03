@@ -8,8 +8,9 @@
     <DebuggerFlavor>RippleiPhone5</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\ntkach\AppData\Local\Temp\Appisode_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\nickita\AppData\Local\Temp\Appisode_refcache</ReferenceCachePath>
     <ShowAllFiles>false</ShowAllFiles>
+    <ToolsVersionPromptShown>1.8</ToolsVersionPromptShown>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows Phone 8'">
     <DebuggerFlavor>PhoneEmulator720P</DebuggerFlavor>
