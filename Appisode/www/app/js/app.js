@@ -125,6 +125,12 @@
         }
     ]);
 
+    //app.run([
+    //    '$rootScope', function ($rootScope) {
+    //        $rootScope.launched = true;
+    //    }
+    //]);
+
     app.constant('ngApiSettings', {
         apiUri: 'http://appisode.ru/api/v1'
     });
