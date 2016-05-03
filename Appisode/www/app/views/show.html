@@ -1,4 +1,6 @@
-﻿<div ng-controller="showController as view" ng-app="app">
+﻿<div ui-view="header"></div>
+
+<div ng-controller="showController as view" ng-app="app">
     <div ng-show="!busy">
         <div class="expanded" ng-style="{'background': 'url(' + poster + ') no-repeat center center', 'background-size': 'cover'}">
             <div style="background: rgba(0, 0, 0, 0.4);">

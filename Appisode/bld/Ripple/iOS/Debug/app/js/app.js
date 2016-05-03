@@ -29,40 +29,40 @@
             $stateProvider.state('popular', {
                 url: '/',
                 views: {
-                    main: { templateUrl: "app/views/popular.html" },
-                    header: { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/popular.html" },
+                    'header@popular': { templateUrl: "app/views/partials/header.html" }
                 }
             }).state('search', {
                 url: '/search',
                 views: {
-                    main: { templateUrl: "app/views/search.html" },
-                    header: { templateUrl: "app/views/partials/search-header.html" }
+                    'main': { templateUrl: "app/views/search.html" },
+                    'header@search': { templateUrl: "app/views/partials/search-header.html" }
                 }
             }).state('show', {
                 url: '/show/:showId',
                 views: {
-                    main: { templateUrl: "app/views/show.html" },
-                    header: { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/show.html" },
+                    'header@show': { templateUrl: "app/views/partials/header.html" }
                 }
             }).state('auth-step1', {
                 url: '/auth/step1',
                 views: {
-                    main: { templateUrl: "app/views/auth/step1.html" }
+                    'main': { templateUrl: "app/views/auth/step1.html" }
                 }
             }).state('auth-step2', {
                 url: '/auth/step2',
                 views: {
-                    main: { templateUrl: "app/views/auth/step2.html" }
+                    'main': { templateUrl: "app/views/auth/step2.html" }
                 }
             }).state('auth-step3', {
                 url: '/auth/step3',
                 views: {
-                    main: { templateUrl: "app/views/auth/step3.html" }
+                    'main': { templateUrl: "app/views/auth/step3.html" }
                 }
             }).state('auth-step4', {
                 url: '/auth/step4',
                 views: {
-                    main: { templateUrl: "app/views/auth/step4.html" }
+                    'main': { templateUrl: "app/views/auth/step4.html" }
                 }
             })
 
@@ -132,7 +132,7 @@
     app.constant('ngLocalStorageKeys', {
         phone: 'phone',
         key: 'key',
-        authstep: 'authstep',
+        auth_step: 'authstep',
         started: 'started',
         authorized: 'authorized',
         popular_shows: 'popular_shows'
