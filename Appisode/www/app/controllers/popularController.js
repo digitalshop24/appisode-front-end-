@@ -13,40 +13,42 @@
 
         vm.page = 1;
         vm.take = 10;
+        vm.total = null;
+
+        vm.authPhone = localStorageService.get(ngLocalStorageKeys.phone);
+        vm.authKey = localStorageService.get(ngLocalStorageKeys.key);
 
         $scope.shows = [];
         $scope.count = null;
-        $scope.busy = true;
 
         $scope.init = function() {
-            $scope.busy = true;
             $scope.shows = [];
             $scope.count = null;
             $scope.getShows();
         };
 
         $scope.getShows = function () {
+            if (vm.total != null && vm.total <= vm.page * vm.take) {
+                return;
+            }
 
-            var cached = localStorageService.get(ngLocalStorageKeys.popular_shows);
-
-            if (cached) {
-                $.each(cached, function() {
-                    $scope.shows.push(this);
-                });
+            if ($scope.busy) {
+                return;
             }
 
             $scope.busy = true;
 
-            showsService.popularList().then(function (response) {
-                $.each(response, function () {
-                    $scope.shows.push(this);
+            showsService.popularList(vm.page, vm.take).then(function (response) {
+                vm.total = response.total;
+
+                $.each(response.shows, function () {
+                    $scope.shows.push(vm.extendShow(this));
                 });
 
-                localStorageService.remove(ngLocalStorageKeys.popular_shows);
-                localStorageService.set(ngLocalStorageKeys.popular_shows, response);
-
+                vm.page += 1;
+            }).finally(function () {
                 $scope.busy = false;
-            });
+            });;
         };
 
         $scope.gotoShow = function(id) {
@@ -60,14 +62,22 @@
 
         $scope.subscribe = function(event) {
             event.stopPropagation();
-            var authorized = authService.isAuthorized();
-            if (!authorized) {
+
+            authService.checkAuth(vm.authPhone, vm.authKey).then(function(response) {
+                $state.go();
+            }, function(code) {
                 $state.go($state.$current.parent.name + '.auth-step1');
-            }
+            });
         };
 
         $scope.changePeriod = function (event) {
             event.stopPropagation();
+        };
+
+        vm.extendShow = function(show) {
+            show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
+            show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);
+            return show;
         };
 
         $scope.init();

@@ -32,6 +32,18 @@
                     'main': { templateUrl: "app/views/popular.html" },
                     'header@popular': { templateUrl: "app/views/partials/header.html" }
                 }
+            }).state('my', {
+                url: '/my',
+                views: {
+                    'main': { templateUrl: "app/views/my.html" },
+                    'header@my': { templateUrl: "app/views/partials/header.html" }
+                }
+            }).state('newest', {
+                url: '/newest',
+                views: {
+                    'main': { templateUrl: "app/views/newest.html" },
+                    'header@newest': { templateUrl: "app/views/partials/header.html" }
+                }
             }).state('search', {
                 url: '/search',
                 views: {
@@ -125,14 +137,8 @@
         }
     ]);
 
-    //app.run([
-    //    '$rootScope', function ($rootScope) {
-    //        $rootScope.launched = true;
-    //    }
-    //]);
-
     app.constant('ngApiSettings', {
-        apiUri: 'http://appisode.ru/api/v1'
+        apiUri: 'http://api.appisode.ru/api/v1'
     });
 
     app.constant('ngLocalStorageKeys', {

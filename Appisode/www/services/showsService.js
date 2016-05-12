@@ -39,10 +39,28 @@
             return deferred.promise;
         };
 
-        function popularList() {
+        function popularList(page, perPage) {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/popular.json");
+            var url = page && perPage
+                ? Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/popular.json?page={page}&perPage={perPage}", { page: page, perPage: perPage })
+                : Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/popular.json");
+
+            $http.get(url).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (err, status) {
+                deferred.reject(status);
+            });
+
+            return deferred.promise;
+        };
+
+        function newestList(page, perPage) {
+            var deferred = $q.defer();
+
+            var url = page && perPage
+                ? Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/new.json?page={page}&perPage={perPage}", { page: page, perPage: perPage })
+                : Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/new.json");
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
@@ -71,6 +89,7 @@
             getList: getList,
             searchList: searchList,
             popularList: popularList,
+            newestList: newestList,
             getShow: getShow
         };
 

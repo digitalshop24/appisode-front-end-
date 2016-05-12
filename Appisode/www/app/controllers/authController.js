@@ -11,6 +11,7 @@
 
     function authController($scope, $rootScope, $state, localStorageService, authService, ngLocalStorageKeys) {
         $scope.number = null;
+        $scope.code = null;
         
         $scope.togglePhone = function(element) {
             $(element.currentTarget).toggleClass("active");
@@ -20,7 +21,7 @@
             if (!$scope.number) {
                 return false;
             } else {
-                authService.register($scope.number).then(function (response) {
+                authService.register($scope.number).then(function(response) {
                     localStorageService.set(ngLocalStorageKeys.phone, $scope.number);
                     $state.go('auth-step3');
                 });
@@ -30,7 +31,18 @@
         };
 
         $scope.goto4 = function () {
-            $state.go('auth-step4');
+            if (!$scope.code) {
+                return false;
+            } else {
+                var phone = localStorageService.get(ngLocalStorageKeys.phone);
+
+                authService.checkConfirmation(phone, $scope.code).then(function (response) {
+                    localStorageService.set(ngLocalStorageKeys.key, response.key);
+                    $state.go('auth-step4');
+                }, function(code) {});
+            }
+
+            return true;
         };
     };
 })();

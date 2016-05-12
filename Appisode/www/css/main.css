@@ -390,7 +390,7 @@ body {
 .icon_like {
   width: 46px;
   height: 40px;
-  background: url(../images/icons/icon_like.png) no-repeat center center;
+  background: url(../images/icons/ico_heart.svg) no-repeat center center;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -693,7 +693,7 @@ body {
 .header__btn-bel {
     /*float: right;*/
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 10px;
 }
 

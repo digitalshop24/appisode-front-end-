@@ -1,7 +1,7 @@
 ﻿<div ui-view="header"></div>
 
 <div ng-controller="popularController" ng-app="app">
-    <div class="tabs__content" pull-to-refresh="getShows()">
+    <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
             <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}" ng-click="gotoShow(show.id)">
                 <div class="tabs__content_item_bg">
@@ -30,9 +30,9 @@
                     </div>
                     <div class="in_production" ng-if="show.in_production">
                         <div class="datte">
-                            <span class="datte__item grey">дата выхода сезона </span>
+                            <span class="datte__item grey">дата выхода серии </span>
                             <span class="datte__item while">
-                                04 июля 2016 / 20:00 МСК
+                                {{show.air_date_str}}
                             </span>
                         </div>
                         <div class="time">
@@ -50,13 +50,13 @@
                             </div>
                             <div class="time__bottom clearfix">
                                 <div class="time__bottom_left while">
-                                    00
+                                    {{show.air_date_detailed.months}}
                                 </div>
                                 <div class="time__bottom_right while">
-                                    24
+                                    {{show.air_date_detailed.hours}}
                                 </div>
                                 <div class="time__bottom_center while">
-                                    01
+                                    {{show.air_date_detailed.days}}
                                 </div>
                             </div>
                         </div>

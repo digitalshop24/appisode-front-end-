@@ -12,10 +12,10 @@
 
         vm.page = 1;
         vm.take = 10;
-                   
+        
         $scope.shows = [];
         $scope.query = null;
-        $scope.count = null;
+        $scope.total = null;
         $scope.busy = true;
         $scope.spinner = false;
 
@@ -24,21 +24,30 @@
 
             $scope.busy = true;
             $scope.shows = [];
-            $scope.count = null;
+            $scope.total = null;
             $scope.search();
         };
 
         $scope.search = function () {
+            if ($scope.total != null && $scope.total <= vm.page * vm.take) {
+                return;
+            }
+
+            if ($scope.spinner) {
+                return;
+            }
+
             $scope.spinner = true;
 
             showsService.searchList(vm.page, vm.take, $scope.query).then(function (response) {
                 vm.page += 1;
 
-                $.each(response, function () {
+                $.each(response.shows, function () {
                     $scope.shows.push(this);
                 });
 
-                $scope.count = response.length;
+                $scope.total = response.total;
+            }).finally(function() {
                 $scope.busy = false;
                 $scope.spinner = false;
             });

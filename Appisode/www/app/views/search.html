@@ -11,7 +11,7 @@
     </div>
     <div class="search-rezylt" ng-show="!busy">
         <div class="search-rezylt__bor">
-            <h2 class="grey">найден {{count}} сериал</h2>
+            <h2 class="grey">найден {{total}} сериал</h2>
             <div infinite-scroll="search()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
                 <div class="search-rezylt__block clearfix" ng-repeat="show in shows" ng-click="gotoShow(show.id)">
                     <div class="search-rezylt__block_img">
