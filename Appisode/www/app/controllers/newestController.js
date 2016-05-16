@@ -42,7 +42,7 @@
                 });
 
                 vm.page += 1;
-
+            }).finally(function () {
                 $scope.busy = false;
             });
         };

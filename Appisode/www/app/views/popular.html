@@ -9,7 +9,7 @@
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
                     <div class="block_button_section clearfix">
                         <div class="btn btn__like btn__left">
-                            <button class="btn__like_bt js_active_like" ng-click="like($event)">
+                            <button class="btn__like_bt js_active_like" ng-click="like($event, show)">
                                 <i class="icon icon_like"></i>
                             </button>
                         </div>
@@ -18,9 +18,9 @@
                                 <i class="icon icon_bell"></i>
                             </button>
                         </div>
-                        <div class="period btn__center" ng-click="changePeriod($event)">
+                        <div class="period btn__center">
                             <div class="onoffswitch">
-                                <input type="checkbox" class="onoffswitch-checkbox" id="" ng-attr-id="{{'checkbox-' + show.id}}">
+                                <input type="checkbox" class="onoffswitch-checkbox" ng-attr-id="{{'checkbox-' + show.id}}" ng-click="changePeriod($event)">
                                 <label class="onoffswitch-label clearfix" ng-attr-for="{{'checkbox-' + show.id}}">
                                     <span class="onoffswitch-inner">СЕРИЯ</span>
                                     <span class="onoffswitch-switch">СЕЗОН</span>

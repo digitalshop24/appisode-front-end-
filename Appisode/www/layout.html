@@ -12,11 +12,8 @@
 </head>
 <body ng-app="app">
 
-    <!--<div class="view-container">-->
-        <div ui-view="main" class="fade"></div>
-    <!--</div>-->
+    <div ui-view="main" class="fade"></div>
 
-    <!--<div ng-view></div>-->
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="scripts/jquery.js"></script>
 
@@ -37,7 +34,7 @@
     <script src="scripts/angular-slick/dist/slick.js"></script>
 
     <script src="scripts/ngCordova/dist/ng-cordova.min.js"></script>
-<script src="scripts/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+    <script src="scripts/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
     <script src="scripts/jquery.onoff.min.js"></script>
     <script src="scripts/slick/dist/slick.js"></script>
@@ -48,6 +45,7 @@
     <script src="app/js/app.js"></script>
     <script src="app/js/utils.js"></script>
     <script src="app/js/date.js"></script>
+    <script src="app/js/subscriptions.js"></script>
 
     <script src="services/subscriptionsService.js"></script>
     <script src="services/showsService.js"></script>
@@ -62,8 +60,8 @@
     <script src="app/controllers/newestController.js"></script>
     <script src="app/controllers/headerController.js"></script>
     <script src="app/controllers/searchHeaderController.js"></script>
-    <script src="app/controllers/subscriptionsController.js"></script>
     <script src="app/controllers/showController.js"></script>
-    <script src="app/controllers/myController.js"></script>
+    <script src="app/controllers/subscriptionsController.js"></script>
+    <script src="app/controllers/subscriptionsHeaderController.js"></script>
 </body>
 </html>

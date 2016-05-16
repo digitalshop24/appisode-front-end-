@@ -1,19 +1,42 @@
-﻿<div ng-controller="subscriptionsController as view" ng-app="app">
-    <div class="appisode" ng-repeat="show in shows">
-        <div class="appisode_im clearfix" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
-            <div class="appisode_im_star normal">
-                <i class="icon icon_time"></i>
-            </div>
-            <div class="appisode_im_title">
-                <h3 class="while">{{show.russian_name}}</h3>
-                <h4 class="grey">{{show.name}}</h4>
-                <span class="time while"><i class="icon icon_time-pictur"></i>через <span class="red">3 дня</span>  новая серия</span>
-            </div>
-            <div class="appisode_im_touch">
-                <span></span>
-                <span></span>
-                <span></span>
+﻿<div ui-view="header"></div>
+
+<div ng-controller="subscriptionsController">
+    <div class="info clearfix">
+        <div class="info__im while">
+            Мои сериалы
+        </div>
+        <div class="info__number grey">
+            {{total}}
+        </div>
+    </div>
+    <div infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+        <div ng-repeat="show in shows">
+            <div class="appisode">
+                <div class="appisode_im clearfix" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+                    <div class="appisode_im_star normal">
+                        <i class="icon" ng-class="show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
+                    </div>
+                    <div class="appisode_im_title">
+                        <h3 class="while">{{show.russian_name}}</h3>
+                        <h4 class="grey">{{show.name}}</h4>
+                        <span class="time while">
+                            <i class="icon icon_time-pictur"></i>
+                            через
+                            <span class="red">
+                                3 дня
+                            </span>
+                            новая серия
+                        </span>
+                    </div>
+                    <div class="appisode_im_touch">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div ui-view></div>

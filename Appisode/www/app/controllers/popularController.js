@@ -6,14 +6,15 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$state', 'localStorageService', 'showsService', 'authService', 'ngLocalStorageKeys'];
+        '$scope', '$rootScope', '$state', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'ngLocalStorageKeys'];
 
-    function popularController($scope, $rootScope, $state, localStorageService, showsService, authService, ngLocalStorageKeys) {
+    function popularController($scope, $rootScope, $state, localStorageService, showsService, authService, subscriptionsService, ngLocalStorageKeys) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
         vm.total = null;
+        vm.type = Subscriptions.episode;
 
         vm.authPhone = localStorageService.get(ngLocalStorageKeys.phone);
         vm.authKey = localStorageService.get(ngLocalStorageKeys.key);
@@ -48,30 +49,31 @@
                 vm.page += 1;
             }).finally(function () {
                 $scope.busy = false;
-            });;
+            });
         };
 
         $scope.gotoShow = function(id) {
             $state.go('show', {showId: id});
         };
 
-        $scope.like = function (event) {
-            event.stopPropagation();
-            $(event.currentTarget).toggleClass("active");
-        };
-
-        $scope.subscribe = function(event) {
+        $scope.like = function (event, show) {
             event.stopPropagation();
 
-            authService.checkAuth(vm.authPhone, vm.authKey).then(function(response) {
-                $state.go();
-            }, function(code) {
+            event.stopPropagation();
+
+            authService.checkAuth(vm.authPhone, vm.authKey).then(function () {
+                subscriptionsService.subscribe(show.id, null,vm.type).then(function () {
+                    $(event.currentTarget).toggleClass("active");
+                }, function () { });
+            }, function () {
                 $state.go($state.$current.parent.name + '.auth-step1');
             });
         };
 
         $scope.changePeriod = function (event) {
             event.stopPropagation();
+
+            vm.type = vm.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
         };
 
         vm.extendShow = function(show) {

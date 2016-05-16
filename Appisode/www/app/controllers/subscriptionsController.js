@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -6,40 +6,57 @@
         .controller('subscriptionsController', subscriptionsController);
 
     subscriptionsController.$inject = [
-        '$scope', '$rootScope', 'subscriptionsService'];
+        '$scope', '$rootScope', '$state', 'localStorageService', 'subscriptionsService', 'authService', 'ngLocalStorageKeys'
+    ];
 
-    function subscriptionsController($scope, $rootScope, subscriptionsService) {
+    function subscriptionsController($scope, $rootScope, $state, localStorageService, subscriptionsService, authService, ngLocalStorageKeys) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
 
+        vm.authPhone = localStorageService.get(ngLocalStorageKeys.phone);
+        vm.authKey = localStorageService.get(ngLocalStorageKeys.key);
+
         $scope.shows = [];
-        $scope.count = null;
-        $scope.busy = true;
+        $scope.total = null;
 
         $scope.init = function () {
-            vm.page = 1;
-
-            $scope.busy = true;
             $scope.shows = [];
             $scope.count = null;
-            $scope.getSubscriptions();
+            $scope.getShows();
         };
 
-        $scope.getSubscriptions = function () {
+        $scope.getShows = function () {
+            if ($scope.total != null && $scope.total <= vm.page * vm.take) {
+                return;
+            }
+
+            if ($scope.busy) {
+                return;
+            }
+
             $scope.busy = true;
 
-            subscriptionsService.getList().then(function(response) {
-                $.each(response, function() {
-                    $scope.shows.push(this);
+            subscriptionsService.getList().then(function (response) {
+                $scope.total = response.length;
+
+                $.each(response, function () {
+                    $scope.shows.push(vm.extendShow(this.show));
                 });
 
+                vm.page += 1;
+            }).finally(function () {
                 $scope.busy = false;
             });
         };
 
-        $scope.init();
-    };
+        vm.extendShow = function (show) {
+            show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
+            show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);
+            return show;
+        };
 
+        $scope.init();
+    }
 })();

@@ -1,0 +1,1 @@
+﻿var Subscriptions = {episode: 'episode', new_episodes: 'new_episodes', season: 'season'};

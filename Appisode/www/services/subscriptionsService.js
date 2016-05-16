@@ -3,21 +3,23 @@
 
     angular.module('app').factory('subscriptionsService', subscriptionsService);
 
-    subscriptionsService.$inject = ['$http', '$q', 'ngApiSettings', 'ngLocalStorageKeys'];
+    subscriptionsService.$inject = ['$http', '$q', 'localStorageService', 'ngApiSettings', 'ngLocalStorageKeys'];
 
-    function subscriptionsService($http, $q, ngApiSettings, ngLocalStorageKeys) {
+    function subscriptionsService($http, $q, localStorageService, ngApiSettings, ngLocalStorageKeys) {
 
         function getList() {
             var deferred = $q.defer();
 
             var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions.json?phone={phone}&key={key}",
-                { phone: ngAuthSettings.phone, key: ngAuthSettings.key });
+                { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key) });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
             }).error(function (err, status) {
                 deferred.reject(status);
             });
+
+            return deferred.promise;
         }
 
         function subscribe(showId, episodeId, subtype) {
@@ -25,15 +27,17 @@
 
             var url = !episodeId
                 ? Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/subscribe.json?phone={phone}&key={key}&show_id={showId}&subtype={subtype}",
-                { phone: ngLocalStorageKeys.phone, key: ngLocalStorageKeys.key, showId: showId, subtype: subtype })
+                { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key), showId: showId, subtype: subtype })
                 : Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/subscribe.json?phone={phone}&key={key}&show_id={showId}&episode_id={episodeId}&subtype={subtype}",
-                { phone: ngLocalStorageKeys.phone, key: ngLocalStorageKeys.key, showId: showId, subtype: subtype, episodeId: episodeId });
+                { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key), showId: showId, subtype: subtype, episodeId: episodeId });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
             }).error(function (err, status) {
                 deferred.reject(status);
             });
+
+            return deferred.promise;
         };
 
         function unsubscribe(subscriptionId, showId) {

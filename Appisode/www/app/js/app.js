@@ -32,11 +32,11 @@
                     'main': { templateUrl: "app/views/popular.html" },
                     'header@popular': { templateUrl: "app/views/partials/header.html" }
                 }
-            }).state('my', {
-                url: '/my',
+            }).state('subscriptions', {
+                url: '/subscriptions',
                 views: {
-                    'main': { templateUrl: "app/views/my.html" },
-                    'header@my': { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/subscriptions.html" },
+                    'header@subscriptions': { templateUrl: "app/views/partials/subscriptions-header.html" }
                 }
             }).state('newest', {
                 url: '/newest',
@@ -193,7 +193,8 @@
         auth_step: 'authstep',
         started: 'started',
         authorized: 'authorized',
-        popular_shows: 'popular_shows'
+        popular_shows: 'popular_shows',
+        ios_token: 'ios_token'
     });
 
     
