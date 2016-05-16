@@ -19,13 +19,15 @@
                             </button>
                         </div>
                         <div class="period btn__center" ng-click="changePeriod($event)">
-                            <div class="onoffswitch">
-                                <input type="checkbox" class="onoffswitch-checkbox" id="" ng-attr-id="{{'checkbox-' + show.id}}">
-                                <label class="onoffswitch-label clearfix" ng-attr-for="{{'checkbox-' + show.id}}">
-                                    <span class="onoffswitch-inner">СЕРИЯ</span>
-                                    <span class="onoffswitch-switch">СЕЗОН</span>
-                                </label>
-                            </div>
+                            <div class="im-onoffswitch">
+                                <div class="onoffswitch clearfix">
+                                    <input type="checkbox" class="onoffswitch-checkbox" id="" ng-attr-id="{{'checkbox-' + show.id}}">
+                                    <label class="onoffswitch-label clearfix" ng-attr-for="{{'checkbox-' + show.id}}">
+                                        <span class="onoffswitch-inner">СЕРИЯ</span>
+                                        <span class="onoffswitch-switch">СЕЗОН</span>
+                                    </label>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                     <div class="in_production" ng-if="show.in_production">
