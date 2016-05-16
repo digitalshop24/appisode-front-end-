@@ -287,7 +287,7 @@ input, button {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  overflow: hidden;
+    margin-top:15px;
 }
 
 .onoffswitch-checkbox {
@@ -299,26 +299,30 @@ input, button {
   height: 100%;
   display: block;
   background: rgba(0, 0, 0, 0.2);
+  position:relative;
 }
 
 .onoffswitch-inner {
-  width: 50%;
-  height: 100%;
-  display: block;
-  float: left;
-  line-height: 90px;
-  background: #d82b41;
-  text-align: center;
-  border-radius: 48px;
-  transition: all 0.3s ease-in 0s;
-  font-family: 'BebasNeueBold';
-  font-size: 30px;
-  color: #fff;
+      width: 50%;
+    height: 86px;
+    display: block;
+    float: left;
+    line-height: 90px;
+    background: #d82b41;
+    text-align: center;
+    border-radius: 48px;
+    transition: all 0.3s ease-in 0s;
+    font-family: 'BebasNeueBold';
+    font-size: 30px;
+    color: #fff;
+    left: -2px;
+    position: absolute;
+    top: -1px;
 }
 
 .onoffswitch-switch {
   width: 50%;
-  height: 100%;
+  height: 86px
   display: block;
   float: left;
   text-align: center;
@@ -329,6 +333,9 @@ input, button {
   font-family: 'BebasNeueBold';
   font-size: 30px;
   color: #fff;
+  right:-2px;
+    position: absolute;
+    top: -1px;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
@@ -591,6 +598,7 @@ body {
 
 .btn__center .onoffswitch {
   margin: 0 auto;
+  margin-top:90px;
 }
 
 .while {
@@ -764,6 +772,8 @@ body {
   cursor: pointer;
   z-index: 2;
 }
+
+
 
 .tabs {
   min-width: 270px;
@@ -1732,5 +1742,47 @@ body {
     display: block;
     margin: 0 auto;
     padding-top: 35px;
+  }
+  .tittle_ru {
+      font-size:40px;
+  }
+  .btn__like_bt {
+      width:75px;
+      height:75px;
+  }
+  .btn__bell_bt {
+      width:75px;
+      height:75px;
+  }
+  .popup1 h3 {
+      font-size:50px;
+  }
+  .popup1 .btn_popup {
+      height:68px;
+      line-height:70px;
+  }
+  .search__button {
+      height:70px;
+  }
+  .search__text input {
+      font-size:35px;
+      text-align:center;
+  }
+  .sing-1__button {
+      line-height:75px;
+      height:68px;
+  }
+  .sing-2__button {
+      line-height:75px;
+      height:68px;
+  }
+  .time__bottom_left {
+
+  }
+  .btn__left {
+      padding-left:15px;
+  }
+  .btn__right {
+      padding-right:15px;
   }
 }
