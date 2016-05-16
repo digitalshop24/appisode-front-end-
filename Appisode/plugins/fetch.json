@@ -14,5 +14,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.phonegap.plugins.PushPlugin": {
+        "source": {
+            "type": "local",
+            "path": "E:\\Downloads\\PushPlugin-master\\PushPlugin-master"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

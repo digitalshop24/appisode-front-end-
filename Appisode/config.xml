@@ -103,4 +103,5 @@
   <preference name="SplashScreenDelay" value="100" />
   <preference name="FadeSplashScreenDuration" value="100" />
   <plugin name="cordova-plugin-splashscreen" version="3.2.2" />
+  <plugin name="com.phonegap.plugins.PushPlugin" version="2.5.0" src="E:\Downloads\PushPlugin-master\PushPlugin-master" />
 </widget>

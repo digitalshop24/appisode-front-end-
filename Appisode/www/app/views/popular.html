@@ -3,7 +3,7 @@
 <div ng-controller="popularController" ng-app="app">
     <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
-            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}" ng-click="gotoShow(show.id)">
+            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
                 <div class="tabs__content_item_bg">
                     <h3 class="title_en">{{show.name}}</h3>
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
@@ -14,7 +14,7 @@
                             </button>
                         </div>
                         <div class="btn btn__bell btn__right">
-                            <button class="btn__bell_bt js_popup1" ng-click="subscribe($event)">
+                            <button class="btn__bell_bt js_popup1" ng-click="gotoShow(show.id)">
                                 <i class="icon icon_bell"></i>
                             </button>
                         </div>

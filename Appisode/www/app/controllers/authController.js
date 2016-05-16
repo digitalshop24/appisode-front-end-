@@ -37,7 +37,7 @@
                 var phone = localStorageService.get(ngLocalStorageKeys.phone);
 
                 authService.checkConfirmation(phone, $scope.code).then(function (response) {
-                    localStorageService.set(ngLocalStorageKeys.key, response.key);
+                    localStorageService.set(ngLocalStorageKeys.key, response.auth_token);
                     $state.go('auth-step4');
                 }, function(code) {});
             }

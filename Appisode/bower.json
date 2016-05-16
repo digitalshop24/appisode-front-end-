@@ -13,6 +13,7 @@
     "angular-animate": "*",
     "angular-sanitize": "*",
     "angular-touch": "*",
-    "angular-local-storage": "*"
+    "angular-local-storage": "*",
+    "ngCordova": "*"
   }
 }
