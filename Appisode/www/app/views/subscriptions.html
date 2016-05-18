@@ -1,42 +1,48 @@
-﻿<div ui-view="header"></div>
+﻿<ion-content>
+    <div ui-view="header"></div>
 
-<div ng-controller="subscriptionsController">
-    <div class="info clearfix">
-        <div class="info__im while">
-            Мои сериалы
+    <div ng-controller="subscriptionsController">
+        <div class="info clearfix">
+            <div class="info__im while">
+                Мои сериалы
+            </div>
+            <div class="info__number grey">
+                {{totalDesc}}
+            </div>
         </div>
-        <div class="info__number grey">
-            {{total}}
-        </div>
-    </div>
-    <div infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-        <div ng-repeat="show in shows">
-            <div class="appisode">
-                <div class="appisode_im clearfix" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
-                    <div class="appisode_im_star normal">
-                        <i class="icon" ng-class="show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
-                    </div>
-                    <div class="appisode_im_title">
-                        <h3 class="while">{{show.russian_name}}</h3>
-                        <h4 class="grey">{{show.name}}</h4>
-                        <span class="time while">
-                            <i class="icon icon_time-pictur"></i>
-                            через
-                            <span class="red">
-                                3 дня
+        <div infinite-scroll="getSubscriptions()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+            <ion-list>
+                <ion-item class="appisode item-thumbnail-left item-remove-animate" ng-repeat="subscription in subscriptions">
+                    <div class="appisode_im clearfix" ng-style="{'background': 'url({{subscription.show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+                        <div class="appisode_im_star" ng-class="subscription.show.progress_class">
+                            <i class="icon" ng-class="subscription.show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
+                        </div>
+                        <div class="appisode_im_title">
+                            <h3 class="while">{{subscription.show.russian_name}}</h3>
+                            <h4 class="grey">{{subscription.show.name}}</h4>
+                            <span class="time while">
+                                <i class="icon icon_time-pictur"></i>
+                                через
+                                <span class="red">
+                                    {{subscription.show.days_left_str}}
+                                </span>
+                                новая серия
                             </span>
-                            новая серия
-                        </span>
+                        </div>
+                        <div class="appisode_im_touch">
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                        </div>
                     </div>
-                    <div class="appisode_im_touch">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                    <ion-option-button class="button button-remove" ng-click="unsubscribe(subscription)"></ion-option-button>
+                </ion-item>
+            </ion-list>
+            <div ng-show="busy" class="spinner-wrapper">
+                <div ng-include src="'app/views/spinner.html'"></div>
             </div>
         </div>
     </div>
-</div>
 
-<div ui-view></div>
+    <div ui-view></div>
+</ion-content>

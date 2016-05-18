@@ -6,10 +6,10 @@
         .controller('showController', showController);
 
     showController.$inject = [
-        '$scope', '$rootScope', '$stateParams', '$state', '$timeout', 'showsService', 'authService'
+        '$scope', '$rootScope', '$stateParams', '$state', '$timeout', 'showsService', 'authService', 'subscriptionsService'
     ];
 
-    function showController($scope, $rootScope, $stateParams, $state, $timeout, showsService, authService) {
+    function showController($scope, $rootScope, $stateParams, $state, $timeout, showsService, authService, subscriptionsService) {
         var vm = this;
 
         $scope.showId = $stateParams.showId;
@@ -18,6 +18,7 @@
         $scope.episode = {};
         $scope.totalEpisodes = 0;
         $scope.busy = true;
+        $scope.currentIndex = 0;
     
         $scope.getShow = function() {
             showsService.getShow($scope.showId).then(function(response) {
@@ -29,7 +30,10 @@
                 });
 
                 $scope.totalEpisodes = response.episodes.length;
-                $scope.current = $scope.episodes[$scope.totalEpisodes - 1];
+                $scope.current = $scope.episodes[$scope.show.next_episode ? ($scope.show.next_episode.number - 1) : ($scope.totalEpisodes - 1)];
+                $scope.currentIndex = $scope.show.next_episode ? ($scope.show.next_episode.number - 1) : ($scope.totalEpisodes - 1);
+
+                vm.initSlider();
 
                 $scope.busy = false;
             });
@@ -37,52 +41,65 @@
 
         $scope.like = function (event) {
             event.stopPropagation();
-            $(event.currentTarget).toggleClass("active");
+
+            authService.checkAuth().then(function() {
+                subscriptionsService.subscribe($scope.show.id, null, vm.type).then(function() {
+                    $(event.currentTarget).toggleClass("active");
+                }, function() {});
+            }, function() {
+                $state.go($state.$current.parent.name + '.auth-step1');
+            });
         };
 
         $scope.subscribe = function (event) {
             event.stopPropagation();
-            var authorized = authService.isAuthorized();
-            if (!authorized) {
-                $state.go('show.auth-step1');
-            }
-        };
 
-        $scope.slickConfig = {
-            infinite: true,
-            centerMode: true,
-            centerPadding: '120px',
-            arrows: false,
-            slidesToShow: 1,
-            initialSlide: $scope.totalEpisodes - 1
+            authService.checkAuth().then(function () {
+                subscriptionsService.subscribe($scope.show.id, null, Subscriptions.season).then(function () {
+                    $(event.currentTarget).toggleClass("active");
+                }, function () { });
+            }, function () {
+                $state.go($state.$current.parent.name + '.auth-step1');
+            });
         };
-
-        $scope.breakpoints = [
-            {
-                breakpoint: 690,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '40px',
-                    slidesToShow: 3,
-                    initialSlide: $scope.totalEpisodes - 1
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '20px',
-                    slidesToShow: 1,
-                    initialSlide: $scope.totalEpisodes - 1
-                }
-            }
-        ];
 
         $scope.onAfterChange = function (index) {
             $scope.current = $scope.episodes[index];
             $scope.$apply();
+        };
+
+        vm.initSlider = function () {
+            $scope.slickConfig = {
+                infinite: true,
+                centerMode: true,
+                centerPadding: '120px',
+                arrows: false,
+                slidesToShow: 1,
+                initialSlide: $scope.currentIndex
+            };
+
+            $scope.breakpoints = [
+                {
+                    breakpoint: 690,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3,
+                        initialSlide: $scope.currentIndex
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '20px',
+                        slidesToShow: 1,
+                        initialSlide: $scope.currentIndex
+                    }
+                }
+            ];
         };
 
         vm.newShow = function(show) {
@@ -92,7 +109,8 @@
                 name: show.name,
                 russian_name: show.russian_name,
                 season_number: show.season_number,
-                poster: show.poster
+                poster: show.poster,
+                next_episode: show.next_episode
             };
         };
 

@@ -11,7 +11,8 @@
         'infinite-scroll',
         'slick',
         'ui.router',
-        'ngCordova'
+        'ngCordova',
+        'ionic'
     ]);
 
     app.configuration = {
@@ -137,52 +138,6 @@
         }
     ]);
 
-    app.run([
-        '$rootScope', '$http', '$cordovaPush',
-        function($rootScope, $http, $cordovaPush) {
-            var iosConfig = {
-                "badge": true,
-                "sound": true,
-                "alert": true
-            };
-
-            document.addEventListener("deviceready", function() {
-                $cordovaPush.register(iosConfig).then(function(deviceToken) {
-                    // Success -- send deviceToken to server, and store for future use
-                    //console.log("deviceToken: " + deviceToken);
-                    alert(deviceToken);
-                }, function(err) {
-                    alert("Registration error: " + err);
-                });
-
-
-                $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-                    if (notification.alert) {
-                        navigator.notification.alert(notification.alert);
-                    }
-
-                    //if (notification.sound) {
-                    //    var snd = new Media(event.sound);
-                    //    snd.play();
-                    //}
-
-                    //if (notification.badge) {
-                    //    $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
-                    //        // Success!
-                    //    }, function(err) {
-                    //        // An error occurred. Show a message to the user
-                    //    });
-                    //}
-                });
-
-                //$cordovaPush.unregister(options).then(function(result) {
-                //}, function(err) {
-                //});
-
-            });
-        }
-    ]);
-
     app.constant('ngApiSettings', {
         apiUri: 'http://api.appisode.ru/api/v1'
     });
@@ -196,6 +151,5 @@
         popular_shows: 'popular_shows',
         ios_token: 'ios_token'
     });
-
     
 })();

@@ -16,9 +16,6 @@
         vm.total = null;
         vm.type = Subscriptions.episode;
 
-        vm.authPhone = localStorageService.get(ngLocalStorageKeys.phone);
-        vm.authKey = localStorageService.get(ngLocalStorageKeys.key);
-
         $scope.shows = [];
         $scope.count = null;
 
@@ -59,9 +56,7 @@
         $scope.like = function (event, show) {
             event.stopPropagation();
 
-            event.stopPropagation();
-
-            authService.checkAuth(vm.authPhone, vm.authKey).then(function () {
+            authService.checkAuth().then(function () {
                 subscriptionsService.subscribe(show.id, null,vm.type).then(function () {
                     $(event.currentTarget).toggleClass("active");
                 }, function () { });

@@ -6,10 +6,14 @@
     authService.$inject = ['$http', '$q', 'localStorageService', 'ngApiSettings', 'ngLocalStorageKeys'];
 
     function authService($http, $q, localStorageService, ngApiSettings, ngLocalStorageKeys) {
-        function checkAuth(phone, key) {
+        function checkAuth() {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/check_auth.json?phone={phone}&key={key}", { phone: phone, key: key });
+            var phone = localStorageService.get(ngLocalStorageKeys.phone);
+            var key = localStorageService.get(ngLocalStorageKeys.key);
+
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/check_auth.json?phone={phone}&key={key}",
+            { phone: phone, key: key });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
@@ -52,11 +56,30 @@
             return deferred.promise;
         };
 
+        function saveDeviceToken(token) {
+            var deferred = $q.defer();
+
+            var phone = localStorageService.get(ngLocalStorageKeys.phone);
+            var key = localStorageService.get(ngLocalStorageKeys.key);
+
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/save_token.json?phone={phone}&key={key}&token={token}",
+                { phone: phone, key: key, token: token });
+
+            $http.get(url).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (err, status) {
+                deferred.reject(status);
+            });
+
+            return deferred.promise;
+        };
+
         return {
             checkAuth: checkAuth,
             isAuthorized: isAuthorized,
             register: register,
-            checkConfirmation: checkConfirmation
+            checkConfirmation: checkConfirmation,
+            saveDeviceToken: saveDeviceToken
         };
     };
 })();

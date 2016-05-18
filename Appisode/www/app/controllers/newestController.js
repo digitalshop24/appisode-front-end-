@@ -6,14 +6,15 @@
         .controller('newestController', newestController);
 
     newestController.$inject = [
-        '$scope', '$rootScope', '$state', 'localStorageService', 'showsService', 'authService'];
+        '$scope', '$rootScope', '$state', 'localStorageService', 'showsService', 'authService', 'subscriptionsService'];
 
-    function newestController($scope, $rootScope, $state, localStorageService, showsService, authService) {
+    function newestController($scope, $rootScope, $state, localStorageService, showsService, authService, subscriptionsService) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
         vm.total = null;
+        vm.type = Subscriptions.episode;
 
         $scope.shows = [];
         $scope.count = null;
@@ -51,21 +52,22 @@
             $state.go('show', { showId: id });
         };
 
-        $scope.like = function (event) {
+        $scope.like = function (event, show) {
             event.stopPropagation();
-            $(event.currentTarget).toggleClass("active");
-        };
 
-        $scope.subscribe = function (event) {
-            event.stopPropagation();
-            var authorized = authService.isAuthorized();
-            if (!authorized) {
+            authService.checkAuth().then(function () {
+                subscriptionsService.subscribe(show.id, null, vm.type).then(function () {
+                    $(event.currentTarget).toggleClass("active");
+                }, function () { });
+            }, function () {
                 $state.go($state.$current.parent.name + '.auth-step1');
-            }
+            });
         };
 
         $scope.changePeriod = function (event) {
             event.stopPropagation();
+
+            vm.type = vm.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
         };
 
         vm.extendShow = function (show) {

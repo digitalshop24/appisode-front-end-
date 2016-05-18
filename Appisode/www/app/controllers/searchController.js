@@ -5,9 +5,9 @@
         .module('app')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', '$rootScope', '$state', 'showsService'];
+    searchController.$inject = ['$scope', '$rootScope', '$state', 'showsService', 'authService', 'subscriptionsService'];
 
-    function searchController($scope, $rootScope, $state, showsService) {
+    function searchController($scope, $rootScope, $state, showsService, authService, subscriptionsService) {
         var vm = this;
 
         vm.page = 1;
@@ -55,6 +55,18 @@
 
         $scope.toggleSearch = function (event) {
             $(event.currentTarget).toggleClass("active");
+        };
+
+        $scope.like = function (event, show) {
+            event.stopPropagation();
+
+            authService.checkAuth().then(function () {
+                subscriptionsService.subscribe(show.id, show.next_episode ? show.next_episode.id : null, Subscriptions.episode).then(function () {
+                    $(event.currentTarget).toggleClass("active");
+                }, function () { });
+            }, function () {
+                $state.go($state.$current.parent.name + '.auth-step1');
+            });
         };
 
         $scope.gotoShow = function (id) {

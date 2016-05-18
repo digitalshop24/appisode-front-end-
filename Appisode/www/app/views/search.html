@@ -13,7 +13,7 @@
         <div class="search-rezylt__bor">
             <h2 class="grey">найден {{total}} сериал</h2>
             <div infinite-scroll="search()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-                <div class="search-rezylt__block clearfix" ng-repeat="show in shows" ng-click="gotoShow(show.id)">
+                <div class="search-rezylt__block clearfix" ng-repeat="show in shows">
                     <div class="search-rezylt__block_img">
                         <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}" height="300">
                     </div>
@@ -21,10 +21,10 @@
                         <h3 class="search-rezylt_title_ru">{{show.russian_name}}</h3>
                         <h4 class="search-rezylt_title_en">{{show.name}}</h4>
                         <div class="search-rezylt__info">
-                            <div class="search-rezylt__like js_active_info">
+                            <div class="search-rezylt__like js_active_info" ng-click="like($event, show)">
                                 <i class="icon icon_like_info"></i>
                             </div>
-                            <div class="search-rezylt__dz">
+                            <div class="search-rezylt__dz" ng-click="gotoShow(show.id)">
                                 <i class="icon icon_dz"></i>
                             </div>
                             <div class="search-rezylt__text">

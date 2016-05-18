@@ -44,7 +44,7 @@
             var deferred = $q.defer();
 
             var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/unsubscribe.json?phone={phone}&key={key}&subscription_id={subscriptionId}&show_id={showId}",
-            { phone: ngLocalStorageKeys.phone, key: ngLocalStorageKeys.key, subscriptionId: subscriptionId, showId: showId });
+            { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key), subscriptionId: subscriptionId, showId: showId });
 
             $http.get(url).success(function (response) {
                 if (response.error) {
@@ -55,6 +55,8 @@
             }).error(function (err, status) {
                 deferred.reject(status);
             });
+
+            return deferred.promise;
         }
 
         var service = {

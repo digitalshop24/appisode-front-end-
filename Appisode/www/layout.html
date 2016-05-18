@@ -5,13 +5,14 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://image.tmdb.org http://appisode.ru/api/v1 data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src *; media-src *">
     <title>Appisode</title>
 
-    
+
     <link href="css/slick.css" rel="stylesheet" />
     <link href="css/spinner.css" rel="stylesheet" />
-    <link href="css/angular-pull-to-refresh.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/ionic.css" rel="stylesheet" />
+    <!--<link href="css/ionic/ionic.css" rel="stylesheet" />-->
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="appController">
 
     <div ui-view="main" class="fade"></div>
 
@@ -24,6 +25,10 @@
 
     <script src="scripts/ww.jquery.js"></script>
     <script src="scripts/ww.angular.js"></script>
+
+    <script src="scripts/ionic/ionic.min.js"></script>
+    <script src="scripts/ionic/ionic.bundle.min.js"></script>
+    <script src="scripts/ionic/ionic-angular.min.js"></script>
 
     <script src="scripts/angular/angular.min.js"></script>
     <script src="scripts/angular-route/angular-route.min.js"></script>
@@ -46,6 +51,7 @@
     <script src="app/js/app.js"></script>
     <script src="app/js/utils.js"></script>
     <script src="app/js/date.js"></script>
+    <script src="app/js/numbers.js"></script>
     <script src="app/js/subscriptions.js"></script>
 
     <script src="services/subscriptionsService.js"></script>
@@ -53,6 +59,7 @@
     <script src="services/authService.js"></script>
     <script src="services/usersService.js"></script>
 
+    <script src="app/controllers/appController.js"></script>
     <script src="app/controllers/authController.js"></script>
     <script src="app/controllers/popupAuthController.js"></script>
     <script src="app/controllers/showsController.js"></script>
