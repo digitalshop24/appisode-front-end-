@@ -12,8 +12,18 @@
         'slick',
         'ui.router',
         'ngCordova',
-        'ionic'
+        'ionic',
+        'angular-ladda',
+        'ui-notification'
     ]);
+
+    angular.module('app').config(function (laddaProvider) {
+        laddaProvider.setOption({
+            style: 'zoom-in',
+            spinnerSize: 35,
+            spinnerColor: '#ffffff'
+        });
+    });
 
     app.configuration = {
         useLocalData: true
@@ -138,6 +148,10 @@
         }
     ]);
 
+    app.config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptorService');
+    });
+
     app.constant('ngApiSettings', {
         apiUri: 'http://api.appisode.ru/api/v1'
     });
@@ -145,11 +159,8 @@
     app.constant('ngLocalStorageKeys', {
         phone: 'phone',
         key: 'key',
-        auth_step: 'authstep',
         started: 'started',
-        authorized: 'authorized',
-        popular_shows: 'popular_shows',
-        ios_token: 'ios_token'
+        deviceToken: 'deviceToken'
     });
     
 })();

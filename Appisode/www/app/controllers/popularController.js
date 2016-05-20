@@ -6,9 +6,9 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$state', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'ngLocalStorageKeys'];
+        '$scope', '$rootScope', '$state', '$timeout', 'Notification', 'localStorageService', 'showsService', 'authService', 'subscriptionsService'];
 
-    function popularController($scope, $rootScope, $state, localStorageService, showsService, authService, subscriptionsService, ngLocalStorageKeys) {
+    function popularController($scope, $rootScope, $state, $timeout, Notification, localStorageService, showsService, authService, subscriptionsService) {
         var vm = this;
 
         vm.page = 1;
@@ -56,12 +56,16 @@
         $scope.like = function (event, show) {
             event.stopPropagation();
 
-            authService.checkAuth().then(function () {
-                subscriptionsService.subscribe(show.id, null,vm.type).then(function () {
-                    $(event.currentTarget).toggleClass("active");
-                }, function () { });
-            }, function () {
-                $state.go($state.$current.parent.name + '.auth-step1');
+            show.likeLoading = true;
+
+            subscriptionsService.subscribe(show.id, null, vm.type).then(function() {
+                show.likeLoading = false;
+                $(event.currentTarget).toggleClass("active");
+            }, function(code) {
+                show.likeLoading = false;
+                if (code === 401) {
+                    $state.go($state.$current.parent.name + '.auth-step1');
+                }
             });
         };
 
@@ -71,9 +75,19 @@
             vm.type = vm.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
         };
 
+        $scope.testPush = function() {
+            Notification.info({
+                message: 'Error notification (no timeout)',
+                templateUrl: "notification_template.html",
+                delay: 2500,
+                scope: $scope
+            });
+        };
+
         vm.extendShow = function(show) {
             show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
             show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);
+            show.likeLoading = false;
             return show;
         };
 

@@ -14,6 +14,8 @@
     "angular-sanitize": "*",
     "angular-touch": "*",
     "angular-local-storage": "*",
-    "ngCordova": "*"
+    "ngCordova": "*",
+    "ladda": "1.0.0",
+    "angular-ui-notification": "0.2.0"
   }
 }

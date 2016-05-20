@@ -52,16 +52,22 @@
             $state.go('show', { showId: id });
         };
 
-        $scope.like = function (event, show) {
+        $scope.like = function(event, show) {
             event.stopPropagation();
 
-            authService.checkAuth().then(function () {
-                subscriptionsService.subscribe(show.id, null, vm.type).then(function () {
+            if (!show.subscription_id) {
+                show.likeLoading = true;
+                
+                subscriptionsService.subscribe(show.id, null, vm.type).then(function() {
+                    show.likeLoading = false;
                     $(event.currentTarget).toggleClass("active");
-                }, function () { });
-            }, function () {
-                $state.go($state.$current.parent.name + '.auth-step1');
-            });
+                }, function(code) {
+                    show.likeLoading = false;
+                    if (code === 401) {
+                        $state.go($state.$current.parent.name + '.auth-step1');
+                    }
+                });
+            }
         };
 
         $scope.changePeriod = function (event) {
@@ -73,6 +79,7 @@
         vm.extendShow = function (show) {
             show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
             show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);
+            show.likeLoading = false;
             return show;
         };
 

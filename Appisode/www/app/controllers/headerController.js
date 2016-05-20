@@ -8,9 +8,7 @@
     headerController.$inject = [
         '$scope', '$rootScope', '$state', 'localStorageService', 'authService', 'ngLocalStorageKeys'];
 
-    function headerController($scope, $rootScope, $state, localStorageService, authService, ngLocalStorageKeys) {
-        var vm = this;
-
+    function headerController($scope, $rootScope, $state, localStorageService, authService) {
         $scope.closeSearch = function() {
             history.go(-1);
         };

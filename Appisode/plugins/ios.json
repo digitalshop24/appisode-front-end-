@@ -12,6 +12,12 @@
                             "xml": false,
                             "count": 1
                         }
+                    ],
+                    "QuartzCore.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -24,6 +30,10 @@
                         },
                         {
                             "xml": "<feature name=\"PushPlugin\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -40,6 +50,9 @@
         },
         "com.phonegap.plugins.PushPlugin": {
             "PACKAGE_NAME": "io.cordova.appisode"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.cordova.appisode"
         }
     },
     "dependent_plugins": {}

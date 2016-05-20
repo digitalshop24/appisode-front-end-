@@ -103,15 +103,7 @@
         };
 
         vm.newShow = function(show) {
-            return {
-                id: show.id,
-                in_production: show.in_production,
-                name: show.name,
-                russian_name: show.russian_name,
-                season_number: show.season_number,
-                poster: show.poster,
-                next_episode: show.next_episode
-            };
+            return show;
         };
 
         vm.newEpisode = function(episode) {

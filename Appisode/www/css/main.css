@@ -398,11 +398,11 @@ body {
   width: 46px;
   height: 40px;
   background: url(../images/icons/ico_heart.svg) no-repeat center center;
-  position: absolute;
+  /*position: absolute;
   top: 0px;
   left: 0px;
   right: 0px;
-  bottom: 0px;
+  bottom: 0px;*/
   margin: auto;
 }
 
@@ -513,13 +513,13 @@ body {
 
 .icon_like_info {
   width: 46px;
-  height: 41px;
+  height: 40px;
   background: url(../images/icons/icon-like-search.png) no-repeat center center;
-  position: absolute;
+  /*position: absolute;
   top: 0px;
   left: 0px;
   right: 0px;
-  bottom: 0px;
+  bottom: 0px;*/
   margin: auto;
 }
 
@@ -527,11 +527,11 @@ body {
   width: 38px;
   height: 44px;
   background: url(../images/icons/icon-dz.png) no-repeat center center;
-  position: absolute;
+  /*position: absolute;
   top: 0px;
   left: 0px;
   right: 0px;
-  bottom: 0px;
+  bottom: 0px;*/
   margin: auto;
 }
 
@@ -701,7 +701,7 @@ body {
 .header__btn-bel {
     /*float: right;*/
     position: absolute;
-    top: 25px;
+    /*top: 25px;*/
     right: 10px;
 }
 
@@ -1173,7 +1173,7 @@ body {
 }
 
 .search-rezylt__bor {
-  border-bottom: 1px solid #373439;
+  /*border-bottom: 1px solid #373439;*/
   padding: 35px 0 20px;
 }
 
@@ -1189,7 +1189,7 @@ body {
 
 .search-rezylt__block_img {
   width: 300px;
-  height: 272px;
+  /*height: 272px;*/
   text-align: center;
   float: left;
   margin-right: 30px;
@@ -1222,6 +1222,7 @@ body {
   border: 1px solid #fff;
   position: relative;
   display: inline-block;
+    background-color: transparent;
 }
 
 .search-rezylt__like.active {
@@ -1237,6 +1238,7 @@ body {
   border: 1px solid #fff;
   display: inline-block;
   margin: 0 15px;
+    background-color: transparent;
 }
 
 .search-rezylt__text {
@@ -1594,8 +1596,8 @@ body {
 }
 .fade.ng-enter,
 .fade.ng-leave {
-    -webkit-transition: all 1s ease;
-    transition: all 1s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .fade.ng-enter {
     opacity: 0;
@@ -1633,6 +1635,14 @@ body {
 }
 .slide.ng-leave-active {
     left: -100%;
+}
+
+.slick-next {
+    display: none !important;
+}
+
+.slick-prev {
+    display: none !important;
 }
 
 @media screen and (max-width: 760px) {

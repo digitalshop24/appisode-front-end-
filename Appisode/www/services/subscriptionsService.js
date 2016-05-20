@@ -7,11 +7,10 @@
 
     function subscriptionsService($http, $q, localStorageService, ngApiSettings, ngLocalStorageKeys) {
 
-        function getList() {
+        function getList(page, perPage) {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions.json?phone={phone}&key={key}",
-                { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key) });
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions.json");
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
@@ -26,12 +25,12 @@
             var deferred = $q.defer();
 
             var url = !episodeId
-                ? Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/subscribe.json?phone={phone}&key={key}&show_id={showId}&subtype={subtype}",
-                { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key), showId: showId, subtype: subtype })
-                : Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/subscribe.json?phone={phone}&key={key}&show_id={showId}&episode_id={episodeId}&subtype={subtype}",
-                { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key), showId: showId, subtype: subtype, episodeId: episodeId });
+                ? Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/subscribe.json?show_id={showId}&subtype={subtype}",
+                { showId: showId, subtype: subtype })
+                : Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/subscribe.json?show_id={showId}&episode_id={episodeId}&subtype={subtype}",
+                { showId: showId, subtype: subtype, episodeId: episodeId });
 
-            $http.get(url).success(function (response) {
+            $http.post(url).success(function (response) {
                 deferred.resolve(response);
             }).error(function (err, status) {
                 deferred.reject(status);
@@ -46,7 +45,7 @@
             var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions/unsubscribe.json?phone={phone}&key={key}&subscription_id={subscriptionId}&show_id={showId}",
             { phone: localStorageService.get(ngLocalStorageKeys.phone), key: localStorageService.get(ngLocalStorageKeys.key), subscriptionId: subscriptionId, showId: showId });
 
-            $http.get(url).success(function (response) {
+            $http.delete(url).success(function (response) {
                 if (response.error) {
                     deferred.reject(response);
                 } else {

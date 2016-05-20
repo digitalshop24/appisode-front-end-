@@ -1,4 +1,4 @@
-﻿<ion-content>
+﻿<ion-content overflow-scroll="false">
     <div ui-view="header"></div>
 
     <div ng-controller="subscriptionsController">
@@ -14,7 +14,7 @@
             <ion-list>
                 <ion-item class="appisode item-thumbnail-left item-remove-animate" ng-repeat="subscription in subscriptions">
                     <div class="appisode_im clearfix" ng-style="{'background': 'url({{subscription.show.poster}}) no-repeat center center', 'background-size': 'cover'}">
-                        <div class="appisode_im_star" ng-class="subscription.show.progress_class">
+                        <div class="appisode_im_star" ng-class="subscription.show.progress_class" ng-click="gotoShow(subscription)">
                             <i class="icon" ng-class="subscription.show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
                         </div>
                         <div class="appisode_im_title">

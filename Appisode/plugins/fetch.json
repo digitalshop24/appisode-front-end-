@@ -22,5 +22,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-x-toast": {
+        "source": {
+            "type": "local",
+            "path": "E:\\Downloads\\Toast-PhoneGap-Plugin-master\\Toast-PhoneGap-Plugin-master"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

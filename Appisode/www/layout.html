@@ -10,11 +10,24 @@
     <link href="css/spinner.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
     <link href="css/ionic.css" rel="stylesheet" />
+    <link href="scripts/ladda/dist/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="scripts/angular-ui-notification/dist/angular-ui-notification.css" rel="stylesheet" />
     <!--<link href="css/ionic/ionic.css" rel="stylesheet" />-->
 </head>
 <body ng-app="app" ng-controller="appController">
 
     <div ui-view="main" class="fade"></div>
+
+    <script type="text/ng-template" id="notification_template.html">
+        <div class="ui-notification custom-template">
+            <div class="pic">
+                <img src="{{push_img_path}}" />
+            </div>
+            <div class="content">
+                {{push_content}}
+            </div>
+        </div>
+    </script>
 
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="scripts/jquery.js"></script>
@@ -38,6 +51,7 @@
     <script src="scripts/angular-touch/angular-touch.min.js"></script>
     <script src="scripts/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="scripts/angular-slick/dist/slick.js"></script>
+    <script src="scripts/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
 
     <script src="scripts/ngCordova/dist/ng-cordova.min.js"></script>
     <script src="scripts/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
@@ -47,6 +61,10 @@
     <script src="scripts/slick-carousel/slick/slick.js"></script>
     <script src="scripts/tabs.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/ladda/dist/spin.min.js"></script>
+    <script src="scripts/ladda/dist/ladda.min.js"></script>
+
+    <script src="scripts/angular-ladda/angular-ladda.js"></script>
 
     <script src="app/js/app.js"></script>
     <script src="app/js/utils.js"></script>
@@ -54,10 +72,13 @@
     <script src="app/js/numbers.js"></script>
     <script src="app/js/subscriptions.js"></script>
 
+    <script src="services/authInterceptorsService.js"></script>
     <script src="services/subscriptionsService.js"></script>
     <script src="services/showsService.js"></script>
     <script src="services/authService.js"></script>
     <script src="services/usersService.js"></script>
+    <script src="services/deviceService.js"></script>
+    <script src="services/pushNotificationsService.js"></script>
 
     <script src="app/controllers/appController.js"></script>
     <script src="app/controllers/authController.js"></script>

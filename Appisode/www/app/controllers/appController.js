@@ -5,43 +5,14 @@
         .module('app')
         .controller('appController', appController);
 
-    appController.$inject = ['$scope', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'authService'];
+    appController.$inject = ['$scope', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'deviceService', 'pushNotificationsService'];
 
-    function appController($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, authService) {
+    function appController($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, deviceService, pushNotificationsService) { 
         $scope.notifications = [];
 
-        //ionic.Platform.ready(function () {
-        //    $scope.register();
-        //});
-
-        $scope.register = function() {
-            var config = null;
-
-            if (ionic.Platform.isAndroid()) {
-                config = {
-                    "senderID": "890062303664"
-                };
-            } else if (ionic.Platform.isIOS()) {
-                config = {
-                    "badge": "true",
-                    "sound": "true",
-                    "alert": "true"
-                }
-            }
-
-            $cordovaPush.register(config).then(function(result) {
-                console.log("Register success " + result);
-
-                $scope.registerDisabled = true;
-
-                if (ionic.Platform.isIOS()) {
-                    $scope.regId = result;
-                    storeDeviceToken("ios");
-                }
-            }, function(err) {
-                console.log("Register error " + err);
-            });
-        };
+        ionic.Platform.ready(function () {
+            pushNotificationsService.register();
+        });
 
         $scope.$on('$cordovaPush:notificationReceived', function (event, notification) {
             console.log(JSON.stringify([notification]));
@@ -59,8 +30,11 @@
         function handleAndroid(notification) {
             console.log("In foreground " + notification.foreground + " Coldstart " + notification.coldstart);
             if (notification.event == "registered") {
-                $scope.regId = notification.regid;
-                storeDeviceToken("android");
+                deviceService.saveDeviceToken(notification.regid).then(function () {
+                    console.log("Token stored, device is successfully subscribed to receive push notifications.");
+                }, function (data, status) {
+                    console.log("Error storing device token.");
+                });
             }
             else if (notification.event == "message") {
                 $cordovaDialogs.alert(notification.message, "Push Notification Received");
@@ -99,19 +73,6 @@
                 }
                 else $cordovaDialogs.alert(notification.alert, "(RECEIVED WHEN APP IN BACKGROUND) Push Notification Received");
             }
-        };
-
-        function storeDeviceToken(type) {
-            authService.saveDeviceToken($scope.regId).then(function() {
-                console.log("Token stored, device is successfully subscribed to receive push notifications.");
-            }, function(data, status) {
-                console.log("Error storing device token.");
-            });
-        };
-
-        $scope.unregister = function() {
-            console.log("Unregister called");
-            $scope.registerDisabled = false;
         };
     }
 })();

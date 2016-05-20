@@ -9,7 +9,7 @@
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
                     <div class="block_button_section clearfix">
                         <div class="btn btn__like btn__left">
-                            <button class="btn__like_bt js_active_like" ng-click="like($event)">
+                            <button class="btn__like_bt js_active_like" ladda="show.likeLoading" ng-class="{active: show.subscription_id}" ng-click="like($event, show)">
                                 <i class="icon icon_like"></i>
                             </button>
                         </div>

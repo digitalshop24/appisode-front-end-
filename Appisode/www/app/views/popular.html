@@ -1,6 +1,11 @@
 ﻿<div ui-view="header"></div>
 
 <div ng-controller="popularController" ng-app="app">
+    <div style="background-color: #fff; color: #000000">
+        <a ng-click="testPush()">
+            Тест пуш
+        </a>
+    </div>
     <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
             <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
@@ -9,7 +14,7 @@
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
                     <div class="block_button_section clearfix">
                         <div class="btn btn__like btn__left">
-                            <button class="btn__like_bt js_active_like" ng-click="like($event, show)">
+                            <button class="btn__like_bt js_active_like" ladda="show.likeLoading" ng-class="{active: show.subscription_id}" ng-click="like($event, show)">
                                 <i class="icon icon_like"></i>
                             </button>
                         </div>
