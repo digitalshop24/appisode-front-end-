@@ -19,6 +19,7 @@
         $scope.totalEpisodes = 0;
         $scope.busy = true;
         $scope.currentIndex = 0;
+        $scope.likeLoading = false;
     
         $scope.getShow = function() {
             showsService.getShow($scope.showId).then(function(response) {
@@ -39,27 +40,35 @@
             });
         };
 
-        $scope.like = function (event) {
+        $scope.like = function(event) {
             event.stopPropagation();
 
-            authService.checkAuth().then(function() {
-                subscriptionsService.subscribe($scope.show.id, null, vm.type).then(function() {
-                    $(event.currentTarget).toggleClass("active");
-                }, function() {});
-            }, function() {
-                $state.go($state.$current.parent.name + '.auth-step1');
+            $scope.likeLoading = true;
+
+            subscriptionsService.subscribe($scope.show.id, null, Subscriptions.new_episodes).then(function() {
+                $scope.likeLoading = false;
+                $(event.currentTarget).toggleClass("active");
+            }, function(code) {
+                $scope.likeLoading = false;
+                if (code === 401) {
+                    $state.go($state.$current.parent.name + '.auth-step1');
+                }
             });
         };
 
-        $scope.subscribe = function (event) {
+        $scope.subscribe = function(event) {
             event.stopPropagation();
 
-            authService.checkAuth().then(function () {
-                subscriptionsService.subscribe($scope.show.id, null, Subscriptions.season).then(function () {
-                    $(event.currentTarget).toggleClass("active");
-                }, function () { });
-            }, function () {
-                $state.go($state.$current.parent.name + '.auth-step1');
+            $scope.likeLoading = true;
+
+            subscriptionsService.subscribe($scope.show.id, null, Subscriptions.season).then(function() {
+                $scope.likeLoading = false;
+                $(event.currentTarget).toggleClass("active");
+            }, function(code) {
+                $scope.likeLoading = false;
+                if (code === 401) {
+                    $state.go($state.$current.parent.name + '.auth-step1');
+                }
             });
         };
 
@@ -74,8 +83,7 @@
                 centerMode: true,
                 centerPadding: '120px',
                 arrows: false,
-                slidesToShow: 1,
-                initialSlide: $scope.currentIndex
+                slidesToShow: 1
             };
 
             $scope.breakpoints = [
@@ -85,8 +93,7 @@
                         arrows: false,
                         centerMode: true,
                         centerPadding: '40px',
-                        slidesToShow: 3,
-                        initialSlide: $scope.currentIndex
+                        slidesToShow: 3
                     }
                 },
                 {
@@ -95,8 +102,7 @@
                         arrows: false,
                         centerMode: true,
                         centerPadding: '20px',
-                        slidesToShow: 1,
-                        initialSlide: $scope.currentIndex
+                        slidesToShow: 1
                     }
                 }
             ];

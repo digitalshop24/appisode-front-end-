@@ -5,10 +5,14 @@
         .module('app')
         .controller('appController', appController);
 
-    appController.$inject = ['$scope', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'deviceService', 'pushNotificationsService'];
+    appController.$inject = [
+        '$scope', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'Notification', 'deviceService', 'pushNotificationsService'];
 
-    function appController($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, deviceService, pushNotificationsService) { 
+    function appController($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, Notification, deviceService, pushNotificationsService) { 
         $scope.notifications = [];
+
+        $scope.push_img_path = null;
+        $scope.push_content = null;
 
         ionic.Platform.ready(function () {
             pushNotificationsService.register();
@@ -27,6 +31,15 @@
             }
         });
 
+        $scope.triggerPush = function () {
+            Notification.success({
+                message: 'Error notification (no timeout)',
+                templateUrl: "notification_template.html",
+                delay: 3000,
+                scope: $scope
+            });
+        };
+
         function handleAndroid(notification) {
             console.log("In foreground " + notification.foreground + " Coldstart " + notification.coldstart);
             if (notification.event == "registered") {
@@ -37,8 +50,12 @@
                 });
             }
             else if (notification.event == "message") {
-                $cordovaDialogs.alert(notification.message, "Push Notification Received");
-                $scope.$apply(function() {
+                $scope.$apply(function () {
+                    $scope.push_content = notification.message;
+                    $scope.push_img_path = notification.payload ? notification.payload.path : null;
+
+                    $scope.triggerPush();
+
                     $scope.notifications.push(JSON.stringify(notification.message));
                 });
             }

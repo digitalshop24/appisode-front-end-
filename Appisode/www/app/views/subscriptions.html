@@ -20,13 +20,17 @@
                         <div class="appisode_im_title">
                             <h3 class="while">{{subscription.show.russian_name}}</h3>
                             <h4 class="grey">{{subscription.show.name}}</h4>
-                            <span class="time while">
+                            <span class="time while" ng-show="subscription.show.in_production">
                                 <i class="icon icon_time-pictur"></i>
                                 через
                                 <span class="red">
                                     {{subscription.show.days_left_str}}
                                 </span>
                                 новая серия
+                            </span>
+                            <span class="time while" ng-show="!subscription.show.in_production">
+                                <i class="icon icon_time-pictur"></i>
+                                сериал завершен
                             </span>
                         </div>
                         <div class="appisode_im_touch">

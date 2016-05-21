@@ -17,8 +17,10 @@
                             сезон полностью
                         </div>
                     </div>
-                    <div class="expanded__like_like js_active_like" ng-class="{active: show.subscription_id}" ng-click="like($event)">
-                        <i class="icon icon_like-bill"></i>
+                    <div class="expanded__like_like js_active_like" ng-click="like($event)" ng-class="{active: show.subscription_id}">
+                        <button class="show_like" ladda="likeLoading">
+                            <i class="icon icon_like-bill"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -37,7 +39,7 @@
                             <span></span>
                             <span></span>
                         </div>
-                        <slick settings="slickConfig" scope="episodes" responsive="breakpoints" ng-if="episodes.length" on-after-change="onAfterChange">
+                        <slick settings="slickConfig" scope="episodes" responsive="breakpoints" ng-if="episodes.length" on-after-change="onAfterChange" initial-slide="{{currentIndex}}">
                             <div class="block" ng-repeat="episode in episodes" current-index="episode.id">
                                 <div class="block-im">
                                     {{episode.number}}

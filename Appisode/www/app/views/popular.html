@@ -1,10 +1,8 @@
 ﻿<div ui-view="header"></div>
 
 <div ng-controller="popularController" ng-app="app">
-    <div style="background-color: #fff; color: #000000">
-        <a ng-click="testPush()">
-            Тест пуш
-        </a>
+    <div style="background-color: #fff; color: #333">
+        <a ng-click="testPush()">Test push</a>
     </div>
     <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">

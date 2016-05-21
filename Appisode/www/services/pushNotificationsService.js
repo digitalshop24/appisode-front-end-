@@ -10,7 +10,8 @@ angular.module('app').factory('pushNotificationsService', [
 
             if (ionic.Platform.isAndroid()) {
                 config = {
-                    "senderID": "552787023225"
+                    //"senderID": "552787023225" //mine
+                    "senderID": "890062303664" //appisode
                 };
             } else if (ionic.Platform.isIOS()) {
                 config = {

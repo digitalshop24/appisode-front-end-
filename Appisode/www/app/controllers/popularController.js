@@ -6,9 +6,9 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$state', '$timeout', 'Notification', 'localStorageService', 'showsService', 'authService', 'subscriptionsService'];
+        '$scope', '$rootScope', '$state', '$timeout', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
 
-    function popularController($scope, $rootScope, $state, $timeout, Notification, localStorageService, showsService, authService, subscriptionsService) {
+    function popularController($scope, $rootScope, $state, $timeout, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
         var vm = this;
 
         vm.page = 1;
@@ -76,12 +76,7 @@
         };
 
         $scope.testPush = function() {
-            Notification.info({
-                message: 'Error notification (no timeout)',
-                templateUrl: "notification_template.html",
-                delay: 2500,
-                scope: $scope
-            });
+            pushNotificationsService.testPush('message');
         };
 
         vm.extendShow = function(show) {

@@ -127,14 +127,17 @@
     app.run([
         '$state',
         '$window',
-        function ($state, $window, localStorageService) {
-            var key = 'appisode.started';
-            var started = $window.localStorage.getItem(key);
-            if (started) {
+        'localStorageService',
+        'ngLocalStorageKeys',
+        function ($state, $window, localStorageService, ngLocalStorageKeys) {
+            var key = ngLocalStorageKeys.key;
+
+            var authorized = localStorageService.get(key);
+
+            if (authorized) {
                 $state.transitionTo('popular');
             } else {
                 $state.transitionTo('auth-step1');
-                $window.localStorage.setItem(key, true);
             }
         }
     ]);

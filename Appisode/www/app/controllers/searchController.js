@@ -18,6 +18,7 @@
         $scope.total = null;
         $scope.busy = true;
         $scope.spinner = false;
+        $scope.totalDesc = null;
 
         $scope.init = function () {
             vm.page = 1;
@@ -47,6 +48,9 @@
                 });
 
                 $scope.total = response.total;
+                $scope.totalDesc = NumbersFactory.declOfNumJustText($scope.total, ['найден', 'найдено', 'найдено'])
+                     + " " + NumbersFactory.declOfNum($scope.total, ['сериал', 'сериала', 'сериалов']);
+
             }).finally(function() {
                 $scope.busy = false;
                 $scope.spinner = false;

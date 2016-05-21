@@ -23,6 +23,8 @@
     border-radius: 0;
     background: #337ab7;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+
+    padding: 10px 50px;
 }
 .ui-notification.clickable
 {
@@ -78,8 +80,10 @@
 }
 .ui-notification.success
 {
-    color: #fff;
-    background: #5cb85c;
+    /*color: #fff;
+    background: #5cb85c;*/
+    color: #333;
+    background: rgba(255, 255, 255, 0.9);
 }
 .ui-notification.info
 {
@@ -93,11 +97,19 @@
 }
 
     .ui-notification.custom-template .pic {
-        float: left;
-        width: 30%;
+        display: inline-block;
+        width: 80px;
+    }
+
+    .ui-notification.custom-template .pic img{
+        width: 80px;
+        height: 80px;
+        background-size: 60px;
+        border-radius: 50%;
     }
 
     .ui-notification.custom-template .content {
-        float: right;
-        width: 70%;
+        display: inline-block;
+        padding: 30px;
+        vertical-align: top;
     }

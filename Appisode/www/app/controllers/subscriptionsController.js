@@ -52,7 +52,8 @@
         $scope.unsubscribe = function(subscription) {
             subscriptionsService.unsubscribe(subscription.id, subscription.show.id).then(function() {
                 $scope.subscriptions.splice($scope.subscriptions.indexOf(subscription), 1);
-                $scope.totalDesc = NumbersFactory.declOfNum($scope.total - 1, ["сериал", "сериала", "сериалов"]);
+                $scope.total -= 1;
+                $scope.totalDesc = NumbersFactory.declOfNum($scope.total, ["сериал", "сериала", "сериалов"]);
             }, function(code) {
                 if (code === 401) {
                     $state.go($state.$current.parent.name + '.auth-step1');
@@ -61,7 +62,7 @@
         };
 
         $scope.gotoShow = function(subscription) {
-            $state.go($state.go('show', { showId: subscription.show.id }));
+            $state.go('show', { showId: subscription.show.id });
         };
 
         vm.extendSubscription = function (subscription) {
