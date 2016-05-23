@@ -2,9 +2,9 @@
 
 <div ng-controller="searchController as view" ng-app="app">
     <div class="search">
-        <div class="search__button js_button" ng-click="toggleSearch($event)">
+        <!-- <div class="search__button js_button" ng-click="toggleSearch($event)">
             <i class="icon icon_search_btn"></i>
-        </div>
+        </div>-->
         <div class="search__text">
             <input type="text" placeholder="искомый сериал" ng-model="query" ng-keyup="init()">
         </div>
@@ -15,7 +15,7 @@
             <div infinite-scroll="search()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
                 <div class="search-rezylt__block clearfix" ng-repeat="show in shows">
                     <div class="search-rezylt__block_img">
-                        <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}" height="300">
+                        <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}">
                     </div>
                     <div class="search-rezylt__block_text">
                         <h3 class="search-rezylt_title_ru">{{show.russian_name}}</h3>

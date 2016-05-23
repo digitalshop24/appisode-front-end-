@@ -117,10 +117,7 @@
     visibility: hidden;
 }
 
-.item-thumbnail-left,
-.item-thumbnail-left .item-content {
-    min-height: 100px;
-}
+
 
   .item-thumbnail-left > img:first-child,
   .item-thumbnail-left .item-image,

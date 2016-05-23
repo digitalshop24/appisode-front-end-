@@ -93,7 +93,7 @@
                         arrows: false,
                         centerMode: true,
                         centerPadding: '40px',
-                        slidesToShow: 3
+                        slidesToShow: 5
                     }
                 },
                 {
@@ -102,7 +102,7 @@
                         arrows: false,
                         centerMode: true,
                         centerPadding: '20px',
-                        slidesToShow: 1
+                        slidesToShow: 5
                     }
                 }
             ];

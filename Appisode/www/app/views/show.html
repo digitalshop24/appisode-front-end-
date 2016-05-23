@@ -2,7 +2,7 @@
 
 <div ng-controller="showController as view" ng-app="app">
     <div ng-show="!busy">
-        <div class="expanded" ng-style="{'background': 'url(' + poster + ') no-repeat center center', 'background-size': 'cover'}">
+        <div class="expanded" ng-style="{'background-image': 'url(' + poster + ')'}">
             <div style="background: rgba(0, 0, 0, 0.4);">
                 <h3 class="title_en">{{show.name}}</h3>
                 <h2 class="tittle_ru">{{show.russian_name}}</h2>
