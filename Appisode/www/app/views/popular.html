@@ -6,7 +6,7 @@
     </div>
     <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
-            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat', 'background-size': 'cover'}">
                 <div class="tabs__content_item_bg">
                     <h3 class="title_en">{{show.name}}</h3>
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
