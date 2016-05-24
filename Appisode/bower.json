@@ -16,6 +16,7 @@
     "angular-local-storage": "*",
     "ngCordova": "*",
     "ladda": "1.0.0",
-    "angular-ui-notification": "0.2.0"
+    "angular-ui-notification": "0.2.0",
+    "angular-google-analytics": "1.1.7"
   }
 }

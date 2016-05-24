@@ -14,7 +14,8 @@
         'ngCordova',
         'ionic',
         'angular-ladda',
-        'ui-notification'
+        'ui-notification',
+        'angular-google-analytics'
     ]);
 
     angular.module('app').config(function (laddaProvider) {
@@ -144,7 +145,7 @@
 
     app.run([
         '$rootScope', '$state',
-        function($rootScope, $state) {
+        function($rootScope) {
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
                 $rootScope.activetab = toState.name;
             });
@@ -153,6 +154,10 @@
 
     app.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
+    });
+
+    app.config(function(AnalyticsProvider) {
+        AnalyticsProvider.setAccount('UA-77952196-1');
     });
 
     app.constant('ngApiSettings', {
