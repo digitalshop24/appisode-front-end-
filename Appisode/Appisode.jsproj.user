@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
-    <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
-    <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
+    <DebuggerFlavor>RippleNexusS</DebuggerFlavor>
+    <AndroidEmulatorID>363F7AED-462C-46BD-9FEC-F1DD3B79916C;VS Emulator 5" KitKat (4.4) XXHDPI Phone</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|iOS'">
     <DebuggerFlavor>RippleiPad3</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\nickita\AppData\Local\Temp\Appisode_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\Юлиан\AppData\Local\Temp\tdhfe0ej_Appisode_refcache</ReferenceCachePath>
     <ShowAllFiles>false</ShowAllFiles>
     <ToolsVersionPromptShown>1.8</ToolsVersionPromptShown>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebuggerFlavor>PhoneEmulator720P</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
-    <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
+    <DebuggerFlavor>RippleNexus</DebuggerFlavor>
     <AndroidEmulatorID>226C76AC-9E9A-4EBD-A495-79E8C5C5292F;VS Emulator 7" KitKat (4.4) XHDPI Tablet</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|iOS'">
