@@ -10,7 +10,7 @@
                 <div class="tabs__content_item_bg">
                     <h3 class="title_en">{{show.name}}</h3>
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
-                    <div class="block_button_section clearfix">
+                    <!--<div class="block_button_section clearfix">
                         <div class="btn btn__like btn__left">
                             <button class="btn__like_bt js_active_like" ladda="show.likeLoading" ng-class="{active: show.subscription_id}" ng-click="like($event, show)">
                                 <i class="icon icon_like"></i>
@@ -21,7 +21,7 @@
                                 <i class="icon icon_bell"></i>
                             </button>
                         </div>
-                        <div class="period btn__center">
+                        <!--<div class="period btn__center">
                             <div class="im-onoffswitch">
                                 <div class="onoffswitch clearfix">
                                     <input type="checkbox" class="onoffswitch-checkbox" ng-attr-id="{{'checkbox-' + show.id}}" ng-click="changePeriod($event)">
@@ -32,10 +32,15 @@
                                 </div>
                             </div>
                         </div>
+                    </div>-->
+                    <div class="call_like">
+                        <button class="btn__call active__call1">
+                            <i class="icon icon_call"></i>
+                        </button>
                     </div>
                     <div class="in_production" ng-if="show.in_production">
                         <div class="datte">
-                            <span class="datte__item grey">дата выхода серии </span>
+                            <span class="datte__item grey"><span class="red">5</span>  серия выходит</span>
                             <span class="datte__item while">
                                 {{show.air_date_str}}
                             </span>
@@ -79,5 +84,7 @@
         </div>
     </div>
 </div>
+
+
 
 <div ui-view></div>

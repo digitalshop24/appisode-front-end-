@@ -39,7 +39,7 @@
                             <span></span>
                             <span></span>
                         </div>
-                        <slick settings="slickConfig" scope="episodes" responsive="breakpoints" ng-if="episodes.length" on-after-change="onAfterChange" initial-slide="{{currentIndex}}">
+                        <slick settings="slickConfig" scope="episodes" responsive="breakpoints" slides-to-scroll=3 ng-if="episodes.length" on-after-change="onAfterChange" initial-slide="{{currentIndex}}" >
                             <div class="block" ng-repeat="episode in episodes" current-index="episode.id">
                                 <div class="block-im">
                                     {{episode.number}}

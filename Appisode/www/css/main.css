@@ -1803,6 +1803,35 @@ button.show_like {
   }
 }
 
+.call_like {
+    width:300px;
+    height:300px;
+    margin:0 auto;
+}
+.btn__call {
+    width:300px;
+    height:300px;
+    display:block;
+    border-radius:50%;
+    background:#0033ff;
+    position:relative;
+    border:none;
+}
+.active__call {
+    background:#d82b41;
+}
+.icon_call {
+    width:134px;
+    height:147px;
+    background: url(../images/icons/icon_call_img.png) no-repeat center center;
+    background-size:cover;
+    position:absolute;
+    top:0px;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    margin:auto;
+}
 
 @media screen and (min-width:319px) and (max-width: 359px) {
     .logo {
@@ -2139,6 +2168,22 @@ button.show_like {
         height:80px;
     }
 
+
+    .call_like {
+        width:129px;
+        height:129px;
+        margin:35px auto 40px;
+    }
+    .btn__call {
+        width:129px;
+        height:129px;
+    }
+
+    .icon_call {
+        width:59px;
+        height:64px;
+    }
+
 }
 
 
@@ -2467,6 +2512,22 @@ button.show_like {
     .item-thumbnail-left, .item-thumbnail-left .item-content {
         min-height:80px;
         height:89px;
+    }
+
+
+    .call_like {
+        width:146px;
+        height:146px;
+        margin:42px auto 48px;
+    }
+    .btn__call {
+        width:146px;
+        height:146px;
+    }
+
+    .icon_call {
+        width:67px;
+        height:73px;
     }
 }
 
@@ -2808,5 +2869,22 @@ button.show_like {
     }
     .appisode_im_title {
         width:260px;
+    }
+
+
+
+    .call_like {
+        width:187px;
+        height:187px;
+        margin:52px auto 62px;
+    }
+    .btn__call {
+        width:187px;
+        height:187px;
+    }
+
+    .icon_call {
+        width:87px;
+        height:94px;
     }
 }
