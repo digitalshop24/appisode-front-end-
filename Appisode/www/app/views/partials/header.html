@@ -1,12 +1,5 @@
 ﻿<div ng-controller="headerController">
     <header class="header clearfix">
-        <div class="header__btn-bel btn-bel">
-            <button class="btn-bel_bt js_activ" ng-click="authorize($event)">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 44">
-                    <path id="ico_bell" class="cls-1" d="M610,1141a6,6,0,0,0,6-5H604A6,6,0,0,0,610,1141Zm11-33a11,11,0,0,0-22,0c0,12.06-3.32,20.96-8,22v4h38v-4C624.32,1128.96,621,1120.06,621,1108Z" transform="translate(-591 -1097)" />
-                </svg>
-            </button>
-        </div>
         <div class="header__logo logo">
             <a href="#">
                 <img src="images/logo.png"  alt="logo">
@@ -56,7 +49,7 @@
             <li class="tabs__nav_item" ui-sref="popular" ng-class="{active: activetab == 'popular'}">
                 <i class="icon icon-star"></i> популярные
             </li>
-            <li class="tabs__nav_item" ui-sref="subscriptions" ng-class="{active: activetab == 'subscriptions'}">мои <span class="red"> 5</span></li>
+            <li class="tabs__nav_item" ui-sref="subscriptions" ng-class="{active: activetab == 'subscriptions'}">мои <span class="red" ng-show="subscriptionsVisible"> {{subscriptionsTotal}}</span></li>
         </ul>
     </div>
 </div>

@@ -1,13 +1,28 @@
-﻿<div ng-controller="authController as view" ng-app="app">
-    <div class="popup1 popup">
-        <!--<div class="closed js-closed">
-            <a ui-sref="popular">
-                <i class="icon icon-popup-closed"></i>
-            </a>
-        </div>-->
-        <h3>проверочный код</h3>
-        <p>подтвердите указанный номер проверочным кодом из смс</p>
-        <input type="text" placeholder="Введите код из смс" ng-model="code">
-        <a class="btn_popup" ng-click="goto4()" ladda="loading">готово</a>
+﻿<div ng-controller="authController" ng-app="app">
+    <div class="wrap">
+        <div class="sing-2">
+            <div class="sing-2__logo">
+                <a href="#">
+                    <img src="images/icons/icon-sing2-logo.png" alt="">
+                </a>
+            </div>
+            <div class="sing-2__number" ng-click="togglePhone($event)">
+                номер телефона
+            </div>
+            <div class="sing-2__input">
+                <input type="tel" placeholder="номер телефона" ng-model="number">
+            </div>
+            <div class="sing-2__text">
+                текст про необходимость <br> привязки телефона
+            </div>
+            <div class="sing-2__button">
+                <a ng-click="goto4()" ladda="loading">Готово</a>
+            </div>
+            <div class="sing-2__nav-cricle">
+                <span></span>
+                <span></span>
+                <span class="active"></span>
+            </div>
+        </div>
     </div>
 </div>

@@ -19,7 +19,7 @@
             $(element.currentTarget).toggleClass("active");
         };
 
-        $scope.goto3 = function() {
+        $scope.goto4 = function() {
             if (!$scope.number) {
                 $cordovaToast.showLongTop('Пожалуйста, введите номер телефона');
                 return false;
@@ -29,7 +29,7 @@
                 authService.register($scope.number).then(function(response) {
                     localStorageService.set(ngLocalStorageKeys.phone, $scope.number);
                     $scope.loading = false;
-                    $state.go('auth-step3');
+                    $state.go('auth-step4');
                 }, function() {
                     $scope.loading = false;
                 });
@@ -38,7 +38,7 @@
             }
         };
 
-        $scope.goto4 = function () {
+        $scope.goto5 = function () {
             if (!$scope.code) {
                 $cordovaToast.showLongTop('Пожалуйста, введите код подтверждения');
                 return false;
@@ -50,7 +50,7 @@
                 authService.checkConfirmation(phone, $scope.code).then(function (response) {
                     localStorageService.set(ngLocalStorageKeys.key, response.auth_token);
                     $scope.loading = false;
-                    $state.go('auth-step4');
+                    $state.go('auth-step5');
                 }, function () {
                     $cordovaToast.showLongTop('Неверный код подтверждения');
                     $scope.loading = false;

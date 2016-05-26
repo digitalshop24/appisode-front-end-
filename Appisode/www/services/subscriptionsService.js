@@ -10,7 +10,8 @@
         function getList(page, perPage) {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions.json");
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/subscriptions.json?page={page}&perPage={perPage}",
+            { page: page, perPage: perPage });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);

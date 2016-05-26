@@ -73,6 +73,7 @@
                 views: {
                     'main': { templateUrl: "app/views/auth/step1.html" }
                 }
+
             }).state('auth-step2', {
                 url: '/auth/step2',
                 views: {
@@ -87,6 +88,11 @@
                 url: '/auth/step4',
                 views: {
                     'main': { templateUrl: "app/views/auth/step4.html" }
+                }
+            }).state('auth-step5', {
+                url: '/auth/step5',
+                views: {
+                    'main': { templateUrl: "app/views/auth/step5.html" }
                 }
             })
 

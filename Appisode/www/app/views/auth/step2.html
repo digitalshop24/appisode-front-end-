@@ -1,26 +1,24 @@
-﻿<div ng-controller="authController" ng-app="app">
+﻿<div ng-controller="authController">
     <div class="wrap">
         <div class="sing-2">
             <div class="sing-2__logo">
                 <a href="#">
-                    <img src="images/icons/icon-sing2-logo.png" height="30" width="208" alt="">
+                    <img src="images/icon-sing2-logo.png" alt="">
                 </a>
             </div>
-            <div class="sing-2__number" ng-click="togglePhone($event)">
-                номер телефона
-            </div>
-            <div class="sing-2__input">
-                <input type="tel" placeholder="номер телефона" ng-model="number">
+            <div class="sing__info">
+                <img src="images/info.png" alt="">
             </div>
             <div class="sing-2__text">
-                текст про необходимость <br> привязки телефона
+                выбирай сериал, включай уведомления <br> и не беспокойся. аппизод ничего не пропустит.
             </div>
             <div class="sing-2__button">
-                <a ng-click="goto3()" ladda="loading">Готово</a>
+                <a ui-sref="auth-step3">Готово</a>
             </div>
             <div class="sing-2__nav-cricle">
                 <span></span>
                 <span class="active"></span>
+                <span></span>
             </div>
         </div>
     </div>

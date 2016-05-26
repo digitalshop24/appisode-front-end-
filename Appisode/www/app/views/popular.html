@@ -10,37 +10,17 @@
                 <div class="tabs__content_item_bg">
                     <h3 class="title_en">{{show.name}}</h3>
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
-                    <!--<div class="block_button_section clearfix">
-                        <div class="btn btn__like btn__left">
-                            <button class="btn__like_bt js_active_like" ladda="show.likeLoading" ng-class="{active: show.subscription_id}" ng-click="like($event, show)">
-                                <i class="icon icon_like"></i>
-                            </button>
-                        </div>
-                        <div class="btn btn__bell btn__right">
-                            <button class="btn__bell_bt js_popup1" ng-click="gotoShow(show.id)">
-                                <i class="icon icon_bell"></i>
-                            </button>
-                        </div>
-                        <!--<div class="period btn__center">
-                            <div class="im-onoffswitch">
-                                <div class="onoffswitch clearfix">
-                                    <input type="checkbox" class="onoffswitch-checkbox" ng-attr-id="{{'checkbox-' + show.id}}" ng-click="changePeriod($event)">
-                                    <label class="onoffswitch-label clearfix" ng-attr-for="{{'checkbox-' + show.id}}">
-                                        <span class="onoffswitch-inner">СЕРИЯ</span>
-                                        <span class="onoffswitch-switch">СЕЗОН</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
                     <div class="call_like">
-                        <button class="btn__call active__call1">
+                        <button class="btn__call active__call1" ng-click="select(show)" ladda="show.show_loading">
                             <i class="icon icon_call"></i>
                         </button>
                     </div>
                     <div class="in_production" ng-if="show.in_production">
                         <div class="datte">
-                            <span class="datte__item grey"><span class="red">5</span>  серия выходит</span>
+                            <span class="datte__item grey">
+                                <span class="red" ng-show="show.next_episode">{{show.next_episode.number}}</span>  серия выходит
+                                <span ng-show="!show.next_episode">сериал завершен</span>
+                            </span>
                             <span class="datte__item while">
                                 {{show.air_date_str}}
                             </span>
@@ -83,8 +63,9 @@
             <div ng-include src="'app/views/spinner.html'"></div>
         </div>
     </div>
+
+    <div ng-include src="'app/views/partials/show-details-popup.html'"></div>
+
 </div>
-
-
 
 <div ui-view></div>

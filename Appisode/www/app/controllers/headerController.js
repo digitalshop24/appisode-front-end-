@@ -6,21 +6,22 @@
         .controller('headerController', headerController);
 
     headerController.$inject = [
-        '$scope', '$rootScope', '$state', 'localStorageService', 'authService', 'ngLocalStorageKeys'];
+        '$scope', 'subscriptionsService'];
 
-    function headerController($scope, $rootScope, $state, localStorageService, authService) {
-        $scope.closeSearch = function() {
-            history.go(-1);
-        };
+    function headerController($scope, subscriptionsService) {
+        $scope.subscriptionsVisible = false;
+        $scope.subscriptionsTotal = 0;
 
-        $scope.authorize = function(element) {
-            $(element.currentTarget).toggleClass("active");
-            authService.checkAuth().then(function() {
-                $state.go('subscriptions');
-            }, function () {
-                $state.go('auth-step1');
+        $scope.getSubscriptions = function() {
+            subscriptionsService.getList(1, 1).then(function(response) {
+                $scope.subscriptionsVisible = true;
+                $scope.subscriptionsTotal = response.total;
+            }, function(code) {
+                $scope.subscriptionsVisible = false;
             });
         };
+
+        $scope.getSubscriptions();
     };
 
 })();

@@ -6,18 +6,24 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$state', '$timeout', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
+        '$scope', '$rootScope', '$state', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
 
-    function popularController($scope, $rootScope, $state, $timeout, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
+    function popularController($scope, $rootScope, $state, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
         vm.total = null;
-        vm.type = Subscriptions.episode;
+
+        $scope.type = Subscriptions.episode;
 
         $scope.shows = [];
         $scope.count = null;
+
+        $scope.selected = {};
+
+        $scope.show_details_popup = false;
+        $scope.show_episodes_loaded = false;
 
         $scope.init = function() {
             $scope.shows = [];
@@ -49,8 +55,29 @@
             });
         };
 
-        $scope.gotoShow = function(id) {
-            $state.go('show', {showId: id});
+        $scope.select = function(show) {
+            $scope.selected = show;
+
+            show.show_loading = true;
+
+            showsService.getShow(show.id).then(function(response) {
+                $scope.selected.episodes = response.episodes;
+                $scope.show_episodes_loaded = true;
+                $scope.selected.currentIndex = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
+
+                vm.initSlider();
+
+                $scope.show_details_popup = true;
+                show.show_loading = false;
+            }, function() {
+                show.show_loading = false;
+                $cordovaToast.showLongTop('Возникла непредвиденная ошибка.');
+            });
+        };
+
+        $scope.closePopup = function () {
+            $scope.show_details_popup = false;
+            $scope.show_episodes_loaded = false;
         };
 
         $scope.like = function (event, show) {
@@ -70,13 +97,43 @@
         };
 
         $scope.changePeriod = function (event) {
-            event.stopPropagation();
-
-            vm.type = vm.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
+            $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
         };
 
         $scope.testPush = function() {
             pushNotificationsService.testPush('message');
+        };
+
+        vm.initSlider = function () {
+            $scope.slickConfig = {
+                infinite: true,
+                centerMode: true,
+                centerPadding: '120px',
+                arrows: false,
+                slidesToShow: 5
+            };
+
+            $scope.breakpoints = [
+                {
+                    breakpoint: 690,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 5
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '20px',
+                        slidesToShow: 5,
+
+                    }
+                }
+            ];
         };
 
         vm.extendShow = function(show) {
