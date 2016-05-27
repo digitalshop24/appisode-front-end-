@@ -1815,6 +1815,7 @@ button.show_like {
 }
 .active__call {
   background:#d82b41;
+    border: none;
 }
 .icon_call {
   width:134px;
@@ -1900,37 +1901,40 @@ button.show_like {
   display: block;
   text-align:center;
 }
-.modalDialog .button-info-licke {
-  width:17.666vw;
-  height:17.666vw;
-  display:inline-block;
-  border-radius: 50%;
-  margin:0 15px;
-  background:#d82b41;
-  position:relative;
-
-}
+    .modalDialog .button-info-licke {
+        width: 17.666vw;
+        height: 17.666vw;
+        display: inline-block;
+        border-radius: 50%;
+        margin: 0 15px;
+        background: #d82b41;
+        position: relative;
+        border: none;
+        vertical-align: top;
+    }
 .icon-info-licke {
   width:5.38vw;
   height:3.69vw;
   background:url("../images/icons/icon-info-like.png") no-repeat center center;
   background-size:cover;
-  position:absolute;
+  /*position:absolute;
   top:0px;
   left:0px;
   right:0px;
-  bottom:0px;
+  bottom:0px;*/
   margin:auto;
 }
 
 .modalDialog .button-info-closed {
-  width:17.666vw;
-  height:17.666vw;
-  display:inline-block;
-  border-radius: 50%;
-  margin:0 15px;
-  background:#0033ff;
-  position:relative;
+    width: 17.666vw;
+    height: 17.666vw;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0 15px;
+    background: #0033ff;
+    position: relative;
+    border: none;
+    vertical-align: top;
 }
 
 .icon-info-closed {

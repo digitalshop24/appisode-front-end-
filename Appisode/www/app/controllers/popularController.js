@@ -6,9 +6,9 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$state', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
+        '$scope', '$rootScope', '$state', '$timeout', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
 
-    function popularController($scope, $rootScope, $state, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
+    function popularController($scope, $rootScope, $state, $timeout, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
         var vm = this;
 
         vm.page = 1;
@@ -24,6 +24,8 @@
 
         $scope.show_details_popup = false;
         $scope.show_episodes_loaded = false;
+
+        $scope.slickControl = {};
 
         $scope.init = function() {
             $scope.shows = [];
@@ -63,7 +65,9 @@
             showsService.getShow(show.id).then(function(response) {
                 $scope.selected.episodes = response.episodes;
                 $scope.show_episodes_loaded = true;
-                $scope.selected.currentIndex = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
+                $scope.selected.initialSlide = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
+
+                $scope.selected.currentIndex = $scope.selected.initialSlide;
 
                 vm.initSlider();
 
@@ -80,24 +84,40 @@
             $scope.show_episodes_loaded = false;
         };
 
-        $scope.like = function (event, show) {
+        $scope.subscribe = function (event) {
             event.stopPropagation();
 
-            show.likeLoading = true;
+            $scope.selected.subscribeLoading = true;
 
-            subscriptionsService.subscribe(show.id, null, vm.type).then(function() {
-                show.likeLoading = false;
-                $(event.currentTarget).toggleClass("active");
+            var episode = $scope.selected.episodes[$scope.selected.currentIndex];
+
+            subscriptionsService.subscribe($scope.selected.id, $scope.type === Subscriptions.episode ? episode.id : null, $scope.type).then(function (response) {
+                $scope.selected.subscription_id = response.id;
+                $scope.selected.subscribeLoading = false;
+                $scope.show_details_popup = false;
+
+                $rootScope.subscriptionsTotal += 1;
             }, function(code) {
-                show.likeLoading = false;
+                $scope.selected.subscribeLoading = false;
                 if (code === 401) {
                     $state.go($state.$current.parent.name + '.auth-step1');
+                }
+                if (code === 406) {
+                    $cordovaToast.showLongTop('Такая подписка уже существует.');
                 }
             });
         };
 
-        $scope.changePeriod = function (event) {
+        $scope.changePeriod = function () {
             $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
+
+            if ($scope.type === Subscriptions.episode) {
+                $scope.show_episodes_loaded = true;
+
+                vm.initSlider();
+
+                $timeout($scope.slickControl.setPosition, 5);
+            }
         };
 
         $scope.testPush = function() {

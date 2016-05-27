@@ -38,6 +38,16 @@
                         }
                     ]
                 }
+            },
+            "*-Info.plist": {
+                "parents": {
+                    "NSAppTransportSecurity": [
+                        {
+                            "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
@@ -52,6 +62,9 @@
             "PACKAGE_NAME": "io.cordova.appisode"
         },
         "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.cordova.appisode"
+        },
+        "cordova-plugin-disable-nsapptransportsecurity": {
             "PACKAGE_NAME": "com.cordova.appisode"
         }
     },

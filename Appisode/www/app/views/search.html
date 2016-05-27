@@ -2,9 +2,6 @@
 
 <div ng-controller="searchController as view" ng-app="app">
     <div class="search">
-        <!-- <div class="search__button js_button" ng-click="toggleSearch($event)">
-            <i class="icon icon_search_btn"></i>
-        </div>-->
         <div class="search__text">
             <input type="text" placeholder="искомый сериал" ng-model="query" ng-keyup="init()">
         </div>
@@ -14,17 +11,14 @@
             <h2 class="grey">{{totalDesc}}</h2>
             <div infinite-scroll="search()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
                 <div class="search-rezylt__block clearfix" ng-repeat="show in shows">
-                    <div class="search-rezylt__block_img">
+                    <div class="search-rezylt__block_img" ng-click="gotoShow(show.id)">
                         <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}">
                     </div>
                     <div class="search-rezylt__block_text">
-                        <h3 class="search-rezylt_title_ru">{{show.russian_name}}</h3>
-                        <h4 class="search-rezylt_title_en">{{show.name}}</h4>
+                        <h3 class="search-rezylt_title_ru" ng-click="gotoShow(show.id)">{{show.russian_name}}</h3>
+                        <h4 class="search-rezylt_title_en" ng-click="gotoShow(show.id)">{{show.name}}</h4>
                         <div class="search-rezylt__info">
-                            <!--<button class="search-rezylt__like js_active_info" ladda="show.likeLoading" ng-class="{active: show.subscription_id}" ng-click="like($event, show)">
-                                <i class="icon icon_like_info"></i>
-                            </button>-->
-                            <button class="search-rezylt__dz" ladda ng-click="gotoShow(show.id)">
+                            <button class="search-rezylt__dz" ng-class="{'active__call': show.subscription_id}" ladda="subscribeLoading" ng-click="subscribe($event, show)">
                                 <i class="icon icon_dz"></i>
                             </button>
                             <div class="search-rezylt__text">

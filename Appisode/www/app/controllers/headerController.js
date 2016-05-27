@@ -6,16 +6,16 @@
         .controller('headerController', headerController);
 
     headerController.$inject = [
-        '$scope', 'subscriptionsService'];
+        '$rootScope', '$scope', 'subscriptionsService'];
 
-    function headerController($scope, subscriptionsService) {
+    function headerController($rootScope, $scope, subscriptionsService) {
         $scope.subscriptionsVisible = false;
-        $scope.subscriptionsTotal = 0;
+        $rootScope.subscriptionsTotal = 0;
 
         $scope.getSubscriptions = function() {
             subscriptionsService.getList(1, 1).then(function(response) {
                 $scope.subscriptionsVisible = true;
-                $scope.subscriptionsTotal = response.total;
+                $rootScope.subscriptionsTotal = response.total;
             }, function(code) {
                 $scope.subscriptionsVisible = false;
             });

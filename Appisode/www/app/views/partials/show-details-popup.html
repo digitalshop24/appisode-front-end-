@@ -7,7 +7,7 @@
 
             <div class="switch">
                 <div class="onoffswitch">
-                    <input type="checkbox" class="onoffswitch-checkbox" id="myonoffswitch" ng-click="changePeriod($event)"/>
+                    <input type="checkbox" class="onoffswitch-checkbox" id="myonoffswitch" ng-click="changePeriod()"/>
                     <label class="onoffswitch-label clearfix" for="myonoffswitch">
                         <span class="onoffswitch-inner">СЕРИЯ</span>
                         <span class="onoffswitch-switch">СЕЗОН</span>
@@ -28,7 +28,7 @@
                         <span></span>
                     </div>
                     <div class="slik_slider center">
-                        <slick settings="slickConfig" scope="selected.episodes" responsive="breakpoints" ng-if="show_episodes_loaded" on-after-change="onAfterChange" initial-slide="{{selected.currentIndex}}">
+                        <slick control="slickControl" set-position="setPosition" settings="slickConfig" scope="selected.episodes" responsive="breakpoints" ng-if="show_episodes_loaded" initial-slide="{{selected.initialSlide}}" current-index="selected.currentIndex">
                             <div class="block" ng-repeat="episode in selected.episodes" current-index="episode.id">
                                 <div class="block-im">
                                     {{episode.number}}
@@ -41,9 +41,14 @@
 
             <div class="info-text-block" ng-show="type == 'season'">
                 <div class="datte">
-                    <span class="datte__item while"><span class="blue">5 сезон</span>  выходит</span>
+                    <span class="datte__item while" ng-show="selected.in_production">
+                        <span class="blue">{{selected.season_number}} сезон</span>  выходит
+                    </span>
+                    <span class="datte__item while" ng-show="!selected.in_production">
+                        сериал завершен
+                    </span>
                     <span class="datte__item while">
-                        04 июля 2016
+                        {{selected.air_date_str}}
                     </span>
                 </div>
                 <div class="time">
@@ -77,11 +82,11 @@
 
     </div>
     <div class="button-info">
-        <a title="Close" class="button-info-licke">
+        <button title="Close" class="button-info-licke" ng-click="subscribe($event)" ladda="selected.subscribeLoading">
             <i class="icon icon-info-licke"></i>
-        </a>
-        <a title="Close" class="button-info-closed" ng-click="closePopup()">
+        </button>
+        <button title="Close" class="button-info-closed" ng-click="closePopup()">
             <i class="icon icon-info-closed"></i>
-        </a>
+        </button>
     </div>
 </div>

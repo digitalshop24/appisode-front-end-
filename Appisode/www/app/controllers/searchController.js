@@ -61,16 +61,16 @@
             $(event.currentTarget).toggleClass("active");
         };
 
-        $scope.like = function(event, show) {
+        $scope.subscribe = function(event, show) {
             event.stopPropagation();
 
-            show.likeLoading = true;
+            show.subscribeLoading = true;
 
-            subscriptionsService.subscribe(show.id, show.next_episode ? show.next_episode.id : null, Subscriptions.episode).then(function() {
-                show.likeLoading = false;
-                $(event.currentTarget).toggleClass("active");
+            subscriptionsService.subscribe(show.id, null, Subscriptions.season).then(function() {
+                show.subscribeLoading = false;
+                $(event.currentTarget).toggleClass("active__call");
             }, function(code) {
-                show.likeLoading = false;
+                show.subscribeLoading = false;
                 if (code === 401) {
                     $state.go($state.$current.parent.name + '.auth-step1');
                 }
@@ -82,7 +82,7 @@
         };
 
         vm.extendShow = function(show) {
-            show.likeLoading = false;
+            show.subscribeLoading = false;
             return show;
         };
     };
