@@ -61,21 +61,21 @@
             $(event.currentTarget).toggleClass("active");
         };
 
-        $scope.subscribe = function(event, show) {
-            event.stopPropagation();
+        //$scope.subscribe = function(event, show) {
+        //    event.stopPropagation();
 
-            show.subscribeLoading = true;
+        //    show.subscribeLoading = true;
 
-            subscriptionsService.subscribe(show.id, null, Subscriptions.season).then(function() {
-                show.subscribeLoading = false;
-                $(event.currentTarget).toggleClass("active__call");
-            }, function(code) {
-                show.subscribeLoading = false;
-                if (code === 401) {
-                    $state.go($state.$current.parent.name + '.auth-step1');
-                }
-            });
-        };
+        //    subscriptionsService.subscribe(show.id, null, Subscriptions.season).then(function() {
+        //        show.subscribeLoading = false;
+        //        $(event.currentTarget).toggleClass("active__call");
+        //    }, function(code) {
+        //        show.subscribeLoading = false;
+        //        if (code === 401) {
+        //            $state.go($state.$current.parent.name + '.auth-step1');
+        //        }
+        //    });
+        //};
 
         $scope.gotoShow = function (id) {
             $state.go('show', {showId: id});

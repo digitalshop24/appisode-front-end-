@@ -11,7 +11,7 @@
                     <h3 class="title_en">{{show.name}}</h3>
                     <h2 class="tittle_ru">{{show.russian_name}}</h2>
                     <div class="call_like">
-                        <button class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading">
+                        <button ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading">
                             <i class="icon icon_call"></i>
                         </button>
                     </div>
@@ -19,7 +19,8 @@
                         <div class="datte">
                             <span class="datte__item grey">
                                 <span class="red" ng-show="show.next_episode">{{show.next_episode.number}}</span>  серия выходит
-                                <span ng-show="!show.next_episode">сериал завершен</span>
+                                <span ng-show="!show.next_episode && show.in_production">неизвестно</span>
+                                <span ng-show="!show.in_production">сериал завершен</span>
                             </span>
                             <span class="datte__item while">
                                 {{show.air_date_str}}

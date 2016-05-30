@@ -8,73 +8,52 @@
                 <h2 class="tittle_ru">{{show.russian_name}}</h2>
                 <p class="sezon">сезон {{show.season_number}}</p>
 
-                <div class="expanded__like clearfix">
-                    <div class="expanded__like_sezon">
-                        <div class="star_grey" ng-click="subscribe($event)">
-                            <i class="icon icon_star-grey"></i>
-                        </div>
-                        <div class="text while">
-                            сезон полностью
-                        </div>
-                    </div>
-                    <div class="expanded__like_like js_active_like" ng-click="like($event)" ng-class="{active: show.subscription_id}">
-                        <button class="show_like" ladda="likeLoading">
-                            <i class="icon icon_like-bill"></i>
-                        </button>
-                    </div>
+                <div class="call_like">
+                    <button class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading">
+                        <i class="icon icon_call"></i>
+                    </button>
                 </div>
 
-                <div class="expanded__slider">
-                    <div class="expanded__slider_title while">
-                        выберите эпизод
+                <div class="in_production" ng-if="show.in_production">
+                    <div class="datte">
+                        <span class="datte__item grey">
+                            <span class="red" ng-show="show.next_episode">{{show.next_episode.number}}</span>  серия выходит
+                            <span ng-show="!show.next_episode && show.in_production">неизвестно</span>
+                            <span ng-show="!show.in_production">сериал завершен</span>
+                        </span>
+                        <span class="datte__item while">
+                            {{show.air_date_str}}
+                        </span>
                     </div>
-                    <div class="expanded__slider_block clearfix">
-                        <div class="touch left">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="touch right">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <slick settings="slickConfig" scope="episodes" responsive="breakpoints" slides-to-scroll=3 ng-if="episodes.length" on-after-change="onAfterChange" initial-slide="{{currentIndex}}" >
-                            <div class="block" ng-repeat="episode in episodes" current-index="episode.id">
-                                <div class="block-im">
-                                    {{episode.number}}
-                                </div>
+                    <div class="time">
+                        <div class="time__top clearfix">
+
+                            <div class="time__top_left grey">
+                                м
                             </div>
-                        </slick>
+                            <div class="time__top_right grey">
+                                ч
+                            </div>
+                            <div class="time__top_center grey">
+                                д
+                            </div>
+                        </div>
+                        <div class="time__bottom clearfix">
+                            <div class="time__bottom_left while">
+                                {{show.air_date_detailed.months}}
+                            </div>
+                            <div class="time__bottom_right while">
+                                {{show.air_date_detailed.hours}}
+                            </div>
+                            <div class="time__bottom_center while">
+                                {{show.air_date_detailed.days}}
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="datte">
-                    <span class="datte__item grey">{{current.air_date}}</span>
-                </div>
-                <div class="time">
-                    <div class="time__top clearfix">
-
-                        <div class="time__top_left grey">
-                            м
-                        </div>
-                        <div class="time__top_right grey">
-                            ч
-                        </div>
-                        <div class="time__top_center grey">
-                            д
-                        </div>
-                    </div>
-                    <div class="time__bottom clearfix">
-                        <div class="time__bottom_left while">
-                            {{current.days_left.months}}
-                        </div>
-                        <div class="time__bottom_right while">
-                            {{current.days_left.hours}}
-                        </div>
-                        <div class="time__bottom_center while">
-                            {{current.days_left.days}}
-                        </div>
+                <div ng-if="!show.in_production">
+                    <div class="datte">
+                        <span class="datte__item grey">сериал завершен </span>
                     </div>
                 </div>
             </div>
@@ -83,6 +62,8 @@
     <div ng-show="busy" class="spinner-wrapper">
         <div ng-include src="'app/views/spinner.html'"></div>
     </div>
+
+    <div ng-include src="'app/views/partials/show-details-popup.html'"></div>
 </div>
 
 <div ui-view></div>

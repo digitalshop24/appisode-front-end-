@@ -18,7 +18,7 @@
                         <h3 class="search-rezylt_title_ru" ng-click="gotoShow(show.id)">{{show.russian_name}}</h3>
                         <h4 class="search-rezylt_title_en" ng-click="gotoShow(show.id)">{{show.name}}</h4>
                         <div class="search-rezylt__info">
-                            <button class="search-rezylt__dz" ng-class="{'active__call': show.subscription_id}" ladda="subscribeLoading" ng-click="subscribe($event, show)">
+                            <button class="search-rezylt__dz" ng-class="{'active__call': show.subscription_id}" ng-click="gotoShow(show.id)">
                                 <i class="icon icon_dz"></i>
                             </button>
                             <div class="search-rezylt__text">

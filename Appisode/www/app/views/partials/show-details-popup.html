@@ -30,7 +30,7 @@
                     <div class="slik_slider center">
                         <slick control="slickControl" set-position="setPosition" settings="slickConfig" scope="selected.episodes" responsive="breakpoints" ng-if="show_episodes_loaded" initial-slide="{{selected.initialSlide}}" current-index="selected.currentIndex">
                             <div class="block" ng-repeat="episode in selected.episodes" current-index="episode.id">
-                                <div class="block-im">
+                                <div class="block-im" ng-class="{'gray': episode.number - 1 < selected.initialSlide}">
                                     {{episode.number}}
                                 </div>
                             </div>

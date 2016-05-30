@@ -69,7 +69,7 @@
             subscription.show.air_date_str = DateFactory.getDate(subscription.show.next_episode ? subscription.show.next_episode.air_date : null);
             subscription.show.air_date_detailed = DateFactory.getMonthDaysHours(subscription.show.next_episode ? subscription.show.next_episode.days_left : null);
             subscription.show.progress_class = subscription.show.next_episode ? (subscription.show.current_season_episodes_number ? (subscription.show.next_episode.number / subscription.show.current_season_episodes_number * 100 <= 33 ? 'mini' : 'normal') : (subscription.show.in_production ? '' : 'disibe')) : '';
-            subscription.show.days_left_str = subscription.show.next_episode ? NumbersFactory.declOfNum(subscription.show.next_episode.days_left, ['день', 'дня', 'дней']) : '';
+            subscription.show.days_left_str = subscription.show.next_episode ? NumbersFactory.declOfNum(subscription.show.next_episode.days_left, ['день', 'дня', 'дней']) : 'неизвестно';
             return subscription;
         };
 

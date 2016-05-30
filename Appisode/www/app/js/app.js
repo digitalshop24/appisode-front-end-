@@ -48,7 +48,7 @@
                 url: '/subscriptions',
                 views: {
                     'main': { templateUrl: "app/views/subscriptions.html" },
-                    'header@subscriptions': { templateUrl: "app/views/partials/subscriptions-header.html" }
+                    'header@subscriptions': { templateUrl: "app/views/partials/header.html" }
                 }
             }).state('newest', {
                 url: '/newest',

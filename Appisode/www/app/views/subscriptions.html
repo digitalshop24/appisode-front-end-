@@ -2,14 +2,6 @@
     <div ui-view="header"></div>
 
     <div ng-controller="subscriptionsController">
-        <div class="info clearfix">
-            <div class="info__im while">
-                Мои сериалы
-            </div>
-            <div class="info__number grey">
-                {{totalDesc}}
-            </div>
-        </div>
         <div infinite-scroll="getSubscriptions()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
             <ion-list>
                 <ion-item class="appisode item-thumbnail-left item-remove-animate" ng-repeat="subscription in subscriptions">
@@ -20,13 +12,17 @@
                         <div class="appisode_im_title">
                             <h3 class="while">{{subscription.show.russian_name}}</h3>
                             <h4 class="grey">{{subscription.show.name}}</h4>
-                            <span class="time while" ng-show="subscription.show.in_production">
+                            <span class="time while" ng-show="subscription.show.in_production && subscription.show.next_episode">
                                 <i class="icon icon_time-pictur"></i>
                                 через
                                 <span class="red">
                                     {{subscription.show.days_left_str}}
                                 </span>
                                 новая серия
+                            </span>
+                            <span class="time while" ng-show="subscription.show.in_production && !subscription.show.next_episode">
+                                <i class="icon icon_time-pictur"></i>
+                                неизвестно
                             </span>
                             <span class="time while" ng-show="!subscription.show.in_production">
                                 <i class="icon icon_time-pictur"></i>
@@ -48,5 +44,5 @@
         </div>
     </div>
 
-    <div ui-view></div>
+    <!--<div ui-view></div>-->
 </ion-content>

@@ -1747,7 +1747,7 @@
 
         _.currentLeft = _.swipeLeft === null ? slideLeft : _.swipeLeft;
 
-        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > _.getDotCount() * _.options.slidesToScroll)) {
+        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > _.getDotCount() * _.options.ll)) {
             if(_.options.fade === false) {
                 targetSlide = _.currentSlide;
                 if(dontAnimate!==true) {
@@ -1759,7 +1759,7 @@
                 }
             }
             return;
-        } else if (_.options.infinite === false && _.options.centerMode === true && (index < 0 || index > (_.slideCount - _.options.slidesToScroll))) {
+        } else if (_.options.infinite === false && _.options.centerMode === true && (index < 0 || index > (_.slideCount - _.options.ll))) {
             if(_.options.fade === false) {
                 targetSlide = _.currentSlide;
                 if(dontAnimate!==true) {
@@ -1778,7 +1778,7 @@
         }
 
         if (targetSlide < 0) {
-            if (_.slideCount % _.options.slidesToScroll !== 0) {
+            if (_.slideCount % _.options.ll !== 0) {
                 animSlide = _.slideCount - (_.slideCount % _.options.slidesToScroll);
             } else {
                 animSlide = _.slideCount + targetSlide;

@@ -137,7 +137,6 @@
                 {
                     breakpoint: 690,
                     settings: {
-                        arrows: false,
                         centerMode: true,
                         centerPadding: '40px',
                         slidesToShow: 5
@@ -146,11 +145,9 @@
                 {
                     breakpoint: 480,
                     settings: {
-                        arrows: false,
                         centerMode: true,
                         centerPadding: '20px',
-                        slidesToShow: 5,
-
+                        slidesToShow: 5
                     }
                 }
             ];
@@ -159,7 +156,6 @@
         vm.extendShow = function(show) {
             show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
             show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);
-            show.likeLoading = false;
             return show;
         };
 
