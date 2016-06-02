@@ -6,16 +6,34 @@
         .controller('appController', appController);
 
     appController.$inject = [
-        '$scope', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'Notification', 'deviceService', 'pushNotificationsService'];
+        '$rootScope', '$scope', '$state', '$timeout', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'Notification', 'deviceService', 'pushNotificationsService'];
 
-    function appController($scope, $cordovaPush, $cordovaDialogs, $cordovaMedia, Notification, deviceService, pushNotificationsService) { 
+    function appController($rootScope, $scope, $state, $timeout, $cordovaPush, $cordovaDialogs, $cordovaMedia, Notification, deviceService, pushNotificationsService) { 
         $scope.notifications = [];
 
         $scope.push_img_path = null;
         $scope.push_content = null;
 
+        $rootScope.navSlickControl = {};
+        $rootScope.current_action = 'popular';
+
         ionic.Platform.ready(function () {
             pushNotificationsService.register();
+
+            $scope.onAfterChangeNavSlick = function (index) {
+                if (index == 0 || index == 3 || index == 6) {
+                    $state.go('popular');
+                    $rootScope.current_action = 'popular';
+                }
+                if (index == 1 || index == 4) {
+                    $state.go('subscriptions');
+                    $rootScope.current_action = 'subscriptions';
+                }
+                if (index == 2 || index === 5) {
+                    $state.go('newest');
+                    $rootScope.current_action = 'newest';
+                }
+            };
         });
 
         $scope.$on('$cordovaPush:notificationReceived', function (event, notification) {
@@ -91,5 +109,24 @@
                 else $cordovaDialogs.alert(notification.alert, "(RECEIVED WHEN APP IN BACKGROUND) Push Notification Received");
             }
         };
+
+        //$('.slider-for').slick({
+        //    slidesToShow: 1,
+        //    slidesToScroll: 1,
+        //    arrows: false,
+        //    infinite: true,
+        //    fade: false,
+        //    adaptiveHeight: true,
+        //    //asNavFor: '.slider-nav'
+        //});
+        //$('.slider-nav').slick({
+        //    slidesToShow: 3,
+        //    slidesToScroll: 1,
+        //    infinite: true,
+        //    asNavFor: '.slider-for',
+        //    dots: false,
+        //    centerMode: true,
+        //    focusOnSelect: true
+        //});
     }
 })();

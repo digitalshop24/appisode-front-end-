@@ -3,7 +3,11 @@
         "января", "февраля", "марта", "апреля", "мая", "июня",
         "июля", "августа", "сентября", "октября", "ноября", "декабря"
     ],
-    getDate: function(d) {
+    getDate: function (d) {
+        if (!d) {
+            return "Дата неизвестна";
+        }
+
         var date = new Date(d);
 
         var month = this.months[date.getMonth()];

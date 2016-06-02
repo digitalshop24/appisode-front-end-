@@ -1,72 +1,76 @@
-﻿<div ui-view="header"></div>
+﻿<!--<div ui-view="header"></div>-->
 
 <div ng-controller="popularController" ng-app="app">
     <!--<div style="background-color: #fff; color: #333">
         <a ng-click="testPush()">Test push</a>
     </div>-->
-    <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-        <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
-            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat', 'background-size': 'cover'}">
-                <div class="tabs__content_item_bg">
-                    <h3 class="title_en">{{show.name}}</h3>
-                    <h2 class="tittle_ru">{{show.russian_name}}</h2>
-                    <div class="call_like">
-                        <button ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading">
-                            <i class="icon icon_call"></i>
-                        </button>
-                    </div>
-                    <div class="in_production" ng-if="show.in_production">
-                        <div class="datte">
-                            <span class="datte__item grey">
-                                <span class="red" ng-show="show.next_episode">{{show.next_episode.number}}</span>  серия выходит
-                                <span ng-show="!show.next_episode && show.in_production">неизвестно</span>
-                                <span ng-show="!show.in_production">сериал завершен</span>
-                            </span>
-                            <span class="datte__item while">
-                                {{show.air_date_str}}
-                            </span>
-                        </div>
-                        <div class="time">
-                            <div class="time__top clearfix">
+    <!--<slick settings="pageSlickConfig" class="slider-for" on-after-change="onAfterChangePageSlick" as-nav-for="{{'.slider-nav'}}">-->
+        <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
 
-                                <div class="time__top_left grey">
-                                    м
-                                </div>
-                                <div class="time__top_right grey">
-                                    ч
-                                </div>
-                                <div class="time__top_center grey">
-                                    д
-                                </div>
+            <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
+                <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat', 'background-size': 'cover'}">
+                    <div class="tabs__content_item_bg">
+                        <h3 class="title_en">{{show.name}}</h3>
+                        <h2 class="tittle_ru">{{show.russian_name}}</h2>
+                        <div class="call_like">
+                            <button ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading">
+                                <i class="icon icon_call"></i>
+                            </button>
+                        </div>
+                        <div class="in_production" ng-if="show.in_production">
+                            <div class="datte">
+                                <span class="datte__item grey">
+                                    <span class="red" ng-show="show.next_episode">{{show.next_episode.number}}</span>  серия выходит
+                                    <span ng-show="!show.next_episode && show.in_production">неизвестно</span>
+                                    <span ng-show="!show.in_production">сериал завершен</span>
+                                </span>
+                                <span class="datte__item while">
+                                    {{show.air_date_str}}
+                                </span>
                             </div>
-                            <div class="time__bottom clearfix">
-                                <div class="time__bottom_left while">
-                                    {{show.air_date_detailed.months}}
+                            <div class="time">
+                                <div class="time__top clearfix">
+
+                                    <div class="time__top_left grey">
+                                        м
+                                    </div>
+                                    <div class="time__top_right grey">
+                                        ч
+                                    </div>
+                                    <div class="time__top_center grey">
+                                        д
+                                    </div>
                                 </div>
-                                <div class="time__bottom_right while">
-                                    {{show.air_date_detailed.hours}}
-                                </div>
-                                <div class="time__bottom_center while">
-                                    {{show.air_date_detailed.days}}
+                                <div class="time__bottom clearfix">
+                                    <div class="time__bottom_left while">
+                                        {{show.air_date_detailed.months}}
+                                    </div>
+                                    <div class="time__bottom_right while">
+                                        {{show.air_date_detailed.hours}}
+                                    </div>
+                                    <div class="time__bottom_center while">
+                                        {{show.air_date_detailed.days}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div ng-if="!show.in_production">
-                        <div class="datte">
-                            <span class="datte__item grey">сериал завершен </span>
+                        <div ng-if="!show.in_production">
+                            <div class="datte">
+                                <span class="datte__item grey">сериал завершен </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div ng-show="busy" class="spinner-wrapper">
+                <div ng-include src="'app/views/spinner.html'"></div>
+            </div>
         </div>
-        <div ng-show="busy" class="spinner-wrapper">
-            <div ng-include src="'app/views/spinner.html'"></div>
-        </div>
-    </div>
-
+        <!--<div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>-->
+    <!--</slick>-->
     <div ng-include src="'app/views/partials/show-details-popup.html'"></div>
-
 </div>
-
-<div ui-view></div>

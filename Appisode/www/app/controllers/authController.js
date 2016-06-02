@@ -10,6 +10,8 @@
     ];
 
     function authController($scope, $rootScope, $state, $cordovaToast, localStorageService, authService, ngLocalStorageKeys) {
+        $rootScope.hide_header = true;
+
         $scope.number = null;
         $scope.code = null;
 

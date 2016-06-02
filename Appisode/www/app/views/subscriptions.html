@@ -1,47 +1,54 @@
-﻿<ion-content overflow-scroll="false">
-    <div ui-view="header"></div>
+﻿<ion-content ng-controller="subscriptionsController" ng-style="{'top': top}">
+    <!--<div ui-view="header"></div>-->
 
-    <div ng-controller="subscriptionsController">
-        <div infinite-scroll="getSubscriptions()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-            <ion-list>
-                <ion-item class="appisode item-thumbnail-left item-remove-animate" ng-repeat="subscription in subscriptions">
-                    <div class="appisode_im clearfix" ng-style="{'background': 'url({{subscription.show.poster}}) no-repeat center center', 'background-size': 'cover'}">
-                        <div class="appisode_im_star" ng-class="subscription.show.progress_class" ng-click="gotoShow(subscription)">
-                            <i class="icon" ng-class="subscription.show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
-                        </div>
-                        <div class="appisode_im_title">
-                            <h3 class="while">{{subscription.show.russian_name}}</h3>
-                            <h4 class="grey">{{subscription.show.name}}</h4>
-                            <span class="time while" ng-show="subscription.show.in_production && subscription.show.next_episode">
-                                <i class="icon icon_time-pictur"></i>
-                                через
-                                <span class="red">
-                                    {{subscription.show.days_left_str}}
+    <div>
+        <!--<slick settings="pageSlickConfig" class="slider-for" on-after-change="onAfterChangePageSlick" as-nav-for="{{'.slider-nav'}}">-->
+            <div infinite-scroll="getSubscriptions()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+                <ion-list>
+                    <ion-item class="appisode item-thumbnail-left item-remove-animate" ng-repeat="subscription in subscriptions">
+                        <div class="appisode_im clearfix" ng-style="{'background': 'url({{subscription.show.poster}}) no-repeat center center', 'background-size': 'cover'}">
+                            <div class="appisode_im_star" ng-class="subscription.show.progress_class" ng-click="gotoShow(subscription)">
+                                <i class="icon" ng-class="subscription.show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
+                            </div>
+                            <div class="appisode_im_title">
+                                <h3 class="while">{{subscription.show.russian_name}}</h3>
+                                <h4 class="grey">{{subscription.show.name}}</h4>
+                                <span class="time while" ng-show="subscription.show.in_production && subscription.show.next_episode">
+                                    <i class="icon icon_time-pictur"></i>
+                                    через
+                                    <span class="red">
+                                        {{subscription.show.days_left_str}}
+                                    </span>
+                                    новая серия
                                 </span>
-                                новая серия
-                            </span>
-                            <span class="time while" ng-show="subscription.show.in_production && !subscription.show.next_episode">
-                                <i class="icon icon_time-pictur"></i>
-                                неизвестно
-                            </span>
-                            <span class="time while" ng-show="!subscription.show.in_production">
-                                <i class="icon icon_time-pictur"></i>
-                                сериал завершен
-                            </span>
+                                <span class="time while" ng-show="subscription.show.in_production && !subscription.show.next_episode">
+                                    <i class="icon icon_time-pictur"></i>
+                                    неизвестно
+                                </span>
+                                <span class="time while" ng-show="!subscription.show.in_production">
+                                    <i class="icon icon_time-pictur"></i>
+                                    сериал завершен
+                                </span>
+                            </div>
+                            <div class="appisode_im_touch">
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                            </div>
                         </div>
-                        <div class="appisode_im_touch">
-                            <p></p>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
-                    <ion-option-button class="button button-remove" ng-click="unsubscribe(subscription)"></ion-option-button>
-                </ion-item>
-            </ion-list>
-            <div ng-show="busy" class="spinner-wrapper">
-                <div ng-include src="'app/views/spinner.html'"></div>
+                        <ion-option-button class="button button-remove" ng-click="unsubscribe(subscription)"></ion-option-button>
+                    </ion-item>
+                </ion-list>
+                <div ng-show="busy" class="spinner-wrapper">
+                    <div ng-include src="'app/views/spinner.html'"></div>
+                </div>
             </div>
-        </div>
+            <!--<div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>-->
+        <!--</slick>-->
     </div>
 
     <!--<div ui-view></div>-->

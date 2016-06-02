@@ -7,7 +7,7 @@
 
             <div class="switch">
                 <div class="onoffswitch">
-                    <input type="checkbox" class="onoffswitch-checkbox" id="myonoffswitch" ng-click="changePeriod()"/>
+                    <input type="checkbox" class="onoffswitch-checkbox" id="myonoffswitch" ng-click="changePeriod()" />
                     <label class="onoffswitch-label clearfix" for="myonoffswitch">
                         <span class="onoffswitch-inner">СЕРИЯ</span>
                         <span class="onoffswitch-switch">СЕЗОН</span>
@@ -27,14 +27,12 @@
                         <span></span>
                         <span></span>
                     </div>
-                    <div class="slik_slider center">
-                        <slick control="slickControl" set-position="setPosition" settings="slickConfig" scope="selected.episodes" responsive="breakpoints" ng-if="show_episodes_loaded" initial-slide="{{selected.initialSlide}}" current-index="selected.currentIndex">
-                            <div class="block" ng-repeat="episode in selected.episodes" current-index="episode.id">
-                                <div class="block-im" ng-class="{'gray': episode.number - 1 < selected.initialSlide}">
-                                    {{episode.number}}
-                                </div>
-                            </div>
-                        </slick>
+                    <div class="slik_slider center" id="scrolling">
+                        <ul item-slide settings="sliderConfig">
+                            <li ng-repeat="episode in selected.episodes">
+                                {{episode.number}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

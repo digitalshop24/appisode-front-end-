@@ -24,9 +24,6 @@
         $scope.selected = {};
 
         $scope.show_details_popup = false;
-        $scope.show_episodes_loaded = false;
-
-        $scope.slickControl = {};
 
         $scope.init = function () {
             $scope.busy = true;
@@ -63,7 +60,6 @@
 
             showsService.getShow(show.id).then(function (response) {
                 $scope.selected.episodes = response.episodes;
-                $scope.show_episodes_loaded = true;
                 $scope.selected.initialSlide = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
 
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
@@ -79,8 +75,8 @@
         };
 
         $scope.closePopup = function () {
+            $scope.sliderConfig = null;
             $scope.show_details_popup = false;
-            $scope.show_episodes_loaded = false;
         };
 
         $scope.subscribe = function (event) {
@@ -109,14 +105,6 @@
 
         $scope.changePeriod = function () {
             $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
-
-            if ($scope.type === Subscriptions.episode) {
-                $scope.show_episodes_loaded = true;
-
-                vm.initSlider();
-
-                $timeout($scope.slickControl.setPosition, 5);
-            }
         };
 
         vm.extendShow = function (show) {
@@ -125,35 +113,16 @@
             return show;
         };
 
-        vm.initSlider = function () {
-            $scope.slickConfig = {
-                infinite: true,
-                centerMode: true,
-                centerPadding: '120px',
-                arrows: false,
-                slidesToShow: 5
-            };
+        $scope.sliderChangePos = function (event, index) {
+            $scope.selected.currentIndex = index;
+        };
 
-            $scope.breakpoints = [
-                {
-                    breakpoint: 690,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 5
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '20px',
-                        slidesToShow: 5
-                    }
-                }
-            ];
+        vm.initSlider = function () {
+            $scope.sliderConfig = {
+                start: $scope.selected.initialSlide,
+                method: {},
+                event: { changePos: $scope.sliderChangePos }
+            };
         };
 
         $scope.init();

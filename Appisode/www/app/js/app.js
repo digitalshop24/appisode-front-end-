@@ -15,7 +15,8 @@
         'ionic',
         'angular-ladda',
         'ui-notification',
-        'angular-google-analytics'
+        'angular-google-analytics',
+        'itemSlide'
     ]);
 
     angular.module('app').config(function (laddaProvider) {
@@ -42,19 +43,22 @@
                 url: '/',
                 views: {
                     'main': { templateUrl: "app/views/popular.html" },
-                    'header@popular': { templateUrl: "app/views/partials/header.html" }
+                    //'header': { templateUrl: "app/views/partials/header.html" }
+                    //'header@popular': { templateUrl: "app/views/partials/header.html" }
                 }
             }).state('subscriptions', {
                 url: '/subscriptions',
                 views: {
                     'main': { templateUrl: "app/views/subscriptions.html" },
-                    'header@subscriptions': { templateUrl: "app/views/partials/header.html" }
+                    //'header': { templateUrl: "app/views/partials/header.html" }
+                    //'header@subscriptions': { templateUrl: "app/views/partials/header.html" }
                 }
             }).state('newest', {
                 url: '/newest',
                 views: {
                     'main': { templateUrl: "app/views/newest.html" },
-                    'header@newest': { templateUrl: "app/views/partials/header.html" }
+                    //'header': { templateUrl: "app/views/partials/header.html" }
+                    //'header@newest': { templateUrl: "app/views/partials/header.html" }
                 }
             }).state('search', {
                 url: '/search',
@@ -152,7 +156,8 @@
     app.run([
         '$rootScope', '$state',
         function($rootScope) {
-            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                $rootScope.slick_pages = true;
                 $rootScope.activetab = toState.name;
             });
         }

@@ -12,6 +12,8 @@
 
         vm.page = 1;
         vm.take = 10;
+
+        $rootScope.hide_header = true;
         
         $scope.shows = [];
         $scope.query = null;
@@ -61,24 +63,9 @@
             $(event.currentTarget).toggleClass("active");
         };
 
-        //$scope.subscribe = function(event, show) {
-        //    event.stopPropagation();
-
-        //    show.subscribeLoading = true;
-
-        //    subscriptionsService.subscribe(show.id, null, Subscriptions.season).then(function() {
-        //        show.subscribeLoading = false;
-        //        $(event.currentTarget).toggleClass("active__call");
-        //    }, function(code) {
-        //        show.subscribeLoading = false;
-        //        if (code === 401) {
-        //            $state.go($state.$current.parent.name + '.auth-step1');
-        //        }
-        //    });
-        //};
-
         $scope.gotoShow = function (id) {
-            $state.go('show', {showId: id});
+            $state.go('show', { showId: id });
+            $rootScope.hide_header = false;
         };
 
         vm.extendShow = function(show) {

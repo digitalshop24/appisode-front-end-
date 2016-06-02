@@ -15,6 +15,8 @@
         vm.page = 1;
         vm.take = 10;
 
+        $scope.top = $('#header').height() + 'px';
+
         $scope.subscriptions = [];
         $scope.total = null;
 
@@ -54,6 +56,8 @@
                 $scope.subscriptions.splice($scope.subscriptions.indexOf(subscription), 1);
                 $scope.total -= 1;
                 $scope.totalDesc = NumbersFactory.declOfNum($scope.total, ["сериал", "сериала", "сериалов"]);
+
+                $rootScope.subscriptionsTotal -= 1;
             }, function(code) {
                 if (code === 401) {
                     $state.go($state.$current.parent.name + '.auth-step1');

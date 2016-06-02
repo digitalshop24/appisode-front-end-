@@ -15,6 +15,8 @@
         vm.take = 10;
         vm.total = null;
 
+        $rootScope.hide_header = false;
+
         $scope.type = Subscriptions.episode;
 
         $scope.shows = [];
@@ -23,9 +25,8 @@
         $scope.selected = {};
 
         $scope.show_details_popup = false;
-        $scope.show_episodes_loaded = false;
-
-        $scope.slickControl = {};
+        
+        $timeout($rootScope.navSlickControl.setPosition, 5);
 
         $scope.init = function() {
             $scope.shows = [];
@@ -64,7 +65,6 @@
 
             showsService.getShow(show.id).then(function(response) {
                 $scope.selected.episodes = response.episodes;
-                $scope.show_episodes_loaded = true;
                 $scope.selected.initialSlide = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
 
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
@@ -80,8 +80,8 @@
         };
 
         $scope.closePopup = function () {
+            $scope.sliderConfig = null;
             $scope.show_details_popup = false;
-            $scope.show_episodes_loaded = false;
         };
 
         $scope.subscribe = function (event) {
@@ -110,47 +110,33 @@
 
         $scope.changePeriod = function () {
             $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
-
-            if ($scope.type === Subscriptions.episode) {
-                $scope.show_episodes_loaded = true;
-
-                vm.initSlider();
-
-                $timeout($scope.slickControl.setPosition, 5);
-            }
         };
 
         $scope.testPush = function() {
             pushNotificationsService.testPush('message');
         };
 
-        vm.initSlider = function () {
-            $scope.slickConfig = {
-                infinite: true,
-                centerMode: true,
-                centerPadding: '120px',
-                arrows: false,
-                slidesToShow: 5
-            };
+        $scope.getSubscriptions = function () {
+            if (!$rootScope.subscriptionsVisible) {
+                subscriptionsService.getList(1, 1).then(function(response) {
+                    $rootScope.subscriptionsVisible = true;
+                    $rootScope.subscriptionsTotal = response.total;
+                }, function(code) {
+                    $rootScope.subscriptionsVisible = false;
+                });
+            }
+        };
 
-            $scope.breakpoints = [
-                {
-                    breakpoint: 690,
-                    settings: {
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 5
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        centerMode: true,
-                        centerPadding: '20px',
-                        slidesToShow: 5
-                    }
-                }
-            ];
+        $scope.sliderChangePos = function(event, index) {
+            $scope.selected.currentIndex = index;
+        };
+        
+        vm.initSlider = function() {    
+            $scope.sliderConfig = {
+                start: $scope.selected.initialSlide,
+                method: {},
+                event: {changePos: $scope.sliderChangePos}
+            };
         };
 
         vm.extendShow = function(show) {
@@ -160,6 +146,7 @@
         };
 
         $scope.init();
+        $scope.getSubscriptions();
     };
 
 })();

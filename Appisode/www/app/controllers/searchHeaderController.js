@@ -6,11 +6,18 @@
         .controller('searchHeaderController', searchHeaderController);
 
     searchHeaderController.$inject = [
-        '$scope', '$rootScope', '$state'];
+        '$scope', '$rootScope', '$state', '$timeout'];
 
-    function searchHeaderController($scope, $rootScope, $state) {
+    function searchHeaderController($scope, $rootScope, $state, $timeout) {
+        var vm = this;
+
         $scope.back = function () {
-            $state.go('popular');
+            $rootScope.hide_header = false;
+            $timeout(vm.back, 5);
+        };
+
+        vm.back = function() {
+            $state.go($rootScope.current_action);
         };
     };
 

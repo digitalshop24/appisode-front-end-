@@ -5,7 +5,7 @@
     <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|iOS'">
-    <DebuggerFlavor>RippleiPhone5</DebuggerFlavor>
+    <DebuggerFlavor>iOSRemoteDevice</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\nickita\AppData\Local\Temp\Appisode_refcache</ReferenceCachePath>

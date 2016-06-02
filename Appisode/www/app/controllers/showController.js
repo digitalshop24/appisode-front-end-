@@ -6,120 +6,99 @@
         .controller('showController', showController);
 
     showController.$inject = [
-        '$scope', '$rootScope', '$stateParams', '$state', '$timeout', 'showsService', 'authService', 'subscriptionsService'
+        '$scope', '$rootScope', '$stateParams', '$state', '$timeout', '$cordovaToast', 'showsService', 'authService', 'subscriptionsService'
     ];
 
-    function showController($scope, $rootScope, $stateParams, $state, $timeout, showsService, authService, subscriptionsService) {
+    function showController($scope, $rootScope, $stateParams, $state, $timeout, $cordovaToast, showsService, authService, subscriptionsService) {
         var vm = this;
 
         $scope.showId = $stateParams.showId;
+
+        $scope.type = Subscriptions.episode;
+
         $scope.show = {};
         $scope.episodes = [];
-        $scope.episode = {};
-        $scope.totalEpisodes = 0;
         $scope.busy = true;
         $scope.currentIndex = 0;
-        $scope.likeLoading = false;
     
         $scope.getShow = function() {
             showsService.getShow($scope.showId).then(function(response) {
                 $scope.show = vm.newShow(response);
-                $scope.poster = response.poster;    
 
                 $.each(response.episodes, function() {
-                    $scope.episodes.push(vm.newEpisode(this));
+                    $scope.episodes.push(this);
                 });
-
-                $scope.totalEpisodes = response.episodes.length;
-                $scope.current = $scope.episodes[$scope.show.next_episode ? ($scope.show.next_episode.number - 1) : ($scope.totalEpisodes - 1)];
-                $scope.currentIndex = $scope.show.next_episode ? ($scope.show.next_episode.number - 1) : ($scope.totalEpisodes - 1);
-
-                vm.initSlider();
 
                 $scope.busy = false;
             });
         };
 
-        $scope.like = function(event) {
+        $scope.subscribe = function (event) {
             event.stopPropagation();
 
-            $scope.likeLoading = true;
+            $scope.show.subscribeLoading = true;
 
-            subscriptionsService.subscribe($scope.show.id, null, Subscriptions.new_episodes).then(function() {
-                $scope.likeLoading = false;
-                $(event.currentTarget).toggleClass("active");
-            }, function(code) {
-                $scope.likeLoading = false;
+            var episode = $scope.show.episodes[$scope.show.currentIndex];
+
+            subscriptionsService.subscribe($scope.show.id, $scope.type === Subscriptions.episode ? episode.id : null, $scope.type).then(function (response) {
+                $scope.show.subscription_id = response.id;
+                $scope.show.subscribeLoading = false;
+                $scope.show_details_popup = false;
+
+                $rootScope.subscriptionsTotal += 1;
+            }, function (code) {
+                $scope.show.subscribeLoading = false;
                 if (code === 401) {
                     $state.go($state.$current.parent.name + '.auth-step1');
+                }
+                if (code === 406) {
+                    $cordovaToast.showLongTop('Такая подписка уже существует.');
                 }
             });
         };
 
-        $scope.subscribe = function(event) {
-            event.stopPropagation();
+        $scope.select = function() {
+            $scope.selected = $scope.show;
 
-            $scope.likeLoading = true;
+            $scope.show.show_loading = true;
 
-            subscriptionsService.subscribe($scope.show.id, null, Subscriptions.season).then(function() {
-                $scope.likeLoading = false;
-                $(event.currentTarget).toggleClass("active");
-            }, function(code) {
-                $scope.likeLoading = false;
-                if (code === 401) {
-                    $state.go($state.$current.parent.name + '.auth-step1');
-                }
-            });
+            $scope.selected.episodes = $scope.episodes;
+            $scope.selected.initialSlide = $scope.show.next_episode ? ($scope.show.next_episode.number - 1) : ($scope.show.episodes.length - 1);
+
+            $scope.selected.currentIndex = $scope.selected.initialSlide;
+
+            vm.initSlider();
+
+            $scope.show_details_popup = true;
+            $scope.show.show_loading = false;
         };
 
-        $scope.onAfterChange = function (index) {
-            $scope.current = $scope.episodes[index];
-            $scope.$apply();
+        $scope.closePopup = function () {
+            $scope.sliderConfig = null;
+            $scope.show_details_popup = false;
+        };
+
+        $scope.changePeriod = function () {
+            $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
+        };
+
+        $scope.sliderChangePos = function (event, index) {
+            $scope.selected.currentIndex = index;
         };
 
         vm.initSlider = function () {
-            $scope.slickConfig = {
-                infinite: true,
-                centerMode: true,
-                centerPadding: '120px',
-                arrows: false,
-                slidesToShow: 1
+            $scope.sliderConfig = {
+                start: $scope.selected.initialSlide,
+                method: {},
+                event: { changePos: $scope.sliderChangePos }
             };
-
-            $scope.breakpoints = [
-                {
-                    breakpoint: 690,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 5
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '20px',
-                        slidesToShow: 5
-                    }
-                }
-            ];
         };
 
-        vm.newShow = function(show) {
+        vm.newShow = function (show) {
+            show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
+            show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);
+
             return show;
-        };
-
-        vm.newEpisode = function(episode) {
-            return {
-                air_date: DateFactory.getDate(episode.air_date),
-                aired: episode.aired,
-                days_left: DateFactory.getMonthDaysHours(episode.days_left),
-                id: episode.id,
-                number: episode.number
-            };
         };
 
         $scope.getShow();
