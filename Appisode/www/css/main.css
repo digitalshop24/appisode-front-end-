@@ -373,7 +373,7 @@ body {
 }
 
 .logo {
-  width: 208px;
+   width:27.73vw;
 
 }
 .logo img {
@@ -1835,14 +1835,21 @@ button.show_like {
   }
 }
 
+.search__text {
+    margin-top:75px;
+}
+
+
 .call_like {
-  width:300px;
-  height:300px;
+  width:40vw;
+  height:40vw;
   margin:0 auto;
+  margin-top:8vw;
+  margin-bottom:8vw;
 }
 .btn__call {
-  width:300px;
-  height:300px;
+  width:40vw;
+  height:40vw;
   display:block;
   border-radius:50%;
   background:#0033ff;
@@ -1854,8 +1861,8 @@ button.show_like {
     border: none;
 }
 .icon_call {
-  width:134px;
-  height:147px;
+  width:17.86vw;
+  height:19.6vw;
   background: url(../images/icons/icon_call_img.png) no-repeat center center;
   background-size:cover;
   /*position:absolute;
@@ -2156,7 +2163,7 @@ button.show_like {
 
 @media screen and (min-width:319px) and (max-width: 359px) {
   .logo {
-    width:89px;
+    width:27.73vw;
   }
   .header {
     height:33px;
@@ -2194,7 +2201,6 @@ button.show_like {
     background-size:cover;
   }
   .tabs__content_item_block {
-    height:484px;
     background-size:cover !important;
   }
   .title_en {
@@ -2489,20 +2495,6 @@ button.show_like {
   }
 
 
-  .call_like {
-    width:129px;
-    height:129px;
-    margin:35px auto 40px;
-  }
-  .btn__call {
-    width:129px;
-    height:129px;
-  }
-
-  .icon_call {
-    width:59px;
-    height:64px;
-  }
 
   .sing-2__logo {
     width:90px;
@@ -2514,7 +2506,7 @@ button.show_like {
 
 @media screen and (min-width:360px) and (max-width: 479px) {
   .logo {
-    width:100px;
+     width:27.73vw;
   }
   .header {
     height:38px;
@@ -2552,7 +2544,6 @@ button.show_like {
     background-size:cover;
   }
   .tabs__content_item_block {
-    height:544px;
     background-size:cover !important;
   }
   .title_en {
@@ -2840,20 +2831,7 @@ button.show_like {
   }
 
 
-  .call_like {
-    width:146px;
-    height:146px;
-    margin:42px auto 48px;
-  }
-  .btn__call {
-    width:146px;
-    height:146px;
-  }
-
-  .icon_call {
-    width:67px;
-    height:73px;
-  }
+ 
 
   .sing-2__logo {
     width:102px;
@@ -2863,7 +2841,7 @@ button.show_like {
 
 @media screen and (min-width:480px) and (max-width: 600px) {
   .logo {
-    width:133px;
+     width:27.73vw;
   }
   .header {
     height:50px;
@@ -2901,7 +2879,6 @@ button.show_like {
     background-size:cover;
   }
   .tabs__content_item_block {
-    height:722px;
     background-size:cover !important;
   }
   .title_en {
@@ -3205,19 +3182,10 @@ button.show_like {
 
 
   .call_like {
-    width:187px;
-    height:187px;
+ 
     margin:52px auto 62px;
   }
-  .btn__call {
-    width:187px;
-    height:187px;
-  }
 
-  .icon_call {
-    width:87px;
-    height:94px;
-  }
 
   .sing-2__logo {
     width:137px;
