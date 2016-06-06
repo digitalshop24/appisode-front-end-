@@ -324,6 +324,10 @@
                 slides.getIndexByPosition = function (x) {
                     return carousel.anim.getLandingSlideIndex(-x);
                 };
+
+                slides.destroy = function() {
+                    //carousel.unbind();
+                };
             }
         };
 

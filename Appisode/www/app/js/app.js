@@ -16,7 +16,8 @@
         'angular-ladda',
         'ui-notification',
         'angular-google-analytics',
-        'itemSlide'
+        'itemSlide',
+        'clickForOptions'
     ]);
 
     angular.module('app').config(function (laddaProvider) {

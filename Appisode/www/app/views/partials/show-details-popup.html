@@ -29,7 +29,7 @@
                     </div>
                     <div class="slik_slider center" id="scrolling">
                         <ul item-slide settings="sliderConfig">
-                            <li ng-repeat="episode in selected.episodes">
+                            <li ng-repeat="episode in selected.episodes" ng-class="{'gray': episode.number - 1 < selected.initialSlide}">
                                 {{episode.number}}
                             </li>
                         </ul>

@@ -2140,6 +2140,10 @@ button.show_like {
   padding-top:7vw;
 }
 
+#scrolling li.gray {
+    color: #AD2635;
+}
+
 #scrolling .itemslide-active
 {/*applied to current active item*/
   color:#d82b41;

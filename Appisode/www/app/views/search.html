@@ -22,8 +22,11 @@
                                 <i class="icon icon_dz"></i>
                             </button>
                             <div class="search-rezylt__text">
-                                <p>
+                                <p ng-show="show.in_production">
                                     идет<br> <span class="red">{{show.season_number}}</span> сезон
+                                </p>
+                                <p ng-show="!show.in_production">
+                                    сериал завершен
                                 </p>
                             </div>
                         </div>

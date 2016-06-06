@@ -50,7 +50,7 @@ angular.module('itemSlide', [])
                         var el = angular.element(element);
 
                         if (slider) {
-                            slider.reload();
+                            slider.destroy();
                         }
 
                         return el;
@@ -80,7 +80,7 @@ angular.module('itemSlide', [])
                             if (typeof options.event.changePos !== 'undefined') {
                                 $timeout(function () {
                                     scope.$apply(function () {
-                                        options.event.changePos(event, index);
+                                        options.event.changePos(event);
                                     });
                                 });
                             }

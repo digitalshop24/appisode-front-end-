@@ -12,6 +12,16 @@
         document.addEventListener( 'pause', onPause.bind( this ), false );
         document.addEventListener('resume', onResume.bind(this), false);
 
+        document.addEventListener("backbutton", function (e) {
+            if ($.mobile.activePage.is('#popular') || $.mobile.activePage.is('#newest') || $.mobile.activePage.is('#subscriptions')) {
+                e.preventDefault();
+                navigator.app.exitApp();
+            }
+            else {
+                navigator.app.backHistory();
+            }
+        }, false);
+
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
     };
 
