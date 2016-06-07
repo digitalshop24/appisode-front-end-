@@ -2193,8 +2193,8 @@ button.show_like {
 
 #scrolling li {
   float: left;
-  width:20vw;
-  height:20vw;
+  width:16vw;
+  height:16vw;
   text-align:center;
   font-size:16px;
   color:#fff;
@@ -2209,7 +2209,7 @@ button.show_like {
   -ms-transform:  scale(0.95);
   -moz-transform:  scale(0.95);
   transform: scale(0.95);
-  padding-top:7vw;
+  padding-top:5vw;
 }
 
 #scrolling li.gray {
@@ -2225,8 +2225,8 @@ button.show_like {
   -ms-transform:  scale(1);
   -moz-transform:  scale(1);
   transform: scale(1);
-  width:20vw;
-  height:20vw;
+  width:16vw;
+  height:16vw;
 }
 
 
