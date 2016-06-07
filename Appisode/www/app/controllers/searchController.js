@@ -64,8 +64,7 @@
         };
 
         $scope.gotoShow = function (id) {
-            $state.go('show', { showId: id });
-            $rootScope.hide_header = false;
+            $state.go('search-results', { showId: id });
         };
 
         vm.extendShow = function(show) {

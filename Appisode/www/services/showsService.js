@@ -10,7 +10,7 @@
         function getList(page, perPage) {
             var deferred = $q.defer();
 
-            var url = page && perPage 
+            var url = page && perPage
                 ? Utils.buildApiUrl(ngApiSettings.apiUri, "/shows.json?page={page}&per_page={per_page}", { page: page, per_page: perPage })
                 : Utils.buildApiUrl(ngApiSettings.apiUri, "/shows.json", { page: page, per_page: perPage });
 
@@ -29,6 +29,22 @@
             var url = page && perPage
                 ? Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/search.json?page={page}&per_page={per_page}&query={query}", { page: page, per_page: perPage, query: query })
                 : Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/search.json?query={query}", { query: query });
+
+            $http.get(url).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (err, status) {
+                deferred.reject(status);
+            });
+
+            return deferred.promise;
+        };
+
+        function searchListShow(showId, page, perPage) {
+            var deferred = $q.defer();
+
+            var url = page && perPage
+                ? Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/{showId}/page?page={page}&per_page={per_page}", { showId: showId, page: page, per_page: perPage })
+                : Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/{showId}/page", { showId: showId });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
@@ -74,7 +90,7 @@
         function getShow(id) {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/{id}.json", {id: id});
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/shows/{id}.json", { id: id });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);
@@ -88,6 +104,7 @@
         var service = {
             getList: getList,
             searchList: searchList,
+            searchListShow: searchListShow,
             popularList: popularList,
             newestList: newestList,
             getShow: getShow

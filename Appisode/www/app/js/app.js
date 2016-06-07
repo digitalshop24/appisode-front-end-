@@ -43,29 +43,29 @@
             $stateProvider.state('popular', {
                 url: '/',
                 views: {
-                    'main': { templateUrl: "app/views/popular.html" },
-                    //'header': { templateUrl: "app/views/partials/header.html" }
-                    //'header@popular': { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/popular.html" }
                 }
             }).state('subscriptions', {
                 url: '/subscriptions',
                 views: {
-                    'main': { templateUrl: "app/views/subscriptions.html" },
-                    //'header': { templateUrl: "app/views/partials/header.html" }
-                    //'header@subscriptions': { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/subscriptions.html" }
                 }
             }).state('newest', {
                 url: '/newest',
                 views: {
-                    'main': { templateUrl: "app/views/newest.html" },
-                    //'header': { templateUrl: "app/views/partials/header.html" }
-                    //'header@newest': { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/newest.html" }
                 }
             }).state('search', {
                 url: '/search',
                 views: {
                     'main': { templateUrl: "app/views/search.html" },
                     'header@search': { templateUrl: "app/views/partials/search-header.html" }
+                }
+            }).state('search-results', {
+                url: '/search-results/:showId',
+                views: {
+                    'main': { templateUrl: "app/views/search-results.html" },
+                    'header@search-results': { templateUrl: "app/views/partials/search-header.html" }
                 }
             }).state('show', {
                 url: '/show/:showId',

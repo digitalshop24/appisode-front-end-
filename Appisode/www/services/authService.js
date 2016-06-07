@@ -27,7 +27,7 @@
         function register(phone) {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/register.json?phone={phone}", { phone: phone });
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/register?phone={phone}", { phone: phone });
 
             $http.post(url).success(function (response) {
                 deferred.resolve(response);
