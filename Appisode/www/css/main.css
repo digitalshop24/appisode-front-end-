@@ -1504,6 +1504,78 @@ body {
   background: #1729fa;
 }
 
+
+
+
+
+
+.warning {
+  position: absolute;
+  top: 5px;
+}
+
+.warning-item {
+  width:96vw;
+  height:30.54vw;
+  background:#d82b41;
+  padding:2.13vw;
+  margin-top:2vw;
+  margin-left:2vw;
+  margin-right:2vw;
+  border-radius:15px;
+}
+.warning-item .img {
+  width:25.25vw;
+  height:25.25vw;
+  position:relative;
+  float:left;
+  margin-right:2.13vw;
+}
+.warning-item img {
+  width:25.25vw;
+  height:25.25vw;
+  border-radius:50%;
+  display:block;
+  position:absolute;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  margin:auto;
+}
+.warning-item .text {
+  overflow:hidden;
+  display: table-cell;
+  vertical-align: middle;
+  height: 23.54vw;
+}
+.warning-item .text p {
+  color:#fff;
+  font-size:14px;
+  font-weight:bold;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
+
+.slik_slider + .datte {
+    position:relative;
+    top:73px;
+}
+
+
+
+
+
+
+
+
+
+
 .popup1 {
   position: fixed;
   width: 100vw;
