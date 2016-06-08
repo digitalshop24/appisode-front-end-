@@ -801,7 +801,9 @@
   ],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\app\\js\\app.js"
+    "www\\app\\js\\app.js",
+    "www\\app\\controllers\\popularController.js",
+    "www\\app\\controllers\\subscriptionsController.js"
   ],
   "deletedFiles": [],
   "addedPlugins": [],

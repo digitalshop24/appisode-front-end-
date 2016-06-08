@@ -66,6 +66,7 @@
             showsService.getShow(show.id).then(function(response) {
                 $scope.selected.episodes = response.episodes;
                 $scope.selected.initialSlide = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
+                $scope.selected.episode_date = response.next_episode ? DateFactory.getDate(response.next_episode.air_date) : ('дата неизвестна');
 
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
 
@@ -134,8 +135,14 @@
             }
         };
 
-        $scope.sliderChangePos = function(event, index) {
-            $scope.selected.currentIndex = index;
+        $scope.sliderChangePos = function (event, index) {
+            if (index) {
+                $scope.selected.currentIndex = index;
+
+                var episode = $scope.selected.episodes[index];
+
+                $scope.selected.episode_date = episode ? DateFactory.getDate(episode.air_date) : ('дата неизвестна');
+            }
         };
         
         vm.initSlider = function() {    

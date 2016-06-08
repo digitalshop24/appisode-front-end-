@@ -66,7 +66,7 @@
         };
 
         $scope.gotoShow = function(subscription) {
-            $state.go('show', { showId: subscription.show.id });
+            $state.go('show-results', { showId: subscription.show.id });
         };
 
         vm.extendSubscription = function (subscription) {

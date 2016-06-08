@@ -83,7 +83,7 @@
                     return options.one_item ? vars.currentIndex + 1 : slides.children().length - 1; //If one item enabled than just go one slide forward and not until the end.
                 };
 
-                _this.isOutBoundaries = function () { //Return if user is panning out of boundaries
+                _this.isOutBoundaries = function () { //Return if user is panning out of boundaries                   
                     return (Math.floor(slides.translate3d().x) > (getPositionByIndex(0)) && vars.direction == -1) ||
                              (Math.ceil(slides.translate3d().x) < (getPositionByIndex(slides.children().length - 1)) && vars.direction == 1); //CHANGED HERE
                 };
@@ -119,7 +119,7 @@
 
                     // to understand easings refer to: http://upshots.org/actionscript/jsas-understanding-easing
 
-                    if (currentTime >= total_duration) { //Check if easing time has reached total duration
+                    if (currentTime >= total_duration || isNaN(total_duration)) { //Check if easing time has reached total duration
                         //Animation Ended
                         slides.translate3d(_this.currentLandPos);
                         return; //out of recursion
