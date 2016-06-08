@@ -5,26 +5,38 @@
  * @link https://github.com/alexcrack/angular-ui-notification
  * @license MIT
  */
+.ui-notification-wrapper {
+    position: fixed;
+    top: 0 !important;
+    width: 100%;    
+    -webkit-transition: all ease .5s;
+    -o-transition: all ease .5s;
+    transition: all ease .5s;
+    color: #ccc;
+    z-index: 9999;
+}
+
 .ui-notification
 {
-    position: fixed;
-    z-index: 9999;
+    /*position: fixed;
+    z-index: 9999;*/
 
-    top: 0 !important;
-    right: 0 !important;
+    /*top: 0 !important;
+    right: 0 !important;*/
 
     width: 100%;
+        border-radius: 0;
 
-    -webkit-transition: all ease .5s;
+    /*-webkit-transition: all ease .5s;
          -o-transition: all ease .5s;
-            transition: all ease .5s;
+            transition: all ease .5s;*/
 
-    color: #fff;
+    /*color: #fff;
     border-radius: 0;
     background: #337ab7;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);*/
 
-    padding: 10px 50px;
+    /*padding: 10px 50px;*/
 }
 .ui-notification.clickable
 {

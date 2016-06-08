@@ -13,7 +13,7 @@
                         <h3 class="title_en">{{show.name}}</h3>
                         <h2 class="tittle_ru">{{show.russian_name}}</h2>
                         <div class="call_like">
-                            <button ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading">
+                            <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll>
                                 <i class="icon icon_call"></i>
                             </button>
                         </div>

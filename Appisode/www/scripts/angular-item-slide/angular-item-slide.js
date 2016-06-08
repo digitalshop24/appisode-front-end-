@@ -80,7 +80,7 @@ angular.module('itemSlide', [])
                             if (typeof options.event.changePos !== 'undefined') {
                                 $timeout(function () {
                                     scope.$apply(function () {
-                                        options.event.changePos(event);
+                                        options.event.changePos(event, index);
                                     });
                                 });
                             }

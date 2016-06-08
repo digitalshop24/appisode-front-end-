@@ -17,8 +17,9 @@
         'ui-notification',
         'angular-google-analytics',
         'itemSlide',
-        'clickForOptions'
-    ]);
+        'clickForOptions',
+        'duScroll'
+    ]).value('duScrollOffset', 300);
 
     angular.module('app').config(function (laddaProvider) {
         laddaProvider.setOption({

@@ -64,7 +64,9 @@
 
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
 
-                vm.initSlider();
+                if ($scope.type === Subscriptions.episode) {
+                    vm.initSlider();
+                }
 
                 $scope.show_details_popup = true;
                 show.show_loading = false;
@@ -103,8 +105,13 @@
             });
         };
 
-        $scope.changePeriod = function () {
+        $scope.changePeriod = function() {
             $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
+
+            if ($scope.type === Subscriptions.episode) {
+                $scope.sliderConfig = null;
+                $timeout(vm.initSlider, 1);
+            }
         };
 
         vm.extendShow = function (show) {
@@ -115,6 +122,10 @@
 
         $scope.sliderChangePos = function (event, index) {
             $scope.selected.currentIndex = index;
+
+            var episode = $scope.selected.episodes[index];
+
+            $scope.selected.episode_date = episode ? DateFactory.getDate(episode.air_date) : ('дата неизвестна');
         };
 
         vm.initSlider = function () {

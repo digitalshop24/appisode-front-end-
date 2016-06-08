@@ -20,16 +20,19 @@
     <div id="header" ng-include src="'app/views/partials/header.html'" ng-show="!hide_header"></div>
     <div ui-view="main"></div>
 
-    <script type="text/ng-template" id="notification_template.html">
-        <div class="ui-notification custom-template">
-            <div class="pic">
-                <img src="{{push_img_path}}" />
-            </div>
-            <div class="content">
-                {{push_content}}
-            </div>
-        </div>
-    </script>
+    <div ng-show="notifications.length">
+        <ion-slide-box on-slide-changed="closePush(notification)" class="ui-notification-wrapper" ng-repeat="notification in notifications track by $index">
+            <ion-slide class="ui-notification custom-template">
+                <div class="pic">
+                    <img src="{{notification.push_img_path}}" />
+                </div>
+                <div class="content">
+                    {{notification.push_content}}
+                </div>
+            </ion-slide>
+            <ion-slide></ion-slide>
+        </ion-slide-box>
+    </div>
 
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="scripts/jquery.js"></script>
@@ -70,6 +73,7 @@
     <script src="scripts/angular-ladda/angular-ladda.js"></script>
     <script src="scripts/angular-item-slide/angular-item-slide.js"></script>
     <script src="scripts/angular-ionic-click-4-options/angular-ionic-click-4-options.js"></script>
+    <script src="scripts/angular-scroll-master/angular-scroll.js"></script>
 
     <script src="app/js/app.js"></script>
     <script src="app/js/utils.js"></script>

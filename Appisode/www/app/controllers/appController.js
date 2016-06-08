@@ -17,6 +17,8 @@
         $rootScope.navSlickControl = {};
         $rootScope.current_action = 'popular';
 
+        var i = 0;
+
         ionic.Platform.ready(function () {
             pushNotificationsService.register();
 
@@ -33,6 +35,14 @@
                     $state.go('newest');
                     $rootScope.current_action = 'newest';
                 }
+
+                i++;
+
+                var notification = { id: i, push_content: "Content" };
+
+                $scope.notifications.push(notification);
+
+                $scope.hideOnDelay(notification);
             };
         });
 
@@ -49,13 +59,16 @@
             }
         });
 
-        $scope.triggerPush = function () {
-            Notification.success({
-                message: 'Error notification (no timeout)',
-                templateUrl: "notification_template.html",
-                delay: 3000,
-                scope: $scope
-            });
+        $scope.hideOnDelay = function (notification) {
+            $timeout(function() { $scope.closePush(notification) }, 7000);
+        };
+
+        $scope.closePush = function (notification) {
+            var index = $scope.notifications.indexOf(notification);
+
+            if (index >= 0) {
+                $scope.notifications.splice(index, 1);
+            }
         };
 
         function handleAndroid(notification) {
@@ -72,7 +85,7 @@
                     $scope.push_content = notification.message;
                     $scope.push_img_path = notification.payload ? notification.payload.path : null;
 
-                    $scope.triggerPush();
+                    $scope.hideOnDelay(notification);
 
                     $scope.notifications.push(JSON.stringify(notification.message));
                 });
@@ -109,24 +122,5 @@
                 else $cordovaDialogs.alert(notification.alert, "(RECEIVED WHEN APP IN BACKGROUND) Push Notification Received");
             }
         };
-
-        //$('.slider-for').slick({
-        //    slidesToShow: 1,
-        //    slidesToScroll: 1,
-        //    arrows: false,
-        //    infinite: true,
-        //    fade: false,
-        //    adaptiveHeight: true,
-        //    //asNavFor: '.slider-nav'
-        //});
-        //$('.slider-nav').slick({
-        //    slidesToShow: 3,
-        //    slidesToScroll: 1,
-        //    infinite: true,
-        //    asNavFor: '.slider-for',
-        //    dots: false,
-        //    centerMode: true,
-        //    focusOnSelect: true
-        //});
     }
 })();

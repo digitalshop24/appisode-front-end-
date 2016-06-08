@@ -48,7 +48,7 @@
             showsService.searchListShow($scope.showId, vm.page, vm.take).then(function (response) {
                 vm.total = response.total;
 
-                $.each(response, function () {
+                $.each(response.shows, function () {
                     $scope.shows.push(vm.extendShow(this));
                 });
 
@@ -119,10 +119,6 @@
             }
         };
 
-        $scope.testPush = function () {
-            pushNotificationsService.testPush('message');
-        };
-
         $scope.getSubscriptions = function () {
             if (!$rootScope.subscriptionsVisible) {
                 subscriptionsService.getList(1, 1).then(function (response) {
@@ -136,6 +132,10 @@
 
         $scope.sliderChangePos = function (event, index) {
             $scope.selected.currentIndex = index;
+
+            var episode = $scope.selected.episodes[index];
+
+            $scope.selected.episode_date = episode ? DateFactory.getDate(episode.air_date) : ('дата неизвестна');
         };
 
         vm.initSlider = function () {
