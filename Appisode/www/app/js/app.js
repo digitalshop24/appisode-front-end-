@@ -164,6 +164,14 @@
         }
     ]);
 
+    app.run(['$ionicPlatform',
+        function ($ionicPlatform) {
+            $ionicPlatform.registerBackButtonAction(function () {
+                navigator.app.backHistory();
+            }, 100);
+        }
+    ]);
+
     app.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
     });

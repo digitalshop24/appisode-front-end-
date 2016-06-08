@@ -41,7 +41,7 @@ ADDED from AndroidManifest.xml:6:5
 		ADDED from AndroidManifest.xml:6:22
 application
 ADDED from AndroidManifest.xml:7:5
-MERGED from com.android.support:support-v4:24.0.0-beta1:25:5
+MERGED from com.android.support:support-v4:22.2.1:22:5
 	android:supportsRtl
 		ADDED from AndroidManifest.xml:7:116
 	android:label
@@ -110,14 +110,12 @@ ADDED from AndroidManifest.xml:22:9
 		ADDED from AndroidManifest.xml:22:18
 uses-sdk
 ADDED from AndroidManifest.xml:24:5
-MERGED from com.android.support:support-v4:24.0.0-beta1:21:5
+MERGED from com.android.support:support-v4:22.2.1:20:5
 MERGED from android:CordovaLib:unspecified:debug:25:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:24:42
 	android:minSdkVersion
 		ADDED from AndroidManifest.xml:24:15
-	tools:overrideLibrary
-		ADDED from com.android.support:support-v4:24.0.0-beta1:23:9
 uses-permission#android.permission.GET_ACCOUNTS
 ADDED from AndroidManifest.xml:25:5
 	android:name
