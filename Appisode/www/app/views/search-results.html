@@ -10,8 +10,8 @@
                             <h3 class="title_en">{{show.name}}</h3>
                             <h2 class="tittle_ru">{{show.russian_name}}</h2>
                             <div class="call_like">
-                                <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll>
-                                    <i class="icon icon_call"></i>
+                                <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll in-view="inView($index, $inview, $inviewpart, $event, {{show}})" in-view-options="{offset: '150%'}">
+                                    <i class="icon icon_call" ng-class="{'element-animation': active.animate_bell}"></i>
                                 </button>
                             </div>
                             <div class="in_production" ng-if="show.in_production">

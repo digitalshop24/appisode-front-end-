@@ -141,6 +141,14 @@
 
             $scope.selected.episode_date = episode ? DateFactory.getDate(episode.air_date) : ('дата неизвестна');
         };
+
+        $scope.inView = function (index, inview, inviewpart, event, show) {
+            $scope.active = show;
+
+            if (inview) {
+                $scope.active.animate_bell = true;
+            }
+        };
         
         vm.initSlider = function() {    
             $scope.sliderConfig = {

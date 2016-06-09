@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://image.tmdb.org http://appisode.ru/api/v1 data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src *; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.google-analytics.com http://image.tmdb.org http://appisode.ru/api/v1 data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self' http://www.googletagmanager.com http://www.google-analytics.com 'unsafe-eval'; connect-src *; media-src *">
     <title>Appisode</title>
 
 
@@ -15,19 +15,25 @@
     <!--<link href="css/ionic/ionic.css" rel="stylesheet" />-->
 </head>
 <body ng-app="app" ng-controller="appController">
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-K2BBWS"
+                height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
 
     <!--<div ui-view="header"></div>-->
     <div id="header" ng-include src="'app/views/partials/header.html'" ng-show="!hide_header"></div>
     <div ui-view="main"></div>
 
-    <div ng-show="notifications.length">
-        <ion-slide-box on-slide-changed="closePush(notification)" class="ui-notification-wrapper" ng-repeat="notification in notifications track by $index">
-            <ion-slide class="ui-notification custom-template">
-                <div class="pic">
-                    <img src="{{notification.push_img_path}}" />
-                </div>
-                <div class="content">
-                    {{notification.push_content}}
+    <div ng-show="notifications.length && initialized" class="warning ng-hide">
+        <ion-slide-box on-slide-changed="closePush(notification)" ng-repeat="notification in notifications track by $index">
+            <ion-slide>
+                <div class="warning-item clearfix">
+                    <div class="img">
+                        <img src="{{notification.push_img_path}}" alt="">
+                    </div>
+                    <div class="text">
+                        <p>{{notification.push_content}}</p>
+                    </div>
                 </div>
             </ion-slide>
             <ion-slide></ion-slide>
@@ -74,6 +80,7 @@
     <script src="scripts/angular-item-slide/angular-item-slide.js"></script>
     <script src="scripts/angular-ionic-click-4-options/angular-ionic-click-4-options.js"></script>
     <script src="scripts/angular-scroll-master/angular-scroll.js"></script>
+    <script src="scripts/angular-inview/angular-inview.js"></script>
 
     <script src="app/js/app.js"></script>
     <script src="app/js/utils.js"></script>
@@ -102,5 +109,7 @@
     <script src="app/controllers/subscriptionsController.js"></script>
     <script src="app/controllers/subscriptionsHeaderController.js"></script>
     <script src="app/controllers/searchResultsController.js"></script>
+
+    <script src="scripts/tag-manager/tag-manager.js"></script>
 </body>
 </html>

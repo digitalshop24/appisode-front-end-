@@ -18,7 +18,8 @@
         'angular-google-analytics',
         'itemSlide',
         'clickForOptions',
-        'duScroll'
+        'duScroll',
+        'angular-inview'
     ]).value('duScrollOffset', 300);
 
     angular.module('app').config(function (laddaProvider) {
@@ -177,8 +178,9 @@
         $httpProvider.interceptors.push('authInterceptorService');
     });
 
-    app.config(function(AnalyticsProvider) {
-        AnalyticsProvider.setAccount('UA-77952196-1');
+    app.config(function () {
+        var tagManager = cordova.require('com.jareddickson.cordova.tag-manager.TagManager');
+        tagManager.init(null, null, 'GTM-5CRB2N', 30);
     });
 
     app.constant('ngApiSettings', {

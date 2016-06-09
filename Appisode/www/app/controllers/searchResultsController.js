@@ -146,6 +146,14 @@
             };
         };
 
+        $scope.inView = function (index, inview, inviewpart, event, show) {
+            $scope.active = show;
+
+            if (inview) {
+                $scope.active.animate_bell = true;
+            }
+        };
+
         vm.extendShow = function (show) {
             show.air_date_str = DateFactory.getDate(show.next_episode ? show.next_episode.air_date : null);
             show.air_date_detailed = DateFactory.getMonthDaysHours(show.next_episode ? show.next_episode.days_left : null);

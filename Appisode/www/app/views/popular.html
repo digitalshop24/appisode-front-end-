@@ -1,10 +1,7 @@
-﻿<!--<div ui-view="header"></div>-->
-
-<div ng-controller="popularController" ng-app="app">
+﻿<div ng-controller="popularController" ng-app="app">
     <!--<div style="background-color: #fff; color: #333">
         <a ng-click="testPush()">Test push</a>
     </div>-->
-    <!--<slick settings="pageSlickConfig" class="slider-for" on-after-change="onAfterChangePageSlick" as-nav-for="{{'.slider-nav'}}">-->
         <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
 
             <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
@@ -13,8 +10,8 @@
                         <h3 class="title_en">{{show.name}}</h3>
                         <h2 class="tittle_ru">{{show.russian_name}}</h2>
                         <div class="call_like">
-                            <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll>
-                                <i class="icon icon_call"></i>
+                            <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll in-view="inView($index, $inview, $inviewpart, $event, {{show}})" in-view-options="{offset: '150%'}">
+                                <i class="icon icon_call" ng-class="{'element-animation': active.animate_bell}"></i>
                             </button>
                         </div>
                         <div class="in_production" ng-if="show.in_production">
@@ -66,11 +63,5 @@
                 <div ng-include src="'app/views/spinner.html'"></div>
             </div>
         </div>
-        <!--<div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>-->
-    <!--</slick>-->
     <div ng-include src="'app/views/partials/show-details-popup.html'"></div>
 </div>

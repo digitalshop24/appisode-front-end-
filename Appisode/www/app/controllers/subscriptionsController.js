@@ -6,16 +6,18 @@
         .controller('subscriptionsController', subscriptionsController);
 
     subscriptionsController.$inject = [
-        '$scope', '$rootScope', '$state', 'localStorageService', 'subscriptionsService'
+        '$scope', '$rootScope', '$state', '$timeout', 'localStorageService', 'subscriptionsService'
     ];
 
-    function subscriptionsController($scope, $rootScope, $state, localStorageService, subscriptionsService) {
+    function subscriptionsController($scope, $rootScope, $state, $timeout, localStorageService, subscriptionsService) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
 
-        $scope.top = $('#header').height() + 'px';
+        $rootScope.hide_header = false;
+
+        $timeout(function() { $scope.top = $('#header').height() + 'px'; }, 5);
 
         $scope.subscriptions = [];
         $scope.total = null;

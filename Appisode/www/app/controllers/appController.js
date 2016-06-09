@@ -17,7 +17,7 @@
         $rootScope.navSlickControl = {};
         $rootScope.current_action = 'popular';
 
-        var i = 0;
+        $rootScope.initialized = true;
 
         ionic.Platform.ready(function () {
             pushNotificationsService.register();
@@ -36,13 +36,7 @@
                     $rootScope.current_action = 'newest';
                 }
 
-                i++;
-
-                var notification = { id: i, push_content: "Content" };
-
-                $scope.notifications.push(notification);
-
-                $scope.hideOnDelay(notification);
+                $scope.notifications.push({ push_img: "", push_content: "" });
             };
         });
 
