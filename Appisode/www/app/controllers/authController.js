@@ -29,7 +29,7 @@
                 $scope.loading = true;
 
                 authService.register($scope.number).then(function(response) {
-                    localStorageService.set(ngLocalStorageKeys.phone, $scope.number);
+                    localStorageService.set(ngLocalStorageKeys.phone, response.phone);
                     $scope.loading = false;
                     $state.go('auth-step4');
                 }, function() {

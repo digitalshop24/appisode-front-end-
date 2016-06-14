@@ -108,4 +108,5 @@
   <plugin name="cordova-plugin-x-toast" version="2.5.1" src="E:\Downloads\Toast-PhoneGap-Plugin-master\Toast-PhoneGap-Plugin-master" />
   <plugin name="cordova-plugin-disable-nsapptransportsecurity" version="1.0.2" src="E:\Downloads\cordova-plugin-disable-nsapptransportsecurity-master\cordova-plugin-disable-nsapptransportsecurity-master" />
   <plugin name="com.jareddickson.cordova.tag-manager" version="1.0.1" src="E:\Downloads\cordova-plugin-tag-manager-master\cordova-plugin-tag-manager-master" />
+  <plugin name="cordova-plugin-network-information" version="1.2.2-dev" src="E:\Downloads\cordova-plugin-network-information-master" />
 </widget>

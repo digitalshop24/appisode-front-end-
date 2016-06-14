@@ -35,8 +35,6 @@
                     $state.go('newest');
                     $rootScope.current_action = 'newest';
                 }
-
-                $scope.notifications.push({ push_img: "", push_content: "" });
             };
         });
 

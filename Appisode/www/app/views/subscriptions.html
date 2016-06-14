@@ -5,26 +5,72 @@
                 <ion-item  click-for-options class="appisode item-thumbnail-left item-remove-animate" ng-repeat="subscription in subscriptions">
                     <div class="appisode_im clearfix" ng-style="{'background': 'url({{subscription.show.poster}}) no-repeat center center', 'background-size': 'cover'}">
                         <div class="appisode_im_star" ng-class="subscription.show.progress_class" ng-click="gotoShow(subscription)">
-                            <i class="icon" ng-class="subscription.show.in_production ? 'icon_time' : 'icon_time-disibe'"></i>
+                            <i class="icon" ng-class="subscription.show.status == 'airing' || subscription.show.status == 'hiatus'  ? 'icon_time' : 'icon_time-disibe'"></i>
                         </div>
                         <div class="appisode_im_title" ng-click="gotoShow(subscription)">
-                            <h3 class="while">{{subscription.show.russian_name}}</h3>
-                            <h4 class="grey">{{subscription.show.name}}</h4>
-                            <span class="time while" ng-show="subscription.show.in_production && subscription.show.next_episode">
-                                <i class="icon icon_time-pictur"></i>
-                                через
-                                <span class="red">
-                                    {{subscription.show.days_left_str}}
+                            <h3 class="while">{{subscription.show.name}}</h3>
+                            <h4 class="grey">{{subscription.show.name_original}}</h4>
+                            <span ng-if="subscription.show.status == 'airing'">
+                                <span ng-if="subscription.subtype == 'episode'">
+                                    <span ng-if="subscription.episodes_interval == 1">
+                                        <span class="time while">
+                                            <i class="icon icon_time-pictur"></i>
+                                            через
+                                            <span class="red">
+                                                {{subscription.next_notification_episode.days_left}}
+                                            </span>
+                                            дней новая серия
+                                        </span>
+                                    </span>
+                                    <span ng-if="subscription.episodes_interval > 1">
+                                        <span class="time while">
+                                            <i class="icon icon_time-pictur"></i>
+                                            через
+                                            <span class="red">
+                                                {{subscription.next_notification_episode.days_left}}
+                                            </span>
+                                            дней новые серии
+                                        </span>
+                                    </span>
                                 </span>
-                                новая серия
+                                <span ng-if="subscription.subtype == 'season'">
+                                    <span class="time while">
+                                        <i class="icon icon_time-pictur"></i>
+                                        через
+                                        <span class="red">
+                                            {{subscription.next_notification_episode.days_left}}
+                                        </span>
+                                        дней новый сезон
+                                    </span>
+                                </span>
                             </span>
-                            <span class="time while" ng-show="subscription.show.in_production && !subscription.show.next_episode">
-                                <i class="icon icon_time-pictur"></i>
-                                неизвестно
+                            <span ng-if="subscription.show.status == 'hiatus'">
+                                <span ng-if="subscription.show.next_episode">
+                                    <span class="time while">
+                                        <i class="icon icon_time-pictur"></i>
+                                        через
+                                        <span class="red">
+                                            {{subscription.show.next_episode.days_left}}
+                                        </span>
+                                        дней новый сезон
+                                    </span>
+                                </span>
+                                <span ng-if="!subscription.show.next_episode">
+                                    <span class="time while">
+                                        <i class="icon icon_time-pictur"></i>
+                                        завершен
+                                        <span class="red">
+                                            {{subscription.show.season_number}}
+                                        </span>
+                                        сезон
+                                    </span>
+                                </span>
                             </span>
-                            <span class="time while" ng-show="!subscription.show.in_production">
-                                <i class="icon icon_time-pictur"></i>
-                                сериал завершен
+                            <span ng-if="subscription.show.status == 'closed'">
+                                <span class="time while">
+                                    <i class="icon icon_time-pictur"></i>
+                                    сериал завершен
+                                </span>
                             </span>
                         </div>
                         <div class="appisode_im_touch">

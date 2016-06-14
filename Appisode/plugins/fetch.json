@@ -46,5 +46,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-network-information": {
+        "source": {
+            "type": "local",
+            "path": "E:\\Downloads\\cordova-plugin-network-information-master"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

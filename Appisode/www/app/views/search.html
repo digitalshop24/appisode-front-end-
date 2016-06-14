@@ -12,20 +12,26 @@
             <div infinite-scroll="search()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
                 <div class="search-rezylt__block clearfix" ng-repeat="show in shows">
                     <div class="search-rezylt__block_img" ng-click="gotoShow(show.id)">
-                        <img ng-src="{{show.poster}}" ng-alt="{{show.russian_name}}">
+                        <img ng-src="{{show.poster}}" ng-alt="{{show.name}}">
                     </div>
                     <div class="search-rezylt__block_text">
-                        <h3 class="search-rezylt_title_ru" ng-click="gotoShow(show.id)">{{show.russian_name}}</h3>
-                        <h4 class="search-rezylt_title_en" ng-click="gotoShow(show.id)">{{show.name}}</h4>
+                        <h3 class="search-rezylt_title_ru" ng-click="gotoShow(show.id)">{{show.name}}</h3>
+                        <h4 class="search-rezylt_title_en" ng-click="gotoShow(show.id)">{{show.name_original}}</h4>
                         <div class="search-rezylt__info">
                             <button class="search-rezylt__dz" ng-class="{'active__call': show.subscription_id}" ng-click="gotoShow(show.id)">
                                 <i class="icon icon_dz"></i>
                             </button>
                             <div class="search-rezylt__text">
-                                <p ng-show="show.in_production">
+                                <p ng-show="show.status == 'airing'">
                                     идет<br> <span class="red">{{show.season_number}}</span> сезон
                                 </p>
-                                <p ng-show="!show.in_production">
+                                <p ng-show="show.status == 'hiatus' && show.next_episode">
+                                    <span>анонсирован </span><span class="red">{{show.season_number}}</span><span> сезон</span>
+                                </p>
+                                <p ng-show="show.status == 'hiatus' && !show.next_episode">
+                                    <span>завершен </span><span class="red">{{show.season_number}}</span><span> сезон</span>
+                                </p>
+                                <p ng-if="show.status == 'closed'">
                                     сериал завершен
                                 </p>
                             </div>

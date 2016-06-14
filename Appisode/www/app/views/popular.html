@@ -2,66 +2,67 @@
     <!--<div style="background-color: #fff; color: #333">
         <a ng-click="testPush()">Test push</a>
     </div>-->
-        <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-
-            <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
-                <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat', 'background-size': 'cover'}">
-                    <div class="tabs__content_item_bg">
-                        <h3 class="title_en">{{show.name}}</h3>
-                        <h2 class="tittle_ru">{{show.russian_name}}</h2>
-                        <div class="call_like">
-                            <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll in-view="inView($index, $inview, $inviewpart, $event, {{show}})" in-view-options="{offset: '150%'}">
-                                <i class="icon icon_call" ng-class="{'element-animation': active.animate_bell}"></i>
-                            </button>
-                        </div>
-                        <div class="in_production" ng-if="show.in_production">
-                            <div class="datte">
-                                <span class="datte__item grey">
-                                    <span class="red" ng-show="show.next_episode">{{show.next_episode.number}}</span>  серия выходит
-                                    <span ng-show="!show.next_episode && show.in_production">неизвестно</span>
-                                    <span ng-show="!show.in_production">сериал завершен</span>
+    <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+        <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
+            <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat', 'background-size': 'cover'}">
+                <div class="tabs__content_item_bg">
+                    <h3 class="title_en">{{show.name_original}}</h3>
+                    <h2 class="tittle_ru">{{show.name}}</h2>
+                    <div class="call_like">
+                        <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll in-view="inView($index, $inview, $inviewpart, $event, {{show.id}})" in-view-options="{offset: '150%'}">
+                            <i class="icon icon_call" ng-class="{'element-animation': show.animate_bell}"></i>
+                        </button>
+                    </div>
+                    <div class="in_production" ng-if="show.status != 'closed'">
+                        <div class="datte">
+                            <span class="datte__item grey">
+                                    <span ng-show="show.status == 'airing'"><span class="red">{{show.next_episode.number}}</span>  серия выходит</span>
+                                    <span ng-show="show.status == 'hiatus' && show.next_episode"><span>анонсирован </span><span class="red">{{show.season_number}}</span><span> сезон</span></span>
+                                    <span ng-show="show.status == 'hiatus' && !show.next_episode"><span>завершен </span><span class="red">{{show.season_number}}</span><span> сезон</span></span>
+                                    <span ng-show="show.status == 'closed'">сериал завершен</span>
                                 </span>
-                                <span class="datte__item while">
+                            <span class="datte__item while">
                                     {{show.air_date_str}}
                                 </span>
-                            </div>
-                            <div class="time">
-                                <div class="time__top clearfix">
+                        </div>
+                        <div class="time">
+                            <div class="time__top clearfix">
 
-                                    <div class="time__top_left grey">
-                                        м
-                                    </div>
-                                    <div class="time__top_right grey">
-                                        ч
-                                    </div>
-                                    <div class="time__top_center grey">
-                                        д
-                                    </div>
+                                <div class="time__top_left grey">
+                                    м
                                 </div>
-                                <div class="time__bottom clearfix">
-                                    <div class="time__bottom_left while">
-                                        {{show.air_date_detailed.months}}
-                                    </div>
-                                    <div class="time__bottom_right while">
-                                        {{show.air_date_detailed.hours}}
-                                    </div>
-                                    <div class="time__bottom_center while">
-                                        {{show.air_date_detailed.days}}
-                                    </div>
+                                <div class="time__top_right grey">
+                                    ч
+                                </div>
+                                <div class="time__top_center grey">
+                                    д
+                                </div>
+                            </div>
+                            <div class="time__bottom clearfix">
+                                <div class="time__bottom_left while">
+                                    {{show.air_date_detailed.months}}
+                                </div>
+                                <div class="time__bottom_right while">
+                                    {{show.air_date_detailed.hours}}
+                                </div>
+                                <div class="time__bottom_center while">
+                                    {{show.air_date_detailed.days}}
                                 </div>
                             </div>
                         </div>
-                        <div ng-if="!show.in_production">
-                            <div class="datte">
-                                <span class="datte__item grey">сериал завершен </span>
-                            </div>
+                    </div>
+                    <div ng-if="show.status == 'closed'">
+                        <div class="datte">
+                            <span class="datte__item grey">сериал завершен </span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div ng-show="busy" class="spinner-wrapper">
-                <div ng-include src="'app/views/spinner.html'"></div>
-            </div>
         </div>
+        <div ng-show="busy" class="spinner-wrapper">
+            <div ng-include src="'app/views/spinner.html'"></div>
+        </div>
+    </div>
+    <div ng-include src="'app/views/partials/no-connection.html'" ng-if="networkOff"></div>
     <div ng-include src="'app/views/partials/show-details-popup.html'"></div>
 </div>
