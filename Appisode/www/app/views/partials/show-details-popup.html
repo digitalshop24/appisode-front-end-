@@ -36,7 +36,7 @@
                     </div>
                     <div class="slik_slider center" id="scrolling">
                         <ul item-slide settings="sliderConfig">
-                            <li ng-repeat="episode in selected.episodes" ng-class="{'gray': episode.number - 1 < selected.initialSlide}">
+                            <li ng-repeat="episode in selected.episodes" ng-class="{'gray': episode.aired}">
                                 {{episode.number}}
                             </li>
                         </ul>
@@ -51,10 +51,10 @@
 
             <div class="info-text-block" ng-show="type == 'season'">
                 <div class="datte">
-                    <span class="datte__item while" ng-show="selected.in_production">
+                    <span class="datte__item while" ng-show="selected.status == 'airing'">
                         <span class="blue">{{selected.season_number}} сезон</span>  выходит
                     </span>
-                    <span class="datte__item while" ng-show="!selected.in_production">
+                    <span class="datte__item while" ng-show="!selected.status == 'closed'">
                         сериал завершен
                     </span>
                     <span class="datte__item while">
@@ -92,7 +92,7 @@
 
     </div>
     <div class="button-info">
-        <button title="Close" class="button-info-licke" ng-click="subscribe($event)" ladda="selected.subscribeLoading">
+        <button title="Close" class="button-info-licke" ng-class="{'disabled' : selected.subscribe_btn_disable}" ng-click="subscribe($event)" ladda="selected.subscribeLoading">
             <i class="icon icon-info-licke"></i>
         </button>
         <button title="Close" class="button-info-closed" ng-click="closePopup()">

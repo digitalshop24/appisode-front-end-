@@ -19,7 +19,8 @@
         'itemSlide',
         'clickForOptions',
         'duScroll',
-        'angular-inview'
+        'angular-inview',
+        'focusMe'
     ]).value('duScrollOffset', 300);
 
     angular.module('app').config(function (laddaProvider) {
@@ -66,14 +67,8 @@
             }).state('search-results', {
                 url: '/search-results/:showId',
                 views: {
-                    'main': { templateUrl: "app/views/search-results.html" },
-                    'header@search-results': { templateUrl: "app/views/partials/search-header.html" }
-                }
-            }).state('show', {
-                url: '/show/:showId',
-                views: {
-                    'main': { templateUrl: "app/views/show.html" },
-                    'header@show': { templateUrl: "app/views/partials/header.html" }
+                    'main': { templateUrl: "app/views/search-results.html" }
+                    //'header@search-results': { templateUrl: "app/views/partials/search-header.html" }
                 }
             }).state('auth-step1', {
                 url: '/auth/step1',
@@ -166,11 +161,38 @@
         }
     ]);
 
-    app.run(['$ionicPlatform',
-        function ($ionicPlatform) {
+    app.run(['$rootScope', '$ionicPlatform', 'pushNotificationsService',
+        function ($rootScope, $ionicPlatform, pushNotificationsService) {
             $ionicPlatform.registerBackButtonAction(function () {
                 navigator.app.backHistory();
             }, 100);
+
+            var fn = function() {
+                pushNotificationsService.getList().then(function(response) {
+                    $.each(response.shows, function () {
+                        var notification = {
+                            id: $rootScope.index++,
+                            content: this.message,
+                            image: this.image,
+                            notification_id: this.id
+                        };
+
+                        var index = $rootScope.notifications.indexOf(notification);
+
+                        if (index < 0) {
+                            $rootScope.notifications.push(notification);
+                        }
+                    });
+                }, function(code) {});
+            };
+
+            $ionicPlatform.on("resume", function (event) {
+                fn();
+            });
+
+            ionic.Platform.ready(function() {
+                fn();
+            });
         }
     ]);
 

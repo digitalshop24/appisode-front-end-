@@ -5,6 +5,34 @@ angular.module('app').factory('pushNotificationsService', [
     function ($http, $q, $cordovaPush, $cordovaDialogs, $cordovaMedia, localStorageService, deviceService, ngApiSettings, ngLocalStorageKeys) {
         var pushNotificationsServiceFactory = {};
 
+        var getList = function() {
+            var deferred = $q.defer();
+
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/notifications");
+
+            $http.get(url).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (err, status) {
+                deferred.reject(status);
+            });
+
+            return deferred.promise;
+        };
+
+        var markAsRead = function (id) {
+            var deferred = $q.defer();
+
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/notifications");
+
+            $http.post(url, {notification_id: id}).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (err, status) {
+                deferred.reject(status);
+            });
+
+            return deferred.promise;
+        };
+
         var register = function () {
             var config = null;
 
@@ -40,7 +68,7 @@ angular.module('app').factory('pushNotificationsService', [
 
             var token = localStorageService.get(ngLocalStorageKeys.deviceToken);
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/test_push.json?token={token}&message={message}",
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/users/test_push.json?token=APA91bEm9ufj14uLAT7z8ITW6qan3ibkUFBntO4-I8GRpLjzb8rNAl4xnCNcZk5TUa9PO-2PLj0AZhrY65LRWkXNJhgBeeABOW0ebvZRsPOyGAjlrmtWvg3Kd8j8hyE_ahucUrKtZdkN&message={message}",
                 { token: token, message: message });
 
             $http.get(url).success(function (response) {
@@ -59,6 +87,8 @@ angular.module('app').factory('pushNotificationsService', [
         pushNotificationsServiceFactory.register = register;
         pushNotificationsServiceFactory.unregister = unregister;
         pushNotificationsServiceFactory.testPush = testPush;
+        pushNotificationsServiceFactory.getList = getList;
+        pushNotificationsServiceFactory.markAsRead = markAsRead;
 
         return pushNotificationsServiceFactory;
     }

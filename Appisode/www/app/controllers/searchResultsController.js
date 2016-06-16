@@ -6,9 +6,9 @@
         .controller('searchResultsController', searchResultsController);
 
     searchResultsController.$inject = [
-        '$scope', '$rootScope', '$state', '$stateParams', '$timeout', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
+        '$scope', '$rootScope', '$state', '$stateParams', '$timeout', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', '$cordovaNetwork'];
 
-    function searchResultsController($scope, $rootScope, $state, $stateParams, $timeout, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
+    function searchResultsController($scope, $rootScope, $state, $stateParams, $timeout, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, $cordovaNetwork) {
         var vm = this;
 
         $scope.showId = $stateParams.showId;
@@ -17,7 +17,7 @@
         vm.take = 10;
         vm.total = null;
 
-        $rootScope.hide_header = true;
+        $rootScope.hide_header = false;
 
         $scope.type = Subscriptions.episode;
 
@@ -35,6 +35,13 @@
         };
 
         $scope.getShows = function () {
+            $scope.networkOff = false;
+
+            if ($cordovaNetwork.isOffline()) {
+                $scope.networkOff = true;
+                return;
+            }
+
             if (vm.total != null && vm.total <= vm.page * vm.take) {
                 return;
             }
@@ -94,11 +101,14 @@
             var episode = $scope.selected.episodes[$scope.selected.currentIndex];
 
             subscriptionsService.subscribe($scope.selected.id, $scope.type === Subscriptions.episode ? episode.id : null, $scope.type).then(function (response) {
+                if (!$scope.selected.subscription_id) {
+                    $rootScope.subscriptionsTotal += 1;
+                }
+
                 $scope.selected.subscription_id = response.id;
                 $scope.selected.subscribeLoading = false;
-                $scope.show_details_popup = false;
 
-                $rootScope.subscriptionsTotal += 1;
+                $scope.closePopup();
             }, function (code) {
                 $scope.selected.subscribeLoading = false;
                 if (code === 401) {
@@ -134,6 +144,8 @@
             $scope.selected.currentIndex = index;
 
             var episode = $scope.selected.episodes[index];
+
+            $scope.selected.subscribe_btn_disable = episode.aired;
 
             $scope.selected.episode_date = episode ? DateFactory.getDate(episode.air_date) : ('дата неизвестна');
         };
@@ -173,6 +185,8 @@
 
         $scope.init();
         $scope.getSubscriptions();
+
+        $scope.refresh = $scope.getShows;
     };
 
 })();

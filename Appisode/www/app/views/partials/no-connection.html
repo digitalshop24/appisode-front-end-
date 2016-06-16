@@ -1,8 +1,7 @@
-﻿<div>
+﻿<div class="no-conn-wrap">
     <h3>Ошибка получения данных</h3>
     <p>Проверьте подключение к интернету</p>
-    <br/>
-    <div>
-        <input type="button" value="Обновить" ng-click="refresh()"/>
+    <div class="btn">
+        <a ng-click="refresh()" ladda="!networkOff">Обновить</a>
     </div>
 </div>

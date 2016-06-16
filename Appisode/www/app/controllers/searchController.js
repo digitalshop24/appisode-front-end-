@@ -5,15 +5,16 @@
         .module('app')
         .controller('searchController', searchController);
        
-    searchController.$inject = ['$scope', '$rootScope', '$state', 'showsService', 'authService', 'subscriptionsService'];
+    searchController.$inject = ['$scope', '$rootScope', '$state', 'showsService', '$cordovaNetwork'];
 
-    function searchController($scope, $rootScope, $state, showsService, authService, subscriptionsService) {
+    function searchController($scope, $rootScope, $state, showsService, $cordovaNetwork) {
         var vm = this;
 
         vm.page = 1;
         vm.take = 10;
 
         $rootScope.hide_header = true;
+        $rootScope.search_focus = false;
         
         $scope.shows = [];
         $scope.query = null;
@@ -32,6 +33,13 @@
         };
 
         $scope.search = function () {
+            $scope.networkOff = false;
+
+            if ($cordovaNetwork.isOffline()) {
+                $scope.networkOff = true;
+                return;
+            }
+
             if ($scope.total != null && $scope.total <= vm.page * vm.take) {
                 return;
             }
@@ -64,6 +72,7 @@
         };
 
         $scope.gotoShow = function (id) {
+            $rootScope.hide_header = false;
             $state.go('search-results', { showId: id });
         };
 
@@ -71,5 +80,7 @@
             show.subscribeLoading = false;
             return show;
         };
+
+        $scope.refresh = $scope.search;
     };
 })();

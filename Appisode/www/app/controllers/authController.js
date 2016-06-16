@@ -6,10 +6,10 @@
         .controller('authController', authController);
 
     authController.$inject = [
-        '$scope', '$rootScope', '$state', '$cordovaToast', 'localStorageService', 'authService', 'ngLocalStorageKeys'
+        '$scope', '$rootScope', '$state', '$cordovaToast', 'localStorageService', 'authService', 'pushNotificationsService', 'ngLocalStorageKeys'
     ];
 
-    function authController($scope, $rootScope, $state, $cordovaToast, localStorageService, authService, ngLocalStorageKeys) {
+    function authController($scope, $rootScope, $state, $cordovaToast, localStorageService, authService, pushNotificationsService, ngLocalStorageKeys) {
         $rootScope.hide_header = true;
 
         $scope.number = null;
@@ -60,6 +60,26 @@
             }
 
             return true;
+        };
+
+        $scope.finish = function() {
+            pushNotificationsService.getList().then(function(response) {
+                $.each(response.shows, function () {
+                    var notification = {
+                        id: $rootScope.index++,
+                        content: this.message,
+                        image: this.image,
+                        notification_id: this.id
+                    };
+
+                    var index = $rootScope.notifications.indexOf(notification);
+
+                    if (index < 0) {
+                        $rootScope.notifications.push(notification);
+                    }
+            }, function (code) { });
+
+            $state.go('popular');
         };
     };
 })();

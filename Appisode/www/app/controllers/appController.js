@@ -9,15 +9,13 @@
         '$rootScope', '$scope', '$state', '$timeout', '$cordovaPush', '$cordovaDialogs', '$cordovaMedia', 'Notification', 'deviceService', 'pushNotificationsService'];
 
     function appController($rootScope, $scope, $state, $timeout, $cordovaPush, $cordovaDialogs, $cordovaMedia, Notification, deviceService, pushNotificationsService) { 
-        $scope.notifications = [];
-
-        $scope.push_img_path = null;
-        $scope.push_content = null;
+        $rootScope.notifications = [];
 
         $rootScope.navSlickControl = {};
         $rootScope.current_action = 'popular';
 
         $rootScope.initialized = true;
+        $rootScope.index = 0;
 
         ionic.Platform.ready(function () {
             pushNotificationsService.register();
@@ -46,7 +44,7 @@
             else if (ionic.Platform.isIOS()) {
                 handleIos(notification);
                 $scope.$apply(function() {
-                    $scope.notifications.push(JSON.stringify(notification.alert));
+                    $rootScope.notifications.push(JSON.stringify(notification.alert));
                 });
             }
         });
@@ -56,35 +54,41 @@
         };
 
         $scope.closePush = function (notification) {
-            var index = $scope.notifications.indexOf(notification);
+            var index = $rootScope.notifications.indexOf(notification);
+
+            if (notification.notification_id) {
+                pushNotificationsService.markAsRead(notification.notification_id);
+            }
 
             if (index >= 0) {
-                $scope.notifications.splice(index, 1);
+                $rootScope.notifications.splice(index, 1);
             }
         };
 
         function handleAndroid(notification) {
             console.log("In foreground " + notification.foreground + " Coldstart " + notification.coldstart);
-            if (notification.event == "registered") {
+            if (notification.event === "registered") {
                 deviceService.saveDeviceToken(notification.regid).then(function () {
                     console.log("Token stored, device is successfully subscribed to receive push notifications.");
                 }, function (data, status) {
                     console.log("Error storing device token.");
                 });
             }
-            else if (notification.event == "message") {
+            else if (notification.event === "message" && notification.foreground) {
                 $scope.$apply(function () {
-                    $scope.push_content = notification.message;
-                    $scope.push_img_path = notification.payload ? notification.payload.path : null;
+                    var n = {
+                        id: $rootScope.index++,
+                        content: notification.message,
+                        image: notification.payload ? notification.payload.path : null
+                    };
 
-                    $scope.hideOnDelay(notification);
+                    $scope.hideOnDelay(n);
 
-                    $scope.notifications.push(JSON.stringify(notification.message));
+                    $rootScope.notifications.push(n);
                 });
             }
-            else if (notification.event == "error")
+            else if (notification.event === "error")
                 $cordovaDialogs.alert(notification.msg, "Push notification error event");
-            else $cordovaDialogs.alert(notification.event, "Push notification handler - Unprocessed Event");
         };
 
         function handleIos(notification) {

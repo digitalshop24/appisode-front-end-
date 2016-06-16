@@ -6,9 +6,9 @@
         .controller('popularController', popularController);
 
     popularController.$inject = [
-        '$scope', '$rootScope', '$state', '$timeout', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService'];
+        '$scope', '$rootScope', '$state', '$timeout', '$cordovaToast', 'localStorageService', 'showsService', 'authService', 'subscriptionsService', 'pushNotificationsService', '$cordovaNetwork'];
 
-    function popularController($scope, $rootScope, $state, $timeout, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService) {
+    function popularController($scope, $rootScope, $state, $timeout, $cordovaToast, localStorageService, showsService, authService, subscriptionsService, pushNotificationsService, $cordovaNetwork) {
         var vm = this;
 
         vm.page = 1;
@@ -35,6 +35,13 @@
         };
 
         $scope.getShows = function () {
+            $scope.networkOff = false;
+
+            if ($cordovaNetwork.isOffline()) {
+                $scope.networkOff = true;
+                return;
+            }
+
             if (vm.total != null && vm.total <= vm.page * vm.take) {
                 return;
             }
@@ -65,8 +72,19 @@
 
             showsService.getShow(show.id).then(function(response) {
                 $scope.selected.episodes = response.episodes;
-                $scope.selected.initialSlide = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
-               
+
+                if (!show.subscription || show.subscription.subtype === Subscriptions.season) {
+                    $scope.selected.initialSlide = response.next_episode
+                        ? (response.next_episode.number - 1)
+                        : (response.episodes.length - 1);
+                } else {
+                    $scope.selected.initialSlide = show.subscription.next_notification_episode
+                        ? show.subscription.next_notification_episode.number - 1
+                        : (response.next_episode
+                            ? (response.next_episode.number - 1)
+                            : (response.episodes.length - 1));
+                }
+
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
 
                 if ($scope.type === Subscriptions.episode) {
@@ -94,11 +112,14 @@
             var episode = $scope.selected.episodes[$scope.selected.currentIndex];
 
             subscriptionsService.subscribe($scope.selected.id, $scope.type === Subscriptions.episode ? episode.id : null, $scope.type).then(function (response) {
-                $scope.selected.subscription_id = response.id;
-                $scope.selected.subscribeLoading = false;
-                $scope.show_details_popup = false;
+                if (!$scope.selected.subscription) {
+                    $rootScope.subscriptionsTotal += 1;
+                }
 
-                $rootScope.subscriptionsTotal += 1;
+                $scope.selected.subscription = response;
+                $scope.selected.subscribeLoading = false;
+
+                $scope.closePopup();
             }, function(code) {
                 $scope.selected.subscribeLoading = false;
                 if (code === 401) {
@@ -139,6 +160,8 @@
 
             var episode = $scope.selected.episodes[index];
 
+            $scope.selected.subscribe_btn_disable = episode.aired;
+
             $scope.selected.episode_date = episode ? DateFactory.getDate(episode.air_date) : ('дата неизвестна');
         };
 
@@ -177,6 +200,8 @@
 
         $scope.init();
         $scope.getSubscriptions();
+
+        $scope.refresh = $scope.getShows;
     };
 
 })();

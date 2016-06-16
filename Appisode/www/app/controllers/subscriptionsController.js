@@ -6,10 +6,10 @@
         .controller('subscriptionsController', subscriptionsController);
 
     subscriptionsController.$inject = [
-        '$scope', '$rootScope', '$state', '$timeout', 'localStorageService', 'subscriptionsService'
+        '$scope', '$rootScope', '$state', '$timeout', 'localStorageService', 'subscriptionsService', '$cordovaNetwork'
     ];
 
-    function subscriptionsController($scope, $rootScope, $state, $timeout, localStorageService, subscriptionsService) {
+    function subscriptionsController($scope, $rootScope, $state, $timeout, localStorageService, subscriptionsService, $cordovaNetwork) {
         var vm = this;
 
         vm.page = 1;
@@ -21,6 +21,7 @@
 
         $scope.subscriptions = [];
         $scope.total = null;
+        $scope.numbersFactory = NumbersFactory;
 
         $scope.init = function () {
             $scope.subscriptions = [];
@@ -29,6 +30,13 @@
         };
 
         $scope.getSubscriptions = function () {
+            $scope.networkOff = false;
+
+            if ($cordovaNetwork.isOffline()) {
+                $scope.networkOff = true;
+                return;
+            }
+
             if ($scope.total != null && $scope.total <= vm.page * vm.take) {
                 return;
             }
@@ -83,5 +91,7 @@
         };
 
         $scope.init();
+
+        $scope.refresh = $scope.getSubscriptions;
     }
 })();

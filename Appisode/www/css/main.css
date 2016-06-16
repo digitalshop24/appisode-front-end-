@@ -3801,3 +3801,22 @@ button.show_like {
     -ms-transform:  rotate(0deg) scaleX(1.00) scaleY(1.00) ;
   }
 }
+
+.no-conn-wrap {
+    padding: 40px 15px;
+    width: 100%;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    font-family: 'BebasNeueBold';
+    font-size: 18px;
+}
+
+.no-conn-wrap a {
+    padding: 15px 30px;
+    background-color: #d82b41;
+}
+
+.no-conn-wrap .btn {
+    margin-top: 40px;
+}

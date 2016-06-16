@@ -1,12 +1,12 @@
 ﻿<div ng-controller="authController as view" ng-app="app">
     <div class="popup1 popup">
         <div class="closed js-closed">
-            <a ui-sref="popular">
+            <a ng-click="finish()">
                 <i class="icon icon-popup-closed"></i>
             </a>
         </div>
         <h3>Порядок!</h3>
         <p>Теперь вы можете что-то там. нужен текст о том, как теперь все </p>
-        <a ui-sref="popular" class="btn_popup">Закрыть</a>
+        <a ng-click="finish()" class="btn_popup">Закрыть</a>
     </div>
 </div>

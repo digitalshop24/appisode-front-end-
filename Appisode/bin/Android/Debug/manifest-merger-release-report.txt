@@ -136,11 +136,11 @@ uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from AndroidManifest.xml:28:5
 	android:name
 		ADDED from AndroidManifest.xml:28:22
-uses-permission#android.permission.ACCESS_NETWORK_STATE
+uses-permission#android.permission.INTERNET
 ADDED from AndroidManifest.xml:29:5
 	android:name
 		ADDED from AndroidManifest.xml:29:22
-uses-permission#android.permission.INTERNET
+uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from AndroidManifest.xml:30:5
 	android:name
 		ADDED from AndroidManifest.xml:30:22
