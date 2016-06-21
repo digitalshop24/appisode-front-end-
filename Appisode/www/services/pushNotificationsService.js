@@ -5,10 +5,13 @@ angular.module('app').factory('pushNotificationsService', [
     function ($http, $q, $cordovaPush, $cordovaDialogs, $cordovaMedia, localStorageService, deviceService, ngApiSettings, ngLocalStorageKeys) {
         var pushNotificationsServiceFactory = {};
 
-        var getList = function() {
+        var getList = function (page, perPage) {
             var deferred = $q.defer();
 
-            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/notifications");
+            return deferred.promise;
+
+            var url = Utils.buildApiUrl(ngApiSettings.apiUri, "/notifications?page={page}&per_page={perPage}",
+            { page: page, perPage: perPage });
 
             $http.get(url).success(function (response) {
                 deferred.resolve(response);

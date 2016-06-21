@@ -1,7 +1,7 @@
 ﻿<div ng-controller="popularController" ng-app="app">
-    <div style="background-color: #fff; color: #333">
+    <!--<div style="background-color: #fff; color: #333">
         <a ng-click="testPush()">Test push</a>
-    </div>
+    </div>-->
     <div class="tabs__content" infinite-scroll="getShows()" infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
         <div class="tabs__content_item" style="display: block;" ng-repeat="show in shows">
             <div class="tabs__content_item_block" ng-style="{'background': 'url({{show.poster}}) no-repeat', 'background-size': 'cover'}">

@@ -20,7 +20,8 @@
         'clickForOptions',
         'duScroll',
         'angular-inview',
-        'focusMe'
+        'focusMe',
+        'windowScroll'
     ]).value('duScrollOffset', 300);
 
     angular.module('app').config(function (laddaProvider) {
@@ -168,7 +169,7 @@
             }, 100);
 
             var fn = function() {
-                pushNotificationsService.getList().then(function(response) {
+                pushNotificationsService.getList($rootScope.pushPage, $rootScope.pushPerPage).then(function(response) {
                     $.each(response.shows, function () {
                         var notification = {
                             id: $rootScope.index++,

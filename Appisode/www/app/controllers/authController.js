@@ -16,7 +16,7 @@
         $scope.code = null;
 
         $scope.loading = false;
-        
+
         $scope.togglePhone = function(element) {
             $(element.currentTarget).toggleClass("active");
         };
@@ -40,7 +40,7 @@
             }
         };
 
-        $scope.goto5 = function () {
+        $scope.goto5 = function() {
             if (!$scope.code) {
                 $cordovaToast.showLongTop('Пожалуйста, введите код подтверждения');
                 return false;
@@ -49,11 +49,11 @@
 
                 var phone = localStorageService.get(ngLocalStorageKeys.phone);
 
-                authService.checkConfirmation(phone, $scope.code).then(function (response) {
+                authService.checkConfirmation(phone, $scope.code).then(function(response) {
                     localStorageService.set(ngLocalStorageKeys.key, response.auth_token);
                     $scope.loading = false;
                     $state.go('auth-step5');
-                }, function () {
+                }, function() {
                     $cordovaToast.showLongTop('Неверный код подтверждения');
                     $scope.loading = false;
                 });
@@ -63,8 +63,8 @@
         };
 
         $scope.finish = function() {
-            pushNotificationsService.getList().then(function(response) {
-                $.each(response.shows, function () {
+            pushNotificationsService.getList($rootScope.pushPage, $rootScope.pushPerPage).then(function (response) {
+                $.each(response.shows, function() {
                     var notification = {
                         id: $rootScope.index++,
                         content: this.message,
@@ -77,9 +77,10 @@
                     if (index < 0) {
                         $rootScope.notifications.push(notification);
                     }
-            }, function (code) { });
+                }, function(code) {});
 
-            $state.go('popular');
+                $state.go('popular');
+            });
         };
-    };
+    }
 })();

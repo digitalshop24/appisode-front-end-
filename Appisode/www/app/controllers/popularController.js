@@ -69,6 +69,8 @@
             $scope.selected = show;
 
             show.show_loading = true;
+            $scope.selected.isSeason = false;
+            $scope.type = Subscriptions.episode;
 
             showsService.getShow(show.id).then(function(response) {
                 $scope.selected.episodes = response.episodes;
@@ -83,6 +85,11 @@
                         : (response.next_episode
                             ? (response.next_episode.number - 1)
                             : (response.episodes.length - 1));
+                }
+
+                if (show.subscription && show.subscription.subtype === Subscriptions.season) {
+                    $scope.type = Subscriptions.season;
+                    $scope.selected.isSeason = true;
                 }
 
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
@@ -135,6 +142,7 @@
             $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
 
             if ($scope.type === Subscriptions.episode) {
+                $scope.selected.isSeason = false;
                 $scope.sliderConfig = null;
                 $timeout(vm.initSlider, 1);
             }

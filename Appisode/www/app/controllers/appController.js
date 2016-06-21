@@ -10,6 +10,8 @@
 
     function appController($rootScope, $scope, $state, $timeout, $cordovaPush, $cordovaDialogs, $cordovaMedia, Notification, deviceService, pushNotificationsService) { 
         $rootScope.notifications = [];
+        $rootScope.pushPage = 1;
+        $rootScope.pushPerPage = 6;
 
         $rootScope.navSlickControl = {};
         $rootScope.current_action = 'popular';
