@@ -1526,19 +1526,16 @@ body {
 
 
 
-.navbar-fixed {
-    position:fixed;
-    top:0;
-    z-index:999;
-    background:black;
+.menu-block {
+  z-index:999;
+  background:black;
+
+  position: absolute;
+  top: 0;
 }
 
-.menu-block-clone {
-  display:none;
-}
-.navbar-fixed-clone {
-  height:164px;
-  display:block;
+.content {
+  margin-top:150px;
 }
 
 
