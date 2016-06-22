@@ -65,16 +65,37 @@
             $scope.selected = show;
 
             show.show_loading = true;
+            $scope.selected.isSeason = false;
+            $scope.type = Subscriptions.episode;
 
             showsService.getShow(show.id).then(function (response) {
                 $scope.selected.episodes = response.episodes;
-                $scope.selected.initialSlide = response.next_episode ? (response.next_episode.number - 1) : (response.episodes.length - 1);
+
+                if (!show.subscription || show.subscription.subtype === Subscriptions.season) {
+                    $scope.selected.initialSlide = response.next_episode
+                        ? (response.next_episode.number - 1)
+                        : (response.episodes.length - 1);
+                } else {
+                    $scope.selected.initialSlide = show.subscription.next_notification_episode
+                        ? show.subscription.next_notification_episode.number - 1
+                        : (response.next_episode
+                            ? (response.next_episode.number - 1)
+                            : (response.episodes.length - 1));
+                }
+
+                if (show.subscription && show.subscription.subtype === Subscriptions.season) {
+                    $scope.type = Subscriptions.season;
+                    $scope.selected.isSeason = true;
+                }
 
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
 
                 if ($scope.type === Subscriptions.episode) {
                     vm.initSlider();
                 }
+
+                var lastEpisode = $scope.selected.episodes[response.episodes.length - 1];
+                $scope.selected.season_air_date_detailed = DateFactory.getMonthDaysHours(lastEpisode ? lastEpisode.days_left : null);
 
                 $scope.show_details_popup = true;
                 show.show_loading = false;
@@ -97,11 +118,11 @@
             var episode = $scope.selected.episodes[$scope.selected.currentIndex];
 
             subscriptionsService.subscribe($scope.selected.id, $scope.type === Subscriptions.episode ? episode.id : null, $scope.type).then(function (response) {
-                if (!$scope.selected.subscription_id) {
+                if (!$scope.selected.subscription) {
                     $rootScope.subscriptionsTotal += 1;
                 }
 
-                $scope.selected.subscription_id = response.id;
+                $scope.selected.subscription = response;
                 $scope.selected.subscribeLoading = false;
 
                 $scope.closePopup();
@@ -120,6 +141,7 @@
             $scope.type = $scope.type === Subscriptions.episode ? Subscriptions.season : Subscriptions.episode;
 
             if ($scope.type === Subscriptions.episode) {
+                $scope.selected.isSeason = false;
                 $scope.sliderConfig = null;
                 $timeout(vm.initSlider, 1);
             }

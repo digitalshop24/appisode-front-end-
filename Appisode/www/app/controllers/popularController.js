@@ -98,6 +98,9 @@
                     vm.initSlider();
                 }
 
+                var lastEpisode = $scope.selected.episodes[response.episodes.length - 1];
+                $scope.selected.season_air_date_detailed = DateFactory.getMonthDaysHours(lastEpisode ? lastEpisode.days_left : null);
+                
                 $scope.show_details_popup = true;
                 show.show_loading = false;
             }, function() {

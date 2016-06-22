@@ -169,9 +169,9 @@
             }, 100);
 
             var fn = function() {
-                pushNotificationsService.getList($rootScope.pushPage, $rootScope.pushPerPage).then(function(response) {
+                pushNotificationsService.getList($rootScope.pushSkip, $rootScope.pushTake).then(function (response) {
                     $.each(response.shows, function () {
-                        var notification = {
+                        var notification = {    
                             id: $rootScope.index++,
                             content: this.message,
                             image: this.image,
@@ -182,8 +182,13 @@
 
                         if (index < 0) {
                             $rootScope.notifications.push(notification);
+                            $rootScope.hideOnDelay(notification);
                         }
                     });
+
+                    $rootScope.pushTotal = response.total;
+                    $rootScope.pushSkip += $rootScope.pushTake;
+                    $rootScope.pushTake = 1;
                 }, function(code) {});
             };
 

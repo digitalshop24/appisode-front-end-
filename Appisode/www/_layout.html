@@ -24,7 +24,7 @@
     <div ui-view="main"></div>
 
     <div ng-show="notifications.length && initialized" class="warning ng-hide">
-        <ion-slide-box on-slide-changed="closePush(notification)" ng-repeat="notification in notifications track by $index">
+        <ion-slide-box on-slide-changed="closePush(notification)" ng-repeat="notification in notifications" ng-attr-id="{{'push-' + notification.id}}">
             <ion-slide>
                 <div class="warning-item clearfix">
                     <div class="img">

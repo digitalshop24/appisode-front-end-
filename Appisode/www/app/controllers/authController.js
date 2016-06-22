@@ -63,24 +63,29 @@
         };
 
         $scope.finish = function() {
-            pushNotificationsService.getList($rootScope.pushPage, $rootScope.pushPerPage).then(function (response) {
-                $.each(response.shows, function() {
+            pushNotificationsService.getList($rootScope.pushSkip, $rootScope.pushTake).then(function (response) {
+                $.each(response.shows, function () {
                     var notification = {
                         id: $rootScope.index++,
                         content: this.message,
                         image: this.image,
                         notification_id: this.id
                     };
-
+                    
                     var index = $rootScope.notifications.indexOf(notification);
 
                     if (index < 0) {
                         $rootScope.notifications.push(notification);
+                        $rootScope.hideOnDelay(notification);
                     }
-                }, function(code) {});
+                });
 
-                $state.go('popular');
-            });
+                $rootScope.pushTotal = response.total;
+                $rootScope.pushSkip += $rootScope.pushTake;
+                $rootScope.pushTake = 1;
+            }, function(code) {});
+
+            $state.go('popular');
         };
     }
 })();

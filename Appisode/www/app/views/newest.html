@@ -6,7 +6,7 @@
                     <h3 class="title_en">{{show.name_original}}</h3>
                     <h2 class="tittle_ru">{{show.name}}</h2>
                     <div class="call_like">
-                        <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription_id}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll in-view="inView($index, $inview, $inviewpart, $event, {{show.id}})" in-view-options="{offset: '150%'}">
+                        <button ng-href="#{{show.id}}" ng-attr-id="{{show.id}}" class="btn__call" ng-class="{'active__call': show.subscription}" ng-click="select(show)" ladda="show.show_loading" du-smooth-scroll in-view="inView($index, $inview, $inviewpart, $event, {{show.id}})" in-view-options="{offset: '150%'}">
                             <i class="icon icon_call" ng-class="{'element-animation': show.animate_bell}"></i>
                         </button>
                     </div>

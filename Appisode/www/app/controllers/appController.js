@@ -10,8 +10,10 @@
 
     function appController($rootScope, $scope, $state, $timeout, $cordovaPush, $cordovaDialogs, $cordovaMedia, Notification, deviceService, pushNotificationsService) { 
         $rootScope.notifications = [];
-        $rootScope.pushPage = 1;
-        $rootScope.pushPerPage = 6;
+        $rootScope.pushSkip = 0;
+        $rootScope.pushTake = 6;
+        $rootScope.pushTotal = 0;
+        $rootScope.pushLoaded = 0;
 
         $rootScope.navSlickControl = {};
         $rootScope.current_action = 'popular';
@@ -51,8 +53,8 @@
             }
         });
 
-        $scope.hideOnDelay = function (notification) {
-            $timeout(function() { $scope.closePush(notification) }, 7000);
+        $rootScope.hideOnDelay = function (notification) {
+            //$timeout(function() { $scope.closePush(notification) }, 7000);
         };
 
         $scope.closePush = function (notification) {
@@ -60,11 +62,37 @@
 
             if (notification.notification_id) {
                 pushNotificationsService.markAsRead(notification.notification_id);
+
+                $scope.loadPush();
             }
 
             if (index >= 0) {
-                $rootScope.notifications.splice(index, 1);
+                $timeout(function() { $rootScope.notifications.splice(notification, 1) }, 100);
             }
+        };
+
+        $scope.loadPush = function() {
+            pushNotificationsService.getList($rootScope.pushSkip, $rootScope.pushTake).then(function(response) {
+                $.each(response.shows, function() {
+                    var notification = {
+                        id: $rootScope.index++,
+                        content: this.message,
+                        image: this.image,
+                        notification_id: this.id
+                    };
+
+                    var index = $rootScope.notifications.indexOf(notification);
+
+                    if (index < 0) {
+                        $rootScope.notifications.push(notification);
+                        $rootScope.hideOnDelay(notification);
+                    }
+                });
+
+                $rootScope.pushTotal = response.total;
+                $rootScope.pushSkip += $rootScope.pushTake;
+                $rootScope.pushTake = 1;
+            }, function(code) {});
         };
 
         function handleAndroid(notification) {
@@ -81,10 +109,11 @@
                     var n = {
                         id: $rootScope.index++,
                         content: notification.message,
-                        image: notification.payload ? notification.payload.path : null
+                        image: notification.payload ? notification.payload.path : null,
+                        notification_id: notification.payload.notification_id
                     };
 
-                    $scope.hideOnDelay(n);
+                    $rootScope.hideOnDelay(n);
 
                     $rootScope.notifications.push(n);
                 });
