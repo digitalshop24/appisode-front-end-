@@ -865,9 +865,15 @@ body {
 .tabs__content_item .block_button_section {
   padding: 50px 0;
 }
-
+.tabs__content {
+     margin-top:153px; 
+}
+.scroll {
+    margin-top:153px;
+}
 .tabs__content .datte__item {
   padding-bottom: 10px;
+ 
 }
 
 .time {
