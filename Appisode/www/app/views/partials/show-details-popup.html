@@ -54,11 +54,11 @@
                     <span class="datte__item while" ng-show="selected.status == 'airing'">
                         <span class="blue">{{selected.season_number}} сезон</span>  выходит
                     </span>
-                    <span class="datte__item while" ng-show="!selected.status == 'closed'">
+                    <span class="datte__item while" ng-show="selected.status == 'closed'">
                         сериал завершен
                     </span>
-                    <span class="datte__item while">
-                        {{selected.air_date_str}}
+                    <span class="datte__item while" ng-show="selected.status != 'closed'">
+                        {{selected.season_air_date_str}}
                     </span>
                 </div>
                 <div class="time">
@@ -92,7 +92,7 @@
 
     </div>
     <div class="button-info">
-        <button title="Close" class="button-info-licke" ng-class="{'disabled' : selected.subscribe_btn_disable}" ng-click="subscribe($event)" ladda="selected.subscribeLoading">
+        <button title="Close" class="button-info-licke" ng-disabled="selected.subscribe_btn_disable" ng-class="{'disabled' : selected.subscribe_btn_disable}" ng-click="subscribe($event)" ladda="selected.subscribeLoading">
             <i class="icon icon-info-licke"></i>
         </button>
         <button title="Close" class="button-info-closed" ng-click="closePopup()">

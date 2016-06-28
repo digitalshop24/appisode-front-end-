@@ -327,6 +327,7 @@
 
                 slides.destroy = function() {
                     //carousel.unbind();
+                    slides.children(':nth-child(' + ((carousel.vars.currentIndex + 1) || 0) + ')').removeClass('itemslide-active');
                 };
             }
         };

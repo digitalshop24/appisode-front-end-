@@ -54,7 +54,7 @@
         });
 
         $rootScope.hideOnDelay = function (notification) {
-            //$timeout(function() { $scope.closePush(notification) }, 7000);
+            $timeout(function() { $scope.closePush(notification) }, 5000);
         };
 
         $scope.closePush = function (notification) {

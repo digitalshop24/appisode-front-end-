@@ -92,6 +92,12 @@
                     $scope.selected.isSeason = true;
                 }
 
+                if ($scope.selected.status === 'closed') {
+                    $scope.selected.subscribe_btn_disable = true;
+                }else {
+                    $scope.selected.subscribe_btn_disable = false;
+                }
+
                 $scope.selected.currentIndex = $scope.selected.initialSlide;
 
                 if ($scope.type === Subscriptions.episode) {
@@ -100,6 +106,7 @@
 
                 var lastEpisode = $scope.selected.episodes[response.episodes.length - 1];
                 $scope.selected.season_air_date_detailed = DateFactory.getMonthDaysHours(lastEpisode ? lastEpisode.days_left : null);
+                $scope.selected.season_air_date_str = DateFactory.getDate(lastEpisode.air_date);
 
                 $scope.show_details_popup = true;
                 show.show_loading = false;
@@ -148,6 +155,12 @@
                 $scope.selected.isSeason = false;
                 $scope.sliderConfig = null;
                 $timeout(vm.initSlider, 0.1);
+            } else if ($scope.type === Subscriptions.season) {
+                if ($scope.selected.status === 'closed') {
+                    $scope.selected.subscribe_btn_disable = true;
+                } else {
+                    $scope.selected.subscribe_btn_disable = false;
+                }
             }
         };
 

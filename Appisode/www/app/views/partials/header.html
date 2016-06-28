@@ -25,34 +25,16 @@
             </div>
         </a>
         <slick control="navSlickControl" class="slider-nav" slides-to-show=3 on-after-change="onAfterChangeNavSlick" focus-on-select=true center-mode=true infinite=true dots=false slides-to-scroll=1 accessibility=false>
+            <!--<div class="slider-nav">-->
             <div class="block">
                 <div class="block-item tabs__nav_item">
-                    <i class="icon icon-star" ></i>
+                    <i class="icon icon-star"></i>
                     <span>популярные</span>
                 </div>
             </div>
             <div class="block">
                 <div class="block-item tabs__nav_item">
-                    <i class="icon icon-my" ></i>
-                    <span>избранные</span>
-                    <span class="red" ng-show="subscriptionsVisible"> {{subscriptionsTotal}}</span>
-                </div>
-            </div>
-            <div class="block">
-                <div class="block-item tabs__nav_item">
-                    <i class="icon icon-news" ></i>
-                    <span>Новинки</span>
-                </div>
-            </div>
-            <div class="block">
-                <div class="block-item tabs__nav_item">
-                    <i class="icon icon-star" ></i>
-                    <span>популярные</span>
-                </div>
-            </div>
-            <div class="block">
-                <div class="block-item tabs__nav_item">
-                    <i class="icon icon-my" ></i>
+                    <i class="icon icon-my"></i>
                     <span>избранные</span>
                     <span class="red" ng-show="subscriptionsVisible"> {{subscriptionsTotal}}</span>
                 </div>
@@ -60,9 +42,29 @@
             <div class="block">
                 <div class="block-item tabs__nav_item">
                     <i class="icon icon-news"></i>
-                    <span>Новинки</span>
+                    <span>новинки</span>
                 </div>
             </div>
+            <div class="block">
+                <div class="block-item tabs__nav_item">
+                    <i class="icon icon-star"></i>
+                    <span>популярные</span>
+                </div>
+            </div>
+            <div class="block">
+                <div class="block-item tabs__nav_item">
+                    <i class="icon icon-my"></i>
+                    <span>избранные</span>
+                    <span class="red" ng-show="subscriptionsVisible"> {{subscriptionsTotal}}</span>
+                </div>
+            </div>
+            <div class="block">
+                <div class="block-item tabs__nav_item">
+                    <i class="icon icon-news"></i>
+                    <span>новинки</span>
+                </div>
+            </div>
+        <!--</div>-->
         </slick>
     </div>
     <div class="menu-block-clone">

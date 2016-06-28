@@ -202,6 +202,14 @@
         }
     ]);
 
+    app.run([
+        '$ionicScrollDelegate', 
+        function ($ionicScrollDelegate) {
+            //$ionicScrollDelegate.getScrollView().options.scrollingY = false;
+            //$ionicScrollDelegate.freezeAllScrolls(true);
+        }
+    ]);
+
     app.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
     });

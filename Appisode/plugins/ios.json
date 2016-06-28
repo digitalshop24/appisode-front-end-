@@ -4,100 +4,19 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {
-            "config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"PushPlugin\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"TagManager\"><param name=\"ios-package\" value=\"CDVTagManager\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"ios-package\" value=\"CDVConnection\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "*-Info.plist": {
-                "parents": {
-                    "NSAppTransportSecurity": [
-                        {
-                            "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "framework": {
-                "parents": {
-                    "CoreGraphics.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "QuartzCore.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "CoreData.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "SystemConfiguration.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        },
-                        {
-                            "xml": true,
-                            "count": 1
-                        }
-                    ],
-                    "libz.dylib": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "libsqlite3.dylib": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "CoreTelephony.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ]
-                }
-            }
-        }
+        "files": {}
     },
     "installed_plugins": {
+        "com.jareddickson.cordova.tag-manager": {
+            "PACKAGE_NAME": "com.cordova.appisode"
+        },
         "com.phonegap.plugins.PushPlugin": {
             "PACKAGE_NAME": "com.cordova.appisode"
         },
         "cordova-plugin-disable-nsapptransportsecurity": {
+            "PACKAGE_NAME": "com.cordova.appisode"
+        },
+        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.cordova.appisode"
         },
         "cordova-plugin-splashscreen": {
@@ -109,10 +28,7 @@
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.cordova.appisode"
         },
-        "com.jareddickson.cordova.tag-manager": {
-            "PACKAGE_NAME": "com.cordova.appisode"
-        },
-        "cordova-plugin-network-information": {
+        "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "com.cordova.appisode"
         }
     },
