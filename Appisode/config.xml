@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget defaultlocale="en-US" id="com.cordova.appisode" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <name>Appisode</name>
     <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
@@ -109,8 +109,8 @@
     <plugin name="cordova-plugin-disable-nsapptransportsecurity" src="E:\Downloads\cordova-plugin-disable-nsapptransportsecurity-master\cordova-plugin-disable-nsapptransportsecurity-master" version="1.0.2" />
     <plugin name="com.jareddickson.cordova.tag-manager" src="E:\Downloads\cordova-plugin-tag-manager-master\cordova-plugin-tag-manager-master" version="1.0.1" />
     <plugin name="cordova-plugin-network-information" src="E:\Downloads\cordova-plugin-network-information-master" version="1.2.2-dev" />
-    <preference name="xwalkVersion" value="xwalk_core_library_canary:17+" />
+    <preference name="xwalkVersion" value="18+" />
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
-    <preference name="xwalkMode" value="lite" />
+    <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
 </widget>

@@ -61,8 +61,6 @@
             "id": "cordova-plugin-crosswalk-webview"
         },
         "is_top_level": true,
-        "variables": {
-            "XWALK_MODE": "lite"
-        }
+        "variables": {}
     }
 }
