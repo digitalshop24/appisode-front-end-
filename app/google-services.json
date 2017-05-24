@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "146824252735",
+    "firebase_url": "https://appisode-beaf5.firebaseio.com",
+    "project_id": "appisode-beaf5",
+    "storage_bucket": "appisode-beaf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146824252735:android:47cec2e972b12775",
+        "android_client_info": {
+          "package_name": "com.example.romanchuk.appisode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146824252735-nisc9to38kestgt3v2m3sj2dffk2tnc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLVaQSE0qMrcv2tInNOv9NLh5S6AMXUHo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_step5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_black"
+    tools:context="com.example.romanchuk.appisode.auth.Step5Activity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/layoutButtonStep3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp">
+
+            <Button
+                android:id="@+id/btnStep3"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:background="@drawable/accept_button"
+                android:text="ЗАКРЫТЬ"
+                android:textAlignment="center"
+                android:textColor="@color/color_white"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_above="@id/layoutButtonStep3"
+            android:layout_marginBottom="70dp">
+
+            <!--<ImageButton-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:id="@+id/imgGoToMain"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:background="@drawable/icon_closed_button"-->
+                <!--android:padding="20dp"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:src="@drawable/icon_closed" />-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/textSing2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ПОРЯДОК!"
+                    android:textColor="@color/color_white"
+                    android:textSize="26sp" />
+                <TextView
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/textSing2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ТЕПЕРЬ ВЫ МОЖЕТЕ ЧТО-ТО ТАМ. НУЖЕН"
+                    android:textColor="@color/color_white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textSing2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ТЕКСТ О ТОМ, КАК ТЕПЕРЬ ВСЕ"
+                    android:textColor="@color/color_white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

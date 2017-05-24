@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="86dp">
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="86dp"
+        android:background="@color/color_primary_red"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/btnSubRemove"
+            android:layout_width="27dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_trash" />
+
+        <!--<TextView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Delete Item?"-->
+        <!--android:textColor="#fff"-->
+        <!--android:textSize="17sp" />-->
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/SubMainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/SubBackLayout"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:background="@color/color_black">
+
+            <ImageView
+                android:id="@+id/imgSubsBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="45dp"
+                android:minWidth="75dp"
+                android:padding="0dp"
+                android:scaleType="centerCrop" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@color/color_black" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/SubItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/SubCircleLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <com.example.romanchuk.appisode.view.WhiteCircleView
+                    android:id="@+id/imgCircle"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    app:circle_center_x="21dp"
+                    app:circle_center_y="43dp"
+                    app:circle_radius="20dp" />
+
+                <!--<ImageView-->
+                <!--android:id="@+id/imgSearchIcon"-->
+                <!--android:layout_width="42dp"-->
+                <!--android:layout_height="42dp"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:background="@drawable/search_icon"-->
+                <!--android:contentDescription="@string/Calls"-->
+                <!--android:scaleType="fitCenter" />-->
+
+                <ImageView
+                    android:id="@+id/iconCallButton1"
+                    android:layout_width="17dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_dz" />
+
+                <ImageView
+                    android:id="@+id/rotateLine"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/rotate_line"
+                    android:contentDescription="@string/Calls"
+                    android:scaleType="fitCenter" />
+
+                <com.example.romanchuk.appisode.view.AccentArcView
+                    android:id="@+id/imgArc"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    app:center_x="21dp"
+                    app:center_y="43dp"
+                    app:radius="20dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/SubInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="30dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewSubsName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:textColor="@color/color_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/textViewSubsNameOriginal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name_original"
+                    android:textColor="@color/color_title_en"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iconCallButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/icon_time" />
+
+                    <TextView
+                        android:id="@+id/textViewSubsStatusLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="name_original"
+                        android:textColor="@color/color_white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/textViewSubsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="name_original"
+                        android:textColor="@color/color_accent"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/textViewSubsStatusRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="name_original"
+                        android:textColor="@color/color_white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:alpha="0.19"
+                android:background="@drawable/subs_cancel"
+                android:id="@+id/SubDeleteLayout"
+                android:layout_width="20dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btnSubDelete1"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/subs_shape_touch" />
+
+                <ImageView
+                    android:id="@+id/btnSubDelete2"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/subs_shape_touch" />
+
+                <ImageView
+                    android:id="@+id/btnSubDelete3"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/subs_shape_touch" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </FrameLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/color_primary_red"-->
+        <!--app:gravity="right"-->
+        <!--app:clamp="self">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/text_view_pos"-->
+            <!--android:layout_width="72dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="Only Right" />-->
+
+    <!--</LinearLayout>-->
+
+
+
+</com.daimajia.swipe.SwipeLayout>
