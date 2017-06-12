@@ -7,10 +7,11 @@
     <string name="unauthorized">Unauthorized - need token</string>
     <string name="no_connection">No internet connection</string>
     <string name="subs_delete">Subscription will be deleted</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Отмена</string>
     <string name="input_phone">Введите номер телефона</string>
     <string name="input_code">Введите код из смс</string>
 
+    <string name="test">test</string>
     <string name="tab_3">мои</string>
     <string name="tab_2">популярные</string>
     <string name="tab_1">новинки</string>
