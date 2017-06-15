@@ -4,13 +4,9 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,7 +15,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,14 +29,13 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.support.v7.app.ActionBar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,7 +43,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +55,6 @@ import com.example.romanchuk.appisode.models.NotificationItem;
 import com.example.romanchuk.appisode.models.ShowsItem;
 import com.example.romanchuk.appisode.models.SubscriptionsItem;
 import com.example.romanchuk.appisode.tasks.LoadNotifications;
-import com.example.romanchuk.appisode.tasks.LoadSearchShow;
 import com.example.romanchuk.appisode.tasks.LoadShowsNew;
 import com.example.romanchuk.appisode.tasks.LoadShowsPopular;
 import com.example.romanchuk.appisode.tasks.LoadSubscriptions;
@@ -73,8 +65,6 @@ import com.example.romanchuk.appisode.tools.InternetConnection;
 import com.example.romanchuk.appisode.tools.NotificationUtils;
 import com.example.romanchuk.appisode.tools.Utils;
 import com.example.romanchuk.appisode.view.MyCustomLayoutManager;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -82,7 +72,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
@@ -187,24 +176,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         mViewPager.setCurrentItem(1);
         mSectionsPagerAdapter.notifyDataSetChanged();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-
-        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabOne.setText(R.string.tab_1);
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news3, 0 , 0, 0);
-        tabLayout.getTabAt(0).setCustomView(tabOne);
-
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText(R.string.tab_2);
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_star3, 0 , 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabTwo);
-
-        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText(R.string.tab_3);
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my3, 0 , 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabThree);
+        initTabs();
 
 //        tabLayout.addOnTabSelectedListener(this);
 
@@ -232,8 +204,26 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    private void initTabs() {
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
 
+        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabOne.setText(R.string.tab_1);
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news3, 0 , 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabTwo.setText(R.string.tab_2);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_star3, 0 , 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabThree.setText(R.string.tab_3);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my3, 0 , 0, 0);
+        tabLayout.getTabAt(2).setCustomView(tabThree);
+    }
 
 
     private void handleDataMessage(int id, String title, String message) {
