@@ -3,9 +3,12 @@ package com.example.romanchuk.appisode.auth;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.GestureDetector;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,9 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.view.GestureDetectorCompat;
-import android.view.MotionEvent;
-import android.view.GestureDetector;
 
 import com.example.romanchuk.appisode.R;
 import com.example.romanchuk.appisode.tasks.Register;
@@ -100,7 +100,6 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
             else
             if (event2.getX() > event1.getX()){
                 Intent intent = new Intent(Step3Activity.this, Step2Activity.class);
-                finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
 

@@ -3,15 +3,15 @@ package com.example.romanchuk.appisode.auth;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.support.v4.view.GestureDetectorCompat;
-import android.view.MotionEvent;
-import android.view.GestureDetector;
 
 import com.example.romanchuk.appisode.R;
 
@@ -69,7 +69,6 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
 
         if (event2.getX() < event1.getX()) {
             Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
-            finish();
             startActivity(intent);
             overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
         }
@@ -77,7 +76,6 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
         else
         if (event2.getX() > event1.getX()){
             Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
-            finish();
             startActivity(intent);
             overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
 

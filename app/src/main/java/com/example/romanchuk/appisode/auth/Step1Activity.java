@@ -2,8 +2,8 @@ package com.example.romanchuk.appisode.auth;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.icu.text.BreakIterator;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -13,9 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.support.v4.view.GestureDetectorCompat;
 import android.widget.Toast;
-
 
 import com.example.romanchuk.appisode.R;
 import com.example.romanchuk.appisode.tasks.CheckAuth;
@@ -25,7 +23,7 @@ import com.example.romanchuk.appisode.tools.Utils;
 public class Step1Activity extends AppCompatActivity implements View.OnClickListener {
 
     private GestureDetectorCompat gestureObject;
-Button cheatbutton;
+
     Button btnStep2;
     TextView textSing1_1, textSing1_2;
 
@@ -38,12 +36,10 @@ Button cheatbutton;
 
         gestureObject = new  GestureDetectorCompat(this, new LearnGesture());
 
-        cheatbutton = (Button) findViewById(R.id.cheatbutton);
         btnStep2 = (Button) findViewById(R.id.btnStep2);
         textSing1_1 = (TextView) findViewById(R.id.textSing1_1);
         textSing1_2 = (TextView) findViewById(R.id.textSing1_2);
         btnStep2.setOnClickListener(this);
-        cheatbutton.setOnClickListener(this);
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "bebas-neue-bold.ttf");
 
@@ -67,7 +63,7 @@ Button cheatbutton;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.cheatbutton:
+            case R.id.btnStep2:
                 Intent myIntent = new Intent(this, Step2Activity.class);
                 startActivity(myIntent);
                 break;
@@ -90,11 +86,8 @@ Button cheatbutton;
 
             if (event2.getX() < event1.getX()) {
                 Intent myIntent = new Intent(Step1Activity.this, Step2Activity.class);
-                finish();
-                overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
                 startActivity(myIntent);
-
-
+                overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
 
             }
 
@@ -109,5 +102,3 @@ Button cheatbutton;
 
     }
     }
-
-
