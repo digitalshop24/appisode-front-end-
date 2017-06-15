@@ -8,12 +8,16 @@
     android:background="@color/color_search_back"
     tools:context=".MainActivity">
 
+
     <RelativeLayout
         android:id="@+id/parent_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bgsearch">
+
 
         <LinearLayout
+
             android:id="@+id/layoutTotalSearchCount"
             android:layout_width="match_parent"
             android:layout_height="25dp"
@@ -23,12 +27,13 @@
             android:paddingRight="10dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
             <TextView
                 android:id="@+id/textViewSerialsCount1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
-                android:textColor="@color/color_black"
+                android:textColor="@color/color_grey"
                 android:textSize="20sp" />
 
             <TextView
@@ -46,32 +51,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
-                android:textColor="@color/color_black"
+                android:textColor="@color/color_grey"
                 android:textSize="20sp" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
             android:id="@+id/search_results_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
             android:layout_marginTop="85dp"
             android:clipToPadding="false" />
 
         <com.arlib.floatingsearchview.FloatingSearchView
             android:id="@+id/floating_search_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:floatingSearch_close_search_on_keyboard_dismiss="false"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/color_white"
+            android:textColorHint="@color/color_title_en"
+            android:textCursorDrawable="@drawable/color_cursor"
+
+            android:textSize="22sp"
+            android:visibility="visible"
+            app:floatingSearch_actionMenuOverflowColor="@color/color_primary_red"
+            app:floatingSearch_backgroundColor="@color/transparent"
+            app:floatingSearch_clearBtnColor="@color/color_primary_red"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
             app:floatingSearch_dimBackground="false"
             app:floatingSearch_dismissOnOutsideTouch="true"
-            app:floatingSearch_leftActionMode="showHome"
+            app:floatingSearch_dividerColor="@color/color_primary_red"
+            app:floatingSearch_leftActionColor="@color/color_primary_red"
+            app:floatingSearch_leftActionMode="noLeftAction"
+
             app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
             app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
             app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
             app:floatingSearch_searchHint="@string/search_hint"
             app:floatingSearch_showSearchKey="true"
             app:floatingSearch_suggestionsListAnimDuration="150" />
+
     </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>

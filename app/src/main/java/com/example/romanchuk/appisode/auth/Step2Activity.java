@@ -9,10 +9,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.MotionEvent;
+import android.view.GestureDetector;
 
 import com.example.romanchuk.appisode.R;
 
 public class Step2Activity extends AppCompatActivity implements View.OnClickListener{
+
+    private GestureDetectorCompat gestureObject;
 
     Button btnStep3;
     TextView textSing2_1, textSing2_2;
@@ -23,6 +28,8 @@ public class Step2Activity extends AppCompatActivity implements View.OnClickList
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_step2);
+
+        gestureObject = new  GestureDetectorCompat(this, new Step2Activity.LearnGesture());
 
         btnStep3 = (Button) findViewById(R.id.btnStep3);
         textSing2_1 = (TextView) findViewById(R.id.textSing2_1);
@@ -48,4 +55,37 @@ public class Step2Activity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureObject.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+class LearnGesture extends GestureDetector.SimpleOnGestureListener {
+
+    @Override
+    public boolean onFling(MotionEvent event1,MotionEvent event2,
+                           float velocityX, float velocityY) {
+
+        if (event2.getX() < event1.getX()) {
+            Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
+            finish();
+            startActivity(intent);
+            overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
+        }
+
+        else
+        if (event2.getX() > event1.getX()){
+            Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
+            finish();
+            startActivity(intent);
+            overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
+
+        }
+        return true;
+
+    }
+
 }
+}
+

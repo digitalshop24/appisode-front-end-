@@ -191,7 +191,7 @@
                     android:id="@+id/textViewEpisodeAired"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="СЕРИЯ ВЫХОДИТ"
+                    android:text="@string/seriescomesout"
                     android:textColor="@color/color_grey"
                     android:textSize="21sp" />
             </LinearLayout>

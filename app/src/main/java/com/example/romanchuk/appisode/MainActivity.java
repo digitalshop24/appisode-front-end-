@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -17,11 +19,13 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,6 +40,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,6 +49,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,6 +86,10 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+    private Toolbar mToolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout = null;
+    private ImageView im;
+    private TabLayout tabLayout;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -111,18 +122,37 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ViewPager mViewPager;
     SearchView searchView;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private ImageView mLupa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+      setSupportActionBar(mToolbar);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById((R.id.collapsing_toolbar));
+        getSupportActionBar().hide();
+
+        mLupa = (ImageView) findViewById(R.id.menulupa) ;
+        mLupa.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startSearch();
+
+            }
+        });
+
 
         Toolbar searchToolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(searchToolBar);
-        setTitle(getString(R.string.app_name));
+
         searchToolBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -159,6 +189,23 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabOne.setText(R.string.tab_1);
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news3, 0 , 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabTwo.setText(R.string.tab_2);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_star3, 0 , 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabThree.setText(R.string.tab_3);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my3, 0 , 0, 0);
+        tabLayout.getTabAt(2).setCustomView(tabThree);
+
 //        tabLayout.addOnTabSelectedListener(this);
 
         Bundle intent_extras = getIntent().getExtras();
@@ -184,6 +231,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         }
     }
+
+
+
+
 
     private void handleDataMessage(int id, String title, String message) {
         try {
@@ -368,9 +419,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         switch (item.getItemId()) {
             case R.id.action1_search:
 //                searchView.requestFocus();
-
-                Intent intent = new Intent(this, SearchResultsActivity.class);
-                startActivityForResult(intent, 10);
+                startSearch();
                 return true;
             case R.id.testDataPush:
                 new TestPush(this, Utils.GetPushToken(this), "пуш типа data", "data").execute();
@@ -383,6 +432,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    private void startSearch(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        startActivityForResult(intent, 10);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -498,7 +551,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             return 3;
         }
 
-        @Override
+       /* @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
@@ -511,7 +564,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
             return null;
         }
-
+*/
         public void update() {
 //            notifyDataSetChanged();
         }
@@ -952,6 +1005,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         public void onShowsNewLoaded(ArrayList<ShowsItem> list) {
             mNewAdapter.setShows(list);
             mNewAdapter.setLoaded();
+
         }
 
         @Override
@@ -959,6 +1013,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             View layout = inflater.inflate(R.layout.showsnew_fragment, container, false);
 
             showsNewItems = new ArrayList<>();
+
+
 
             if (InternetConnection.checkConnection(getContext())) {
                 pageNew = 1;
@@ -1093,6 +1149,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
+
         }
 
         @Override
@@ -1104,6 +1161,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         @Override
         public void onSearchShowsLoaded(ShowsItem showsItem) {
             mPopularAdapter.insertShow(showsItem);
+
         }
 
         @Override
@@ -1134,6 +1192,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 mPopularAdapter.setOnLoadMoreListener(new com.example.romanchuk.appisode.adapters.showsPopular.RecyclerAdapter.OnLoadMoreListener() {
                     @Override
                     public void onLoadMore() {
+
 
 //                        final Runnable r = new Runnable() {
 //                            public void run() {
@@ -1187,4 +1246,5 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         }
     }
+
 }

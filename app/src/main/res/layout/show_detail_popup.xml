@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="20dp"
-                        android:text="сериал закрыт"
+                        android:text="@string/closedtheseries"
                         android:textColor="@color/color_white"
                         android:textSize="26sp" />
 
@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="уведомить меня, если"
+                        android:text="@string/notifyme"
                         android:textColor="@color/color_white"
                         android:textSize="20sp" />
 
@@ -89,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="будет продолжение"
+                        android:text="@string/tobecontinued"
                         android:textColor="@color/color_white"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -115,7 +115,7 @@
                             android:button="@android:color/transparent"
                             android:checked="true"
                             android:gravity="center"
-                            android:text="СЕРИЯ"
+                            android:text="@string/series"
                             android:textColor="@drawable/switch_btn_text_color"
                             android:textSize="20sp" />
 
@@ -127,7 +127,7 @@
                             android:button="@android:color/transparent"
                             android:checked="false"
                             android:gravity="center"
-                            android:text="СЕЗОН"
+                            android:text="@string/season"
                             android:textColor="@drawable/switch_btn_text_color"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -241,7 +241,7 @@
                                     android:id="@+id/tvAirDate1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="27 ФЕВРАЛЯ 2017"
+                                    android:text="@string/data"
                                     android:textColor="@color/color_white"
                                     android:textSize="20sp" />
                             </LinearLayout>
@@ -268,7 +268,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="5dp"
-                                    android:text="1 СЕЗОН"
+                                    android:text="@string/fseason"
                                     android:textColor="@color/color_accent_blue"
                                     android:textSize="20sp" />
 
@@ -276,7 +276,7 @@
                                     android:id="@+id/tvSeasonAired"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="СЕРИАЛ ЗАВЕРШЕН"
+                                    android:text="@string/overseries"
                                     android:textColor="@color/color_white"
                                     android:textSize="20sp" />
                             </LinearLayout>
@@ -292,7 +292,7 @@
                                     android:id="@+id/tvAirDate"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="27 ФЕВРАЛЯ 2017"
+                                    android:text="@string/data2"
                                     android:textColor="@color/color_white"
                                     android:textSize="20sp" />
                             </LinearLayout>

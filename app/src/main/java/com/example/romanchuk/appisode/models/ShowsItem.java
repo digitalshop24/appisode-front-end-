@@ -83,24 +83,24 @@ public class ShowsItem {
         if (this.status.equals("airing")) {
             if (this.next_episode != null) {
                 this.episode_number_aired = String.valueOf(next_episode.getNumber());
-                this.episode_aired = " СЕРИЯ ВЫХОДИТ";
+                this.episode_aired = " Episode comes out";
             } else {
                 this.episode_number_aired = "";
-                this.episode_aired = "СЕРИЯ ВЫХОДИТ";
+                this.episode_aired = "Episode comes out";
             }
         }
         if (this.status.equals("hiatus") && this.next_episode != null) {
             this.episode_number_aired = "";
-            this.episode_aired = "АНОНСИРОВАН " + this.season_number + " СЕЗОН";
+            this.episode_aired = "Season " + this.season_number + " announced";
         }
         if (this.status.equals("hiatus") && this.next_episode == null) {
             this.episode_number_aired = "";
 //            this.episode_aired = "ЗАВЕРШЕН " + this.season_number + " СЕЗОН";
-            this.episode_aired = "СЕРИАЛ ЗАКРЫТ";
+            this.episode_aired = "The series is closed";
         }
         if (this.status.equals("closed")) {
             this.episode_number_aired = "";
-            this.episode_aired = "СЕРИАЛ ЗАВЕРШЕН";
+            this.episode_aired = "The series is over";
         }
     }
 
@@ -118,10 +118,10 @@ public class ShowsItem {
     }
 
     public void setEpisode_air_date() {
-        this.episode_air_date = "СЕРИАЛ ЗАВЕРШЕН";
+        this.episode_air_date = "The series is over";
         if (next_episode == null) {
             if (season_number == -1)
-                this.episode_air_date = "еще не вышел";
+                this.episode_air_date = "Not yet released";
             else
                 this.episode_air_date = DateTimeManager.DeclOfNumJustText5(season_number) + " " + season_number + " " + DateTimeManager.DeclOfNumJustText4(season_number);
             return;
@@ -240,32 +240,32 @@ public class ShowsItem {
     public void setStatus() {
         if (this.status.equals("airing")) {
             this.searchCount = String.valueOf(this.season_number);
-            this.searchStatusLeft = "ИДЕТ";
-            this.searchStatusRight = "СЕЗОН";
+            this.searchStatusLeft = "Available";
+            this.searchStatusRight = "seson";
         }
         if (this.status.equals("hiatus") && this.next_episode != null) {
             this.searchCount = String.valueOf(this.season_number);
-            this.searchStatusLeft = "АНОНСИРОВАН";
-            this.searchStatusRight = "СЕЗОН";
+            this.searchStatusLeft = "Season";
+            this.searchStatusRight = "announced";
         }
         if (this.status.equals("hiatus") && this.next_episode == null) {
             this.searchCount = String.valueOf(this.season_number + 1);
             if (this.season_number == -1)
                 this.searchCount = "1";
-            this.searchStatusLeft = "ЖДЕМ АНОНСА";
-            this.searchStatusRight = "СЕЗОНА";
+            this.searchStatusLeft = "Waiting for the announcement";
+            this.searchStatusRight = "season";
         }
         if (this.status.equals("closed")) {
 
             this.searchStatusBottom = "";
             if (next_episode == null) {
                 if (season_number == -1)
-                    this.searchStatusBottom = "еще не вышел";
+                    this.searchStatusBottom = "Not yet released";
                 else
                     this.searchStatusBottom = DateTimeManager.DeclOfNumJustText5(season_number) + " " + season_number + " " + DateTimeManager.DeclOfNumJustText4(season_number);
             }
 
-            this.searchStatusLeft = "СЕРИАЛ ЗАВЕРШЕН";
+            this.searchStatusLeft = "The series is over";
         }
     }
 

@@ -44,7 +44,7 @@ public class SerialDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        setTitle("Страница сериала");
+        setTitle("Page of the series");
 
         Intent intent = getIntent();
         showsId = intent.getIntExtra("showsId", -1);

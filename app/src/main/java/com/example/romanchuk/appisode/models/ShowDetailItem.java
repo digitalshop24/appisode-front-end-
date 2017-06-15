@@ -13,10 +13,10 @@ public class ShowDetailItem {
     }
 
     public void setSeason_air_date()    {
-        this.season_air_date = "СЕРИАЛ ЗАВЕРШЕН";
+        this.season_air_date = "The series is over";
         if (last_episode == null) {
             if (season_number == -1)
-                this.season_air_date = "еще не вышел";
+                this.season_air_date = "Not yet released";
             else
                 this.season_air_date = DateTimeManager.DeclOfNumJustText5(season_number) + " " + season_number + " " + DateTimeManager.DeclOfNumJustText4(season_number);
             return;
@@ -179,12 +179,12 @@ public class ShowDetailItem {
     public void setSeason_aired()
     {
         if (this.status.equals("airing")){
-            this.season_number_aired = season_number + " СЕЗОН";
-            this.season_aired = "ВЫХОДИТ";
+            this.season_number_aired = season_number + " season";
+            this.season_aired = "Comes out";
         }
         if (this.status.equals("closed")){
             this.season_number_aired = "";
-            this.season_aired = "СЕРИАЛ ЗАВЕРШЕН";
+            this.season_aired = "The series is over";
         }
     }
 

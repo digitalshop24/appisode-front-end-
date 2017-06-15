@@ -64,29 +64,29 @@ public class DateTimeManager {
     public static String getMonthName(int month){
         switch(month + 1){
             case 1:
-                return "января";
+                return "january";
             case 2:
-                return "февраля";
+                return "february";
             case 3:
-                return "марта";
+                return "march";
             case 4:
-                return "Apr";
+                return "april";
             case 5:
-                return "мая";
+                return "may";
             case 6:
-                return "июня";
+                return "june";
             case 7:
-                return "июля";
+                return "july";
             case 8:
-                return "августа";
+                return "august";
             case 9:
-                return "сентября";
+                return "september";
             case 10:
-                return "окбятря";
+                return "october";
             case 11:
-                return "ноября";
+                return "november";
             case 12:
-                return "декабря";
+                return "december";
         }
         return "getMonthName(" + String.valueOf(month) + ")";
     }
@@ -94,7 +94,7 @@ public class DateTimeManager {
     public static String DeclOfNumJustText1(int number)
     {
         int[] cases = { 2, 0, 1, 1, 1, 2 };
-        String[] titles = { "день", "дня", "дней" };
+        String[] titles = { "days", "days", "days" };
         String s = "0";
         try {
             s = titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
@@ -107,7 +107,7 @@ public class DateTimeManager {
     public static String DeclOfNumJustText2(int number)
     {
         int[] cases = { 2, 0, 1, 1, 1, 2 };
-        String[] titles = { "найден", "найдено", "найдено" };
+        String[] titles = { "found", "found", "found" };
         String s = "0";
         try {
             s = titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
@@ -120,7 +120,7 @@ public class DateTimeManager {
     public static String DeclOfNumJustText3(int number)
     {
         int[] cases = { 2, 0, 1, 1, 1, 2 };
-        String[] titles = { "сериал", "сериала", "сериалов" };
+        String[] titles = { "series ", "series ", "series " };
         String s = "0";
         try {
             s = titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
@@ -133,7 +133,7 @@ public class DateTimeManager {
     public static String DeclOfNumJustText4(int number)
     {
         int[] cases = { 2, 0, 1, 1, 1, 2 };
-        String[] titles = { "сезон", "сезона", "сезонов" };
+        String[] titles = { "season", "season", "season" };
         String s = "0";
         try {
             s = titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
@@ -146,7 +146,7 @@ public class DateTimeManager {
     public static String DeclOfNumJustText5(int number)
     {
         int[] cases = { 2, 0, 1, 1, 1, 2 };
-        String[] titles = { "вышел", "вышло", "вышло" };
+        String[] titles = { "released", "released", "released" };
         String s = "0";
         try {
             s = titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];

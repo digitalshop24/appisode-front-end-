@@ -1,5 +1,6 @@
 package com.example.romanchuk.appisode.auth;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.MotionEvent;
+import android.view.GestureDetector;
 
 import com.example.romanchuk.appisode.R;
 import com.example.romanchuk.appisode.tasks.Register;
 import com.example.romanchuk.appisode.tools.InternetConnection;
 
 public class Step3Activity extends AppCompatActivity implements View.OnClickListener {
+    private GestureDetectorCompat gestureObject;
 
     Button btnStep3;
     EditText etPhoneNumber;
@@ -30,6 +35,8 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_step3);
+
+        gestureObject = new  GestureDetectorCompat(this, new Step3Activity.LearnGesture());
 
         btnStep3 = (Button) findViewById(R.id.btnStep3);
         etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
@@ -52,6 +59,10 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
             case R.id.btnStep3:
                 if (!TextUtils.isEmpty(etPhoneNumber.getText())) {
                     String phone_number = String.valueOf(etPhoneNumber.getText());
+
+                    Intent myIntent = new Intent(this, Step4Activity.class);
+//                myIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                    startActivity(myIntent);
                     if (InternetConnection.checkConnection(this)) {
                         new Register(this, phone_number).execute();
                     } else {
@@ -70,5 +81,33 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
             default:
                 break;
         }
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureObject.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+    class LearnGesture extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onFling(MotionEvent event1,MotionEvent event2,
+                               float velocityX, float velocityY) {
+
+            if (event2.getX() < event1.getX()) {
+
+            }
+
+            else
+            if (event2.getX() > event1.getX()){
+                Intent intent = new Intent(Step3Activity.this, Step2Activity.class);
+                finish();
+                startActivity(intent);
+                overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
+
+            }
+            return true;
+
+        }
+
     }
 }

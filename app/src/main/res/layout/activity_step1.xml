@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
                     android:id="@+id/textSing1_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="СООБЩИТ О ВЫХОДЕ СЕРИИ ИЛИ СЕЗОНА"
+                    android:text="@string/newepisode"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
                 <TextView
@@ -65,7 +66,7 @@
                     android:id="@+id/textSing1_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ТВОИХ ЛЮБИМЫХ СЕРИАЛОВ"
+                    android:text="@string/newepisode2"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -106,6 +107,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/btnStep2"
                 android:textColor="@color/color_white"
@@ -113,9 +115,27 @@
                 android:layout_width="170dp"
                 android:layout_height="60dp"
                 android:background="@drawable/accept_button"
-                android:text="ПОНЯТНО"
+                android:text="@string/okay"
                 android:textSize="22sp" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/cheatbutton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent" />
+
+        </LinearLayout>
+
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ViewFlipper>
+
     </RelativeLayout>
+
 
 </RelativeLayout>
