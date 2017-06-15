@@ -361,7 +361,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 //                pageSubsscriptions = 1;
 //                new TaskLoadSubscriptions(this, new SubscriptionsFragment(), pageSubsscriptions, false).execute();
                 break;
+
         }
+
     }
 
     @Override
@@ -453,6 +455,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 //Write your code if there's no result
             }
         }
+        initTabs();
     }
 
     public void setPageItem(int showsId) {
@@ -464,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fragment2.setShowsId();
         mViewPager.setCurrentItem(1);
         mSectionsPagerAdapter.notifyDataSetChanged();
+        initTabs();
     }
 
     /**
@@ -531,7 +535,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     fragment = SubscriptionsFragment.newInstance(position + 1);
                     break;
             }
-
             return fragment;
         }
 
@@ -557,6 +560,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 */
         public void update() {
 //            notifyDataSetChanged();
+
         }
 
         @Override
@@ -692,6 +696,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         public void onSaveInstanceState(Bundle savedInstanceState) {
             savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
             super.onSaveInstanceState(savedInstanceState);
+
         }
 
         public void getWebServiceData() {
@@ -1228,6 +1233,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         public void getWebServiceData() {
             if (InternetConnection.checkConnection(getContext())) {
+
                 new LoadShowsPopular(getContext(), this, pagePopular, showsId, true).execute();
             } else {
                 Toast toast = Toast.makeText(getContext(), getResources().getString(R.string.no_connection), Toast.LENGTH_LONG);

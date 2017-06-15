@@ -49,6 +49,7 @@ public class SerialDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         showsId = intent.getIntExtra("showsId", -1);
 
+
         try {
             showsItem = new LoadSubId(this, showsId).execute().get();
         } catch (InterruptedException | ExecutionException e) {
@@ -145,6 +146,7 @@ public class SerialDetailActivity extends AppCompatActivity {
             });
         }
     }
+
 
     public void setAirDateDetailedMonths(CharSequence text) {
         textViewAirDateDetailedMonths.setText(text);
