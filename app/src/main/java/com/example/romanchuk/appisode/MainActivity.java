@@ -44,6 +44,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -209,22 +210,24 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabOne.setText(R.string.tab_1);
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news3, 0 , 0, 0);
-        tabLayout.getTabAt(0).setCustomView(tabOne);
+        LinearLayout tabLinearLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        TextView tabContent = (TextView) tabLinearLayout.findViewById(R.id.tabContent);
+        tabContent.setText("  "+getApplicationContext().getResources().getString(R.string.tab_1));
+        tabContent.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news2, 0, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabContent);
 
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText(R.string.tab_2);
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_star3, 0 , 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabTwo);
+        LinearLayout tabLinearLayout2 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab2, null);
+        TextView tabContent2 = (TextView) tabLinearLayout2.findViewById(R.id.tabContent2);
+        tabContent2.setText("  "+getApplicationContext().getResources().getString(R.string.tab_2));
+        tabContent2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_star2, 0, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabContent2);
 
-        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText(R.string.tab_3);
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my3, 0 , 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabThree);
+        LinearLayout tabLinearLayout3 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab3, null);
+        TextView tabContent3 = (TextView) tabLinearLayout3.findViewById(R.id.tabContent3);
+        tabContent3.setText("  "+getApplicationContext().getResources().getString(R.string.tab_3));
+        tabContent3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my2, 0, 0, 0);
+        tabLayout.getTabAt(2).setCustomView(tabContent3);
     }
-
 
     private void handleDataMessage(int id, String title, String message) {
         try {
@@ -544,7 +547,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             return 3;
         }
 
-       /* @Override
+      /*  @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
@@ -556,8 +559,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     return getString(R.string.tab_3).toUpperCase(l);
             }
             return null;
-        }
-*/
+        }*/
         public void update() {
 //            notifyDataSetChanged();
 

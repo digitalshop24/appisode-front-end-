@@ -11,6 +11,6 @@
         android:layout_height="wrap_content"
         style="@android:style/Widget.Holo.ProgressBar"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/bgsearch"
+        android:background="@color/transparent"
         />
 </LinearLayout>
