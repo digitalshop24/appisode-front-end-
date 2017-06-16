@@ -7,8 +7,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -22,6 +20,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,13 +29,13 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -44,6 +43,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,6 @@ import com.example.romanchuk.appisode.models.NotificationItem;
 import com.example.romanchuk.appisode.models.ShowsItem;
 import com.example.romanchuk.appisode.models.SubscriptionsItem;
 import com.example.romanchuk.appisode.tasks.LoadNotifications;
-import com.example.romanchuk.appisode.tasks.LoadSearchShow;
 import com.example.romanchuk.appisode.tasks.LoadShowsNew;
 import com.example.romanchuk.appisode.tasks.LoadShowsPopular;
 import com.example.romanchuk.appisode.tasks.LoadSubscriptions;
@@ -66,8 +66,6 @@ import com.example.romanchuk.appisode.tools.InternetConnection;
 import com.example.romanchuk.appisode.tools.NotificationUtils;
 import com.example.romanchuk.appisode.tools.Utils;
 import com.example.romanchuk.appisode.view.MyCustomLayoutManager;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,10 +73,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+    private Toolbar mToolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout = null;
+    private ImageView im;
+    private TabLayout tabLayout;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -111,18 +112,37 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ViewPager mViewPager;
     SearchView searchView;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private ImageView mLupa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+      setSupportActionBar(mToolbar);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById((R.id.collapsing_toolbar));
+        getSupportActionBar().hide();
+
+        mLupa = (ImageView) findViewById(R.id.menulupa) ;
+        mLupa.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startSearch();
+
+            }
+        });
+
 
         Toolbar searchToolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(searchToolBar);
-        setTitle(getString(R.string.app_name));
+
         searchToolBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -157,8 +177,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         mViewPager.setCurrentItem(1);
         mSectionsPagerAdapter.notifyDataSetChanged();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        initTabs();
+
 //        tabLayout.addOnTabSelectedListener(this);
 
         Bundle intent_extras = getIntent().getExtras();
@@ -183,6 +203,30 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 e.printStackTrace();
             }
         }
+    }
+
+    private void initTabs() {
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+
+        LinearLayout tabLinearLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        TextView tabContent = (TextView) tabLinearLayout.findViewById(R.id.tabContent);
+        tabContent.setText("  "+getApplicationContext().getResources().getString(R.string.tab_1));
+        tabContent.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news2, 0, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabContent);
+
+        LinearLayout tabLinearLayout2 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab2, null);
+        TextView tabContent2 = (TextView) tabLinearLayout2.findViewById(R.id.tabContent2);
+        tabContent2.setText("  "+getApplicationContext().getResources().getString(R.string.tab_2));
+        tabContent2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_star2, 0, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabContent2);
+
+        LinearLayout tabLinearLayout3 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab3, null);
+        TextView tabContent3 = (TextView) tabLinearLayout3.findViewById(R.id.tabContent3);
+        tabContent3.setText("  "+getApplicationContext().getResources().getString(R.string.tab_3));
+        tabContent3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my2, 0, 0, 0);
+        tabLayout.getTabAt(2).setCustomView(tabContent3);
     }
 
     private void handleDataMessage(int id, String title, String message) {
@@ -320,7 +364,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 //                pageSubsscriptions = 1;
 //                new TaskLoadSubscriptions(this, new SubscriptionsFragment(), pageSubsscriptions, false).execute();
                 break;
+
         }
+
     }
 
     @Override
@@ -368,9 +414,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         switch (item.getItemId()) {
             case R.id.action1_search:
 //                searchView.requestFocus();
-
-                Intent intent = new Intent(this, SearchResultsActivity.class);
-                startActivityForResult(intent, 10);
+                startSearch();
                 return true;
             case R.id.testDataPush:
                 new TestPush(this, Utils.GetPushToken(this), "пуш типа data", "data").execute();
@@ -383,6 +427,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    private void startSearch(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        startActivityForResult(intent, 10);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -410,6 +458,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 //Write your code if there's no result
             }
         }
+        initTabs();
     }
 
     public void setPageItem(int showsId) {
@@ -421,6 +470,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fragment2.setShowsId();
         mViewPager.setCurrentItem(1);
         mSectionsPagerAdapter.notifyDataSetChanged();
+        initTabs();
     }
 
     /**
@@ -488,7 +538,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     fragment = SubscriptionsFragment.newInstance(position + 1);
                     break;
             }
-
             return fragment;
         }
 
@@ -498,7 +547,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             return 3;
         }
 
-        @Override
+      /*  @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
@@ -510,10 +559,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     return getString(R.string.tab_3).toUpperCase(l);
             }
             return null;
-        }
-
+        }*/
         public void update() {
 //            notifyDataSetChanged();
+
         }
 
         @Override
@@ -649,6 +698,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         public void onSaveInstanceState(Bundle savedInstanceState) {
             savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
             super.onSaveInstanceState(savedInstanceState);
+
         }
 
         public void getWebServiceData() {
@@ -952,6 +1002,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         public void onShowsNewLoaded(ArrayList<ShowsItem> list) {
             mNewAdapter.setShows(list);
             mNewAdapter.setLoaded();
+
         }
 
         @Override
@@ -959,6 +1010,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             View layout = inflater.inflate(R.layout.showsnew_fragment, container, false);
 
             showsNewItems = new ArrayList<>();
+
+
 
             if (InternetConnection.checkConnection(getContext())) {
                 pageNew = 1;
@@ -1093,6 +1146,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
+
         }
 
         @Override
@@ -1104,6 +1158,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         @Override
         public void onSearchShowsLoaded(ShowsItem showsItem) {
             mPopularAdapter.insertShow(showsItem);
+
         }
 
         @Override
@@ -1134,6 +1189,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 mPopularAdapter.setOnLoadMoreListener(new com.example.romanchuk.appisode.adapters.showsPopular.RecyclerAdapter.OnLoadMoreListener() {
                     @Override
                     public void onLoadMore() {
+
 
 //                        final Runnable r = new Runnable() {
 //                            public void run() {
@@ -1179,6 +1235,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         public void getWebServiceData() {
             if (InternetConnection.checkConnection(getContext())) {
+
                 new LoadShowsPopular(getContext(), this, pagePopular, showsId, true).execute();
             } else {
                 Toast toast = Toast.makeText(getContext(), getResources().getString(R.string.no_connection), Toast.LENGTH_LONG);
@@ -1187,4 +1244,5 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         }
     }
+
 }

@@ -10,20 +10,28 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.design.widget.CollapsingToolbarLayout;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.SearchSuggestionsAdapter;
@@ -46,17 +54,27 @@ public class SearchResultsActivity extends AppCompatActivity implements BaseExam
     static Activity activity = null;
     static String query;
     static int page = 1;
+    private Toolbar mToolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //setTheme(R.style.AppThemeBlue);
         super.onCreate(savedInstanceState);
 
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_search_results);
         activity = this;
         showFragment(new SearchResultsFragment());
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById((R.id.collapsing_toolbar));
+        getSupportActionBar().hide();
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 //        setSupportActionBar(toolbar);
@@ -98,6 +116,7 @@ public class SearchResultsActivity extends AppCompatActivity implements BaseExam
         private final String TAG = "BlankFragment";
         public static final long FIND_SUGGESTION_SIMULATED_DELAY = 250;
 
+
         private Handler handler;
         private FloatingSearchView mSearchView;
 
@@ -108,6 +127,7 @@ public class SearchResultsActivity extends AppCompatActivity implements BaseExam
         LinearLayout layoutTotalSearchCount;
 
         private String mLastQuery = "";
+
 
         public SearchResultsFragment() {
             // Required empty public constructor

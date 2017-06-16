@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/color_grey"
-    tools:context="com.example.romanchuk.appisode.FirstActivity">
+    tools:context="com.example.romanchuk.appisode.FirstActivity"
+    android:backgroundTint="@color/color_black">
 
     <ImageView
         android:id="@+id/iconCallButton"

@@ -2,10 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.romanchuk.appisode.MainActivity">
+
     <item
         android:id="@+id/action1_search"
         android:title="@android:string/search_go"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:icon="@drawable/menulupa"
         app:showAsAction="ifRoom|collapseActionView"/>
     <item
         android:visible="false"

@@ -44,10 +44,11 @@ public class SerialDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        setTitle("Страница сериала");
+        setTitle("Page of the series");
 
         Intent intent = getIntent();
         showsId = intent.getIntExtra("showsId", -1);
+
 
         try {
             showsItem = new LoadSubId(this, showsId).execute().get();
@@ -145,6 +146,7 @@ public class SerialDetailActivity extends AppCompatActivity {
             });
         }
     }
+
 
     public void setAirDateDetailedMonths(CharSequence text) {
         textViewAirDateDetailedMonths.setText(text);

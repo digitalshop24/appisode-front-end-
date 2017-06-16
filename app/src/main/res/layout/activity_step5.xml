@@ -27,7 +27,7 @@
                 android:layout_width="170dp"
                 android:layout_height="60dp"
                 android:background="@drawable/accept_button"
-                android:text="ЗАКРЫТЬ"
+                android:text="@string/close"
                 android:textAlignment="center"
                 android:textColor="@color/color_white"
                 android:textSize="22sp" />
@@ -64,7 +64,7 @@
                     android:id="@+id/textSing2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ПОРЯДОК!"
+                    android:text="@string/right"
                     android:textColor="@color/color_white"
                     android:textSize="26sp" />
                 <TextView
@@ -72,7 +72,7 @@
                     android:id="@+id/textSing2_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ТЕПЕРЬ ВЫ МОЖЕТЕ ЧТО-ТО ТАМ. НУЖЕН"
+                    android:text="@string/allright"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
 
@@ -80,7 +80,7 @@
                     android:id="@+id/textSing2_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ТЕКСТ О ТОМ, КАК ТЕПЕРЬ ВСЕ"
+                    android:text="@string/allright2"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
             </LinearLayout>

@@ -218,9 +218,9 @@ public class ShowsIdFragment extends Dialog implements
         cbSeasons.setTypeface(custom_font);
         cbEpisodes.setTypeface(custom_font);
 
-        tvClose1.setText("сериал закрыт".toUpperCase());
-        tvClose2.setText("уведомить меня, если".toUpperCase());
-        tvClose3.setText("будет продолжение".toUpperCase());
+        tvClose1.setText("The series is closed".toUpperCase());
+        tvClose2.setText("Notify me if".toUpperCase());
+        tvClose3.setText("there is a continuation".toUpperCase());
 
         ifShowClosedOrHiatus(showDetailItem.isShowClosed() || showDetailItem.isShowHiatus());
 
@@ -240,8 +240,8 @@ public class ShowsIdFragment extends Dialog implements
             layoutAiring.setVisibility(View.INVISIBLE);
             layoutClosed.setVisibility(View.VISIBLE);
             if (showDetailItem.isShowHiatus()){
-                tvClose2.setText("уведомить меня, когда".toUpperCase());
-                tvClose3.setText("анонсируют " + showDetailItem.getNext_season_number() + " сезон".toUpperCase());
+                tvClose2.setText("notify me when".toUpperCase());
+                tvClose3.setText(" announcing the " + showDetailItem.getNext_season_number() + " season".toUpperCase());
             }
         }
         else{

@@ -43,32 +43,32 @@
         </receiver>
         <!---->
         <!--<receiver-->
-            <!--android:name="com.google.android.gms.gcm.GcmReceiver"-->
-            <!--android:exported="true"-->
-            <!--android:permission="com.google.android.c2dm.permission.SEND">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
+        <!--android:name="com.google.android.gms.gcm.GcmReceiver"-->
+        <!--android:exported="true"-->
+        <!--android:permission="com.google.android.c2dm.permission.SEND">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
 
-                <!--<category android:name="com.example.gcm" />-->
-            <!--</intent-filter>-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.c2dm.intent.REGISTRATION" />-->
+        <!--<category android:name="com.example.gcm" />-->
+        <!--</intent-filter>-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.google.android.c2dm.intent.REGISTRATION" />-->
 
-                <!--<category android:name="com.example.gcm" />-->
-            <!--</intent-filter>-->
+        <!--<category android:name="com.example.gcm" />-->
+        <!--</intent-filter>-->
         <!--</receiver>-->
         <!--<service-->
-            <!--android:name=".MyGcmListenerService"-->
-            <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
-            <!--</intent-filter>-->
+        <!--android:name=".MyGcmListenerService"-->
+        <!--android:exported="false">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
+        <!--</intent-filter>-->
         <!--</service>-->
 
         <!--<receiver android:name=".auth.Step4Activity$SMSMonitor">-->
-            <!--<intent-filter android:priority="100">-->
-                <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
-            <!--</intent-filter>-->
+        <!--<intent-filter android:priority="100">-->
+        <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
+        <!--</intent-filter>-->
         <!--</receiver>-->
 
         <activity

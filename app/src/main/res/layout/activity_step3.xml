@@ -76,7 +76,7 @@
                 android:layout_width="170dp"
                 android:layout_height="60dp"
                 android:background="@drawable/accept_button"
-                android:text="ГОТОВО"
+                android:text="@string/okay"
                 android:textAlignment="center"
                 android:textColor="@color/color_white"
                 android:textSize="22sp" />
@@ -124,7 +124,7 @@
                     android:id="@+id/textSing2_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ТЕКСТ ПРО НЕОБХОДИМОСТЬ"
+                    android:text="@string/binding"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
 
@@ -133,7 +133,7 @@
                     android:id="@+id/textSing2_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ПРИВЯЗКИ ТЕЛЕФОНА"
+                    android:text="@string/binding2"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
             </LinearLayout>

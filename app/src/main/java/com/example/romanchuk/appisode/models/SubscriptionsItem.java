@@ -132,30 +132,30 @@ public class SubscriptionsItem {
                 if (this.subtype.equals("episode")) {
                     if (this.episodes_interval != 0) {
                         if (this.episodes_interval == 1) {
-                            this.subsStatusLeft = "через";
-                            this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.next_notification_episode.getDays_left()) + " новая серия";
+                            this.subsStatusLeft = "after";
+                            this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.next_notification_episode.getDays_left()) + " new episode";
                             if (this.next_notification_episode.getDays_left() == 0){
-                                this.subsCount = "сегодня";
+                                this.subsCount = "today";
                                 this.subsStatusLeft = "";
-                                this.subsStatusRight = "новая серия";
+                                this.subsStatusRight = "new episode";
                             }
                         }
                         if (this.episodes_interval > 1) {
-                            this.subsStatusLeft = "через";
-                            this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.next_notification_episode.getDays_left()) + " новые серии";
+                            this.subsStatusLeft = "after";
+                            this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.next_notification_episode.getDays_left()) + " new episodes";
                             if (this.next_notification_episode.getDays_left() > 0)
-                                this.subsStatusLeft = "через";
+                                this.subsStatusLeft = "after";
                             else{
-                                this.subsCount = "сегодня";
+                                this.subsCount = "today";
                                 this.subsStatusLeft = "";
-                                this.subsStatusRight = "новые серии";
+                                this.subsStatusRight = "new episodes";
                             }
                         }
                     }
                 }
                 if (this.subtype.equals("season")) {
-                    this.subsStatusLeft = "через";
-                    this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.next_notification_episode.getDays_left()) + " конец сезона";
+                    this.subsStatusLeft = "after";
+                    this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.next_notification_episode.getDays_left()) + " end of season";
                 }
             }
         }
@@ -165,12 +165,12 @@ public class SubscriptionsItem {
                     if (this.episodes_interval != 0) {
                         if (this.episodes_interval == 1) {
                             this.subsCount = String.valueOf(this.show.getNext_episode().getDays_left());
-                            this.subsStatusLeft = "через";
-                            this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.show.getNext_episode().getDays_left()) + " новая серия";
+                            this.subsStatusLeft = "after";
+                            this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.show.getNext_episode().getDays_left()) + " new episode";
                             if (this.next_notification_episode.getDays_left() == 0){
-                                this.subsCount = "сегодня";
+                                this.subsCount = "today";
                                 this.subsStatusLeft = "";
-                                this.subsStatusRight = "новая серия";
+                                this.subsStatusRight = "new episode";
                             }
                         }
                         if (this.episodes_interval > 1) {
@@ -178,19 +178,19 @@ public class SubscriptionsItem {
                                 this.subsCount = String.valueOf(this.next_notification_episode.getDays_left());
                                 this.subsStatusRight =
                                         DateTimeManager.DeclOfNumJustText1(this.show.getNext_episode().getDays_left()) +
-                                                " новые серии";
+                                                " new episodes";
                             } else {
                                 this.subsCount = String.valueOf(this.show.getNext_episode().getDays_left());
                                 this.subsStatusRight =
                                         DateTimeManager.DeclOfNumJustText1(this.show.getNext_episode().getDays_left()) +
-                                                " новые серии";
+                                                " new episodes";
                             }
                             if (this.next_notification_episode.getDays_left() > 0)
-                                this.subsStatusLeft = "через";
+                                this.subsStatusLeft = "after";
                             else{
-                                this.subsCount = "сегодня";
+                                this.subsCount = "today";
                                 this.subsStatusLeft = "";
-                                this.subsStatusRight = "новые серии";
+                                this.subsStatusRight = "new episodes";
                             }
                         }
                     }
@@ -198,19 +198,19 @@ public class SubscriptionsItem {
                 if (this.subtype.equals("season")) {
                     if (this.show.getNext_episode() != null)
                         this.subsCount = String.valueOf(this.show.getNext_episode().getDays_left());
-                    this.subsStatusLeft = "через";
+                    this.subsStatusLeft = "after";
                     if (this.show.getNext_episode() != null)
-                        this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.show.getNext_episode().getDays_left()) + " новый сезон";
+                        this.subsStatusRight = DateTimeManager.DeclOfNumJustText1(this.show.getNext_episode().getDays_left()) + " new season";
                 }
             } else {
 //                _iconBellBorder.IsVisible = false;
                 this.subsCount = String.valueOf(this.show.getSeason_number() + 1);
-                this.subsStatusLeft = "ждем анонса";
-                this.subsStatusRight = "сезона";
+                this.subsStatusLeft = "Waiting for the announcement of the";
+                this.subsStatusRight = "season";
             }
         }
         if (this.show.getStatus().equals("closed"))
-            this.subsStatusLeft = "сериал завершен";
+            this.subsStatusLeft = "The series is over";
     }
 
     public EpisodeItem getNext_notification_episode() {
