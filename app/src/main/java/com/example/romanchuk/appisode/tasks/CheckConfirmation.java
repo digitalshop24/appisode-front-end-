@@ -13,10 +13,6 @@ import com.example.romanchuk.appisode.json.JsonUtils;
 import com.example.romanchuk.appisode.json.Requestor;
 import com.example.romanchuk.appisode.tools.Utils;
 
-/**
- * Created by romanchuk on 21.01.2017.
- */
-
 public class CheckConfirmation extends AsyncTask<Void, Void, String> {
     private String phone_number, confirmation;
     private Activity activity;
@@ -53,9 +49,14 @@ public class CheckConfirmation extends AsyncTask<Void, Void, String> {
             Requestor.setToken(result);
 
             Intent myIntent = new Intent(activity, Step5Activity.class);
-            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(myIntent);
             activity.finish();
+        }
+        else{
+            Toast toast = Toast.makeText(activity, activity.getResources().getString(R.string.invalid_code), Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.BOTTOM, 0, 100);
+            toast.show();
         }
     }
 }

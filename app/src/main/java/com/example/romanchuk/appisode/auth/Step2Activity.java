@@ -48,9 +48,10 @@ public class Step2Activity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btnStep3:
                 Intent myIntent = new Intent(this, Step3Activity.class);
-//                myIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
 //                finish();
+                overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
                 break;
             default:
                 break;
@@ -69,18 +70,20 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
                            float velocityX, float velocityY) {
 
         if (event2.getX() < event1.getX()) {
-            Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
+            Intent myIntent = new Intent(Step2Activity.this, Step3Activity.class);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(myIntent);
 //            finish();
+            overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
         }
 
         else
         if (event2.getX() > event1.getX()){
-            Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
+            Intent myIntent = new Intent(Step2Activity.this, Step1Activity.class);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(myIntent);
 //            finish();
+            overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
         }
         return true;
 

@@ -85,7 +85,7 @@ public class Step5Activity extends AppCompatActivity implements View.OnClickList
             case R.id.btnStep3:
 
                 myIntent = new Intent(this, MainActivity.class);
-                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
                 finish();
                 break;

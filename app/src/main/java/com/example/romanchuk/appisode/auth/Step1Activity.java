@@ -65,8 +65,10 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btnStep2:
                 Intent myIntent = new Intent(this, Step2Activity.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
 //                finish();
+                overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
                 break;
             default:
                 break;
@@ -88,9 +90,10 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
 
             if (event2.getX() < event1.getX()) {
                 Intent myIntent = new Intent(Step1Activity.this, Step2Activity.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
+//                finish();
                 overridePendingTransition(R.anim.slideleft, R.anim.slideleftout);
-                finish();
             } else if (event2.getX() > event1.getX()) {
 
             }

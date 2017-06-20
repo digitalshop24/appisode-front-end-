@@ -109,16 +109,17 @@ public class Step4Activity extends AppCompatActivity implements View.OnClickList
 //                myIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 //                        startActivity(myIntent);
                         if (InternetConnection.checkConnection(this)) {
-                            try {
-                                String result = new CheckConfirmation(this, phone_number, confirmation).execute().get();
-                                if (result.equals("no_auth_token")) {
-                                    Toast toast = Toast.makeText(this, getResources().getString(R.string.invalid_code), Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.BOTTOM, 0, 100);
-                                    toast.show();
-                                }
-                            } catch (InterruptedException | ExecutionException e) {
-                                e.printStackTrace();
-                            }
+//                            try {
+                                new CheckConfirmation(this, phone_number, confirmation).execute();
+//                                String result = new CheckConfirmation(this, phone_number, confirmation).execute().get();
+//                                if (result.equals("no_auth_token")) {
+//                                    Toast toast = Toast.makeText(this, getResources().getString(R.string.invalid_code), Toast.LENGTH_LONG);
+//                                    toast.setGravity(Gravity.BOTTOM, 0, 100);
+//                                    toast.show();
+//                                }
+//                            } catch (InterruptedException | ExecutionException e) {
+//                                e.printStackTrace();
+//                            }
 
                         } else {
                             Toast toast = Toast.makeText(this, getResources().getString(R.string.no_connection), Toast.LENGTH_LONG);

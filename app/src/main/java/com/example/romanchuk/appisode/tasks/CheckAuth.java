@@ -51,7 +51,7 @@ public class CheckAuth extends AsyncTask<Void, Void, Integer> {
             new CheckSubscriptions(activity).execute();
             Requestor.setToken(auth_token);
             Intent myIntent = new Intent(activity, MainActivity.class);
-            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(myIntent);
             activity.finish();
         }
