@@ -33,10 +33,10 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_step3);
 
-        gestureObject = new  GestureDetectorCompat(this, new Step3Activity.LearnGesture());
+        gestureObject = new GestureDetectorCompat(this, new Step3Activity.LearnGesture());
 
         btnStep3 = (Button) findViewById(R.id.btnStep3);
         etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
@@ -60,9 +60,9 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
                 if (!TextUtils.isEmpty(etPhoneNumber.getText())) {
                     String phone_number = String.valueOf(etPhoneNumber.getText());
 
-                    Intent myIntent = new Intent(this, Step4Activity.class);
+//                    Intent myIntent = new Intent(this, Step4Activity.class);
 //                myIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                    startActivity(myIntent);
+//                    startActivity(myIntent);
                     if (InternetConnection.checkConnection(this)) {
                         new Register(this, phone_number).execute();
                     } else {
@@ -70,9 +70,7 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
                         toast.setGravity(Gravity.BOTTOM, 0, 100);
                         toast.show();
                     }
-                }
-                else
-                {
+                } else {
                     Toast toast = Toast.makeText(this, getResources().getString(R.string.input_phone), Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.BOTTOM, 0, 100);
                     toast.show();
@@ -82,27 +80,26 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         this.gestureObject.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
+
     class LearnGesture extends GestureDetector.SimpleOnGestureListener {
 
         @Override
-        public boolean onFling(MotionEvent event1,MotionEvent event2,
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
                                float velocityX, float velocityY) {
 
             if (event2.getX() < event1.getX()) {
 
-            }
-
-            else
-            if (event2.getX() > event1.getX()){
+            } else if (event2.getX() > event1.getX()) {
                 Intent intent = new Intent(Step3Activity.this, Step2Activity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
-
+                overridePendingTransition(R.anim.slideright, R.anim.sliderightout);
+//                finish();
             }
             return true;
 

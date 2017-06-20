@@ -34,7 +34,7 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_step1);
 
-        gestureObject = new  GestureDetectorCompat(this, new LearnGesture());
+        gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
         btnStep2 = (Button) findViewById(R.id.btnStep2);
         textSing1_1 = (TextView) findViewById(R.id.textSing1_1);
@@ -66,6 +66,7 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
             case R.id.btnStep2:
                 Intent myIntent = new Intent(this, Step2Activity.class);
                 startActivity(myIntent);
+//                finish();
                 break;
             default:
                 break;
@@ -78,21 +79,19 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
         this.gestureObject.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
+
     class LearnGesture extends GestureDetector.SimpleOnGestureListener {
 
         @Override
-        public boolean onFling(MotionEvent event1,MotionEvent event2,
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
                                float velocityX, float velocityY) {
 
             if (event2.getX() < event1.getX()) {
                 Intent myIntent = new Intent(Step1Activity.this, Step2Activity.class);
                 startActivity(myIntent);
-                overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
-
-            }
-
-            else
-            if (event2.getX() > event1.getX()){
+                overridePendingTransition(R.anim.slideleft, R.anim.slideleftout);
+                finish();
+            } else if (event2.getX() > event1.getX()) {
 
             }
 
@@ -101,4 +100,4 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
         }
 
     }
-    }
+}

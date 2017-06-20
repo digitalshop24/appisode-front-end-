@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.example.romanchuk.appisode.R;
 import com.example.romanchuk.appisode.auth.Step5Activity;
@@ -53,6 +55,7 @@ public class CheckConfirmation extends AsyncTask<Void, Void, String> {
             Intent myIntent = new Intent(activity, Step5Activity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(myIntent);
+            activity.finish();
         }
     }
 }

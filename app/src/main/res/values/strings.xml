@@ -10,6 +10,7 @@
     <string name="cancel">cancel</string>
     <string name="input_phone">Enter phone number</string>
     <string name="input_code">Enter the code from sms</string>
+    <string name="invalid_code">Invalid code</string>
 
     <string name="tab_3">MY</string>
     <string name="tab_2">POPULAR</string>

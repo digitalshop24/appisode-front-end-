@@ -23,16 +23,20 @@ import com.example.romanchuk.appisode.tasks.CheckConfirmation;
 import com.example.romanchuk.appisode.tools.InternetConnection;
 import com.example.romanchuk.appisode.tools.Utils;
 
+import java.util.concurrent.ExecutionException;
+
 public class Step4Activity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = Step4Activity.class.getSimpleName();
     public static class SMSMonitor extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            Toast toast = Toast.makeText(context, "перехват смс", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.BOTTOM, 0, 100);
-            toast.show();
+            Log.e(TAG, "перехват смс");
+//            Toast toast = Toast.makeText(context, "перехват смс", Toast.LENGTH_LONG);
+//            toast.setGravity(Gravity.BOTTOM, 0, 100);
+//            toast.show();
             if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
                 String msgBody = "";
                 Bundle bundle = intent.getExtras();
@@ -93,19 +97,28 @@ public class Step4Activity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnStep3:
-               Utils.SaveAuthToken(this, "YQcSoshbHsLX4lX6eJYWPCXgqrY");
-               Utils.SavePhoneNumber(this, "+375298823743");
-              Utils.SavePushToken(this, "eyF2cD8UY6Y:APA91bG6OPXswi-_S5XwaNrt6w9s9qwnZcTU-_600bbQagCqgNb83g0WgtDoqm7rIKSWHQ97TAO8wjjjqb_3VkoMho769cOd_PhVhWHfmi6Usf5dRevKqXUp_p48xHkkIA5PgAtWHm4N");
+//               Utils.SaveAuthToken(this, "YQcSoshbHsLX4lX6eJYWPCXgqrY");
+//               Utils.SavePhoneNumber(this, "+375298823743");
+//              Utils.SavePushToken(this, "eyF2cD8UY6Y:APA91bG6OPXswi-_S5XwaNrt6w9s9qwnZcTU-_600bbQagCqgNb83g0WgtDoqm7rIKSWHQ97TAO8wjjjqb_3VkoMho769cOd_PhVhWHfmi6Usf5dRevKqXUp_p48xHkkIA5PgAtWHm4N");
                 String phone_number = Utils.GetPhoneNumber(this);
                 if (!phone_number.equals("no_phone_number")) {
 
                     if (!TextUtils.isEmpty(etConfirmation.getText())) {
                         String confirmation = String.valueOf(etConfirmation.getText());
-                        Intent myIntent = new Intent(this, Step5Activity.class);
+//                        Intent myIntent = new Intent(this, Step5Activity.class);
 //                myIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                        startActivity(myIntent);
+//                        startActivity(myIntent);
                         if (InternetConnection.checkConnection(this)) {
-                            new CheckConfirmation(this, phone_number, confirmation).execute();
+                            try {
+                                String result = new CheckConfirmation(this, phone_number, confirmation).execute().get();
+                                if (result.equals("no_auth_token")) {
+                                    Toast toast = Toast.makeText(this, getResources().getString(R.string.invalid_code), Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.BOTTOM, 0, 100);
+                                    toast.show();
+                                }
+                            } catch (InterruptedException | ExecutionException e) {
+                                e.printStackTrace();
+                            }
 
                         } else {
                             Toast toast = Toast.makeText(this, getResources().getString(R.string.no_connection), Toast.LENGTH_LONG);

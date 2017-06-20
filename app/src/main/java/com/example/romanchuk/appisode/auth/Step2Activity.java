@@ -50,6 +50,7 @@ public class Step2Activity extends AppCompatActivity implements View.OnClickList
                 Intent myIntent = new Intent(this, Step3Activity.class);
 //                myIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                 startActivity(myIntent);
+//                finish();
                 break;
             default:
                 break;
@@ -71,6 +72,7 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
             Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
+//            finish();
         }
 
         else
@@ -78,7 +80,7 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
             Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
-
+//            finish();
         }
         return true;
 

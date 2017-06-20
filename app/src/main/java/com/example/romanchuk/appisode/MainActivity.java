@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
@@ -181,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
 //        tabLayout.addOnTabSelectedListener(this);
 
+        Utils.GetAuthToken(this);
         Bundle intent_extras = getIntent().getExtras();
         showsId = -1;
         if (intent_extras != null && intent_extras.containsKey("com.example.romanchuk.appisode.show_id")) {
@@ -210,6 +212,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setupWithViewPager(mViewPager);
 
 
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "bebas-neue-bold.ttf");
+
         LinearLayout tabLinearLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         TextView tabContent = (TextView) tabLinearLayout.findViewById(R.id.tabContent);
         tabContent.setText("  "+getApplicationContext().getResources().getString(R.string.tab_1));
@@ -227,17 +231,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabContent3.setText("  "+getApplicationContext().getResources().getString(R.string.tab_3));
         tabContent3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_my2, 0, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabContent3);
+
+        tabContent.setTypeface(custom_font);
+        tabContent2.setTypeface(custom_font);
+        tabContent3.setTypeface(custom_font);
     }
 
     private void handleDataMessage(int id, String title, String message) {
         try {
             String imageUrl = "";
-            String timestamp = "2000";
 
             Log.e(TAG, "title: " + title);
             Log.e(TAG, "message: " + message);
             Log.e(TAG, "imageUrl: " + imageUrl);
-            Log.e(TAG, "timestamp: " + timestamp);
 
 
             if (!true) {
@@ -260,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 //                resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
 
-                notificationUtils.showNotificationMessage(title, message, timestamp, resultIntent);
+                notificationUtils.showNotificationMessage(title, message, resultIntent);
             }
         } catch (Exception e) {
             Log.e(TAG, "Exception: " + e.getMessage());

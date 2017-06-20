@@ -51,6 +51,7 @@ public class Register extends AsyncTask<Void, Void, Boolean> {
             Intent myIntent = new Intent(activity, Step4Activity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(myIntent);
+            activity.finish();
         }
     }
 }
