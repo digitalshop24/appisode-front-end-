@@ -73,7 +73,6 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
             Intent myIntent = new Intent(Step2Activity.this, Step3Activity.class);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(myIntent);
-//            finish();
             overridePendingTransition(R.anim.slideleft,R.anim.slideleftout);
         }
 
@@ -82,7 +81,6 @@ class LearnGesture extends GestureDetector.SimpleOnGestureListener {
             Intent myIntent = new Intent(Step2Activity.this, Step1Activity.class);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(myIntent);
-//            finish();
             overridePendingTransition(R.anim.slideright,R.anim.sliderightout);
         }
         return true;

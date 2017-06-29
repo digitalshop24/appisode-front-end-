@@ -99,7 +99,6 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
                 Intent myIntent = new Intent(Step3Activity.this, Step2Activity.class);
                 myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(myIntent);
-//                finish();
                 overridePendingTransition(R.anim.slideright, R.anim.sliderightout);
             }
             return true;

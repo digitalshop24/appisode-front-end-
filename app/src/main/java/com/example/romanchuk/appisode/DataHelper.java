@@ -21,7 +21,7 @@ public class DataHelper {
     {
         sShowSuggestions.clear();
         for (int i = 0; i < listShows.size(); i++) {
-            sShowSuggestions.add(new ShowSuggestion(listShows.get(i).getName()));
+            sShowSuggestions.add(new ShowSuggestion(listShows.get(i).getName_original()));
         }
     }
 

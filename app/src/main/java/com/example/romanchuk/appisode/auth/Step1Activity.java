@@ -1,8 +1,11 @@
 package com.example.romanchuk.appisode.auth;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
@@ -27,6 +30,7 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
     Button btnStep2;
     TextView textSing1_1, textSing1_2;
 
+    private static final int PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,15 @@ public class Step1Activity extends AppCompatActivity implements View.OnClickList
         textSing1_1.setTypeface(custom_font);
         textSing1_2.setTypeface(custom_font);
         String auth_token = Utils.GetAuthToken(this);
+
+//        int result = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS);
+//        int result1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
+//
+//        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_SMS},PERMISSION_REQUEST_CODE);
+//        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECEIVE_SMS},PERMISSION_REQUEST_CODE);
+//
+//        result = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS);
+//        result1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
 
         if (!auth_token.equals("no_auth_token")) {
             if (InternetConnection.checkConnection(this)) {
